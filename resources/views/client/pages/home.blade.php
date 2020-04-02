@@ -211,7 +211,7 @@
             <div class="col-sm-4 col-p rightSidebar">
                 <div class="theiaStickySidebar">
                     <!-- START WEATHER -->
-                    @include('client.includes.weather')
+                    
                     <!-- END OF /. WEATHER -->
                     <!-- START SOCIAL ICON -->
                     <div class="social-media-inner">

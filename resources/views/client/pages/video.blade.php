@@ -32,7 +32,7 @@
 				<div class="col-lg-3">
 					<iframe width="100%" style="height: auto" src="https://www.youtube.com/embed/{{ $video->code }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					<h5>
-						<a href="">
+						<a href="{{ route('client.video.detail', ['slug' => $video->slug, 'id' => $video->id]) }}">
 							{{ $video->title }}
 						</a>
 					</h5>

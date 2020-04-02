@@ -19,4 +19,16 @@ class VideoController extends Controller
 
     	return view('client.pages.video', $data);
     }
+
+    public function detail($title, $id)
+    {
+    	$bestNewVideo = Video::findOrFail($id);
+    	$videoList = Video::where('id', '!=', $bestNewVideo->id)->get();
+    	$data = [
+    		'bestNewVideo' => $bestNewVideo,
+    		'videoList' => $videoList,
+    	];
+
+    	return view('client.pages.video', $data);
+    }
 }
