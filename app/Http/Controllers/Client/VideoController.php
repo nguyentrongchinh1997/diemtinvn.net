@@ -11,7 +11,7 @@ class VideoController extends Controller
     public function list()
     {
     	$bestNewVideo = Video::latest()->first();
-    	$videoList = Video::where('id', '!=', $bestNewVideo->id)->get();
+    	$videoList = Video::where('id', '!=', $bestNewVideo->id)->paginate(10);
     	$data = [
     		'bestNewVideo' => $bestNewVideo,
     		'videoList' => $videoList,
@@ -23,7 +23,7 @@ class VideoController extends Controller
     public function detail($title, $id)
     {
     	$bestNewVideo = Video::findOrFail($id);
-    	$videoList = Video::where('id', '!=', $bestNewVideo->id)->get();
+    	$videoList = Video::where('id', '!=', $bestNewVideo->id)->paginate(10);
     	$data = [
     		'bestNewVideo' => $bestNewVideo,
     		'videoList' => $videoList,

@@ -11,7 +11,7 @@
 			</a>
 			<div class="row" style="margin-top: 20px">
 				<div class="col-lg-8">
-					<iframe width="100%" style="height: 500px" src="https://www.youtube.com/embed/{{ $bestNewVideo->code }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					<iframe width="100%" style="height: 400px" src="https://www.youtube.com/embed/{{ $bestNewVideo->code }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 				<div class="col-lg-4">
 					<h3 style="margin-top: 0px">
@@ -20,7 +20,7 @@
 					<p>
 						{{ $bestNewVideo->description }}
 					</p>
-					<p>
+					<p class="date">
 						{{ getWeekday($bestNewVideo->created_at) }}, {{date('d/m/Y', strtotime($bestNewVideo->created_at))}}
 					</p>
 					<div width='100%' class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5"></div>
@@ -31,16 +31,22 @@
 				@foreach ($videoList as $video)
 				<div class="col-lg-3">
 					<iframe width="100%" style="height: auto" src="https://www.youtube.com/embed/{{ $video->code }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					<h5>
+					<h4 class="title-video">
 						<a href="{{ route('client.video.detail', ['slug' => $video->slug, 'id' => $video->id]) }}">
 							{{ $video->title }}
 						</a>
-					</h5>
-					<p>
+					</h4>
+					<p class="date">
 						{{ getWeekday($video->created_at) }}, {{date('d/m/Y', strtotime($video->created_at))}}
 					</p>
 				</div>
 				@endforeach
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-lg-12">
+					{{ $videoList->links() }}
+				</div>
 			</div>
 		</div>
 	</main>

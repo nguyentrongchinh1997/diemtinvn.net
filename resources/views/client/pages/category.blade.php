@@ -140,7 +140,7 @@
 					<div class="col-sm-4 col-p sidebar">
 						<div class="theiaStickySidebar">
 							<!-- START SOCIAL ICON -->
-							
+							@include('client.includes.weather')
 							<!-- END OF /. SOCIAL ICON -->
 							<!-- START ADVERTISEMENT -->
 							<div class="add-inner">

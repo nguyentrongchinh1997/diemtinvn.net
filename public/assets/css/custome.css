@@ -263,3 +263,15 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	object-fit: cover;
 	width: 100%;
 }
+.title-video{
+	line-height: 27px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    max-height: 80px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.date{
+	color: #777;
+}
