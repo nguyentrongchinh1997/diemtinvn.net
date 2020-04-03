@@ -5,15 +5,17 @@ namespace app\Services\client;
 use App\Model\Post;
 use Carbon\Carbon;
 use App\Model\SubCategory;
+use App\Model\Video;
 
 class HomeService
 {
-	protected $post, $subCate;
+	protected $post, $subCate, $video;
 
-	public function __construct(Post $post, SubCategory $subCate)
+	public function __construct(Post $post, SubCategory $subCate, Video $video)
 	{
 		$this->post = $post;
 		$this->subCate = $subCate;
+		$this->video = $video;
 	}
 
 	public function home()
@@ -46,7 +48,8 @@ class HomeService
 		$subCateXaHoi = $this->subCategory(config('config.category.xa_hoi.xh'));
 		$subCateDoiSong = $this->subCategory(config('config.category.doi_song.ds'));
 		$subCateKinhTe = $this->subCategory(config('config.category.kinh_te.kt'));
-		$subCateGiaoDuc = $this->subCategory(config('config.category.giao_duc.gd'));	 
+		$subCateGiaoDuc = $this->subCategory(config('config.category.giao_duc.gd'));
+		$video = $this->video->latest()->first();
 
 		$data = [
 			'postSlideHome' => $postSlideHome,
@@ -65,6 +68,7 @@ class HomeService
 			'firstPostGiaoDuc' => $firstPostGiaoDuc,
 			'listPostGiaoDuc' => $listPostGiaoDuc,
 			'keywordPopular' => explode(',', $keywordPopular),
+			'video' => $video,
 		];
 
 		return $data;

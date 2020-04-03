@@ -6,11 +6,11 @@
                     <div class="col-sm-3 footer-box">
                         <div class="about-inner">
                             <img src="assets/images/logo-white.png" class="img-responsive" alt=""/>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy </p>
+                            <p>Website tổng hợp tin tức từ nhiều trang báo uy tín, cập nhật tin tức mới nhất </p>
                             <ul>
-                                <li><i class="ti-location-arrow"></i>1234 Heaven Stress, Beverly Hill.</li>
-                                <li><i class="ti-mobile"></i>(800) 123 456 789</li>
-                                <li><i class="ti-email"></i>Contact@erentheme.com</li>
+                                <li><i class="ti-location-arrow"></i>Hai Bà Trưng, HN</li>
+                                <li><i class="ti-mobile"></i>0963 108 272</li>
+                                <li><i class="ti-email"></i>contact@safedownload.net</li>
                             </ul>
                         </div>
                     </div>

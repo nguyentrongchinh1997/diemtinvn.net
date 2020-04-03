@@ -65,12 +65,14 @@
 									</span>
 									<span>|</span>
 									<span>
-										{{ date('d/m/Y', strtotime($post->date)) }}
+										{{getWeekday($post->date)}}, {{ date('d-m-Y', strtotime($post->date)) }}
 									</span><span>|</span>
 									<span>
 										{{ $post->view }} lượt xem
 									</span>
 								</p>
+								<div class="fb-like" data-href="{{ url()->current() }}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+								<hr>
 								<p style="font-weight: bold;">
 									{!! html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8') !!}
 								</p>

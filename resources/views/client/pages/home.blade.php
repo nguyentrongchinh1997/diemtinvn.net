@@ -484,15 +484,29 @@
                     <div class="RYPP r16-9"  data-ids="cIyVNoY3_L4,PQEX8QQ1fWg,3WWlhPmqXQI,kssD4L2NBw0,YcwrRA2BIlw,HMpmI2F2cMs,intentionally_erroneus">
                         <div class="RYPP-video">
                             <div class="RYPP-video-player">
-                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/XbG-ESdFWn8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                <iframe width="100%" height="315" src="https://www.youtube.com/embed/{{ $video->code }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="RYPP-playlist">
-                            <header>
-                                <h2 class="_h1 RYPP-title">Playlist title</h2>
-                                <p class="RYPP-desc">Playlist subtitle <a href="#" target="_blank">#hashtag</a></p>
+                        <div class="RYPP-playlist" style="background: #fff">
+                            <header style="cursor: pointer;">
+                                <h4 style="margin-top: 0px">
+                                    <a style="color: #111" href="{{ route('client.video.detail', ['slug' => $video->slug, 'id' => $video->id]) }}">
+                                        {{ $video->title }}
+                                    </a>
+                                </h4>
+                                <p>
+                                    {{ $video->description }}
+                                </p>
+                                <p class="date" style="color: #777">
+                                    {{ getWeekday($video->created_at) }}, {{date('d/m/Y', strtotime($video->created_at))}}
+                                </p>
+                                <p>
+                                    <a href="{{ route('client.video') }}">
+                                        <button class="btn btn-success">Xem thêm</button>
+                                    </a>
+                                </p>
                             </header>
-                            <div class="RYPP-items"></div>
+                            {{-- <div class="RYPP-items"></div> --}}
                         </div>
                     </div>
                 </div>

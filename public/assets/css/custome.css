@@ -275,3 +275,47 @@ nav.navbar.bootsnav ul.nav > li:hover{
 .date{
 	color: #777;
 }
+.RYPP .RYPP-playlist > header {
+    width: 100%;
+    height: 64px;
+    padding: 0px 0 0 8px;
+    background: #fff;
+    border-left: 8px solid #fff; 
+    border-right: 8px solid #fff;
+    border-bottom: 0px;
+}
+.RYPP .RYPP-playlist > header h2{
+	z-index: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 20px !important;
+    max-height: 50px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.youtube-wrapper{
+	background: #fff;
+}
+.playlist-title{
+	padding-left: 0px;
+	background: #fff;
+}
+.playlist-title h4{
+	color: #111;
+}
+.RYPP{
+	background: #fff;
+}
+.RYPP .RYPP-playlist > header ._h1{
+	color: #111;
+}
+.RYPP .RYPP-playlist > header p{
+	color: #111;
+	margin-bottom: 16px;
+}
+.btn-success{
+	background: #c90000 !important;
+	border: 0px;
+	outline: none;
+}
