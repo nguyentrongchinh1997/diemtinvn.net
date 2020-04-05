@@ -152,7 +152,7 @@
                                 </li>
                             @endforeach
                             <li>
-                                <a href="#">Video</a>
+                                <a href="{{ route('client.video') }}">Video</a>
                             </li>
                             <li class="dropdown megamenu-fw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Xem thêm</a>

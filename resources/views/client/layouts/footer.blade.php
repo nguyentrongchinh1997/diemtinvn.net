@@ -4,80 +4,70 @@
                 <div class="row">
                     <!-- START FOOTER BOX (About) -->
                     <div class="col-sm-3 footer-box">
+                        {{-- <h3 class="wiget-title">Giới thiệu</h3> --}}
                         <div class="about-inner">
                             <img src="assets/images/logo-white.png" class="img-responsive" alt=""/>
                             <p>Website tổng hợp tin tức từ nhiều trang báo uy tín, cập nhật tin tức mới nhất </p>
-                            <ul>
-                                <li><i class="ti-location-arrow"></i>Hai Bà Trưng, HN</li>
-                                <li><i class="ti-mobile"></i>0963 108 272</li>
-                                <li><i class="ti-email"></i>contact@safedownload.net</li>
-                            </ul>
+                            
+                            <br>
                         </div>
                     </div>
                     <!--  END OF /. FOOTER BOX (About) -->
                     <!-- START FOOTER BOX (Twitter feeds) -->
                     <div class="col-sm-3 footer-box">
                         <div class="twitter-inner">
-                            <h3 class="wiget-title">twitter feeds</h3>
-                            <ul class="margin-top-60">
-                                <li>Typi non habent claritatem insitam est usus legent is iis qui facit claritatem. Investigatione <a href="https://t.co/erenthemeGHTQ">https://t.co/erenthemeGHTQ</a>
-                                    <span><i class="ti-twitter"></i>12 days ago</span>
-                                </li>
-                                <li>Typi non habent claritatem insitam est usus legent is <a href="https://t.co/erenthemeGHTQ">https://t.co/erenthemeGHTQ</a>
-                                    <span><i class="ti-twitter"></i>10 days ago</span>
-                                </li>
+                            <h3 class="wiget-title">Sản phẩm</h3>
+                            <p style="color: #fff">
+                                <a style="color: #fff" target="_blank" href="https://moviee.vn">Moviee</a> | <a style="color: #fff" target="_blank" href="https://safedownload.net">Safedownload.net</a> | <a style="color: #fff" target="_blank" href="https://toeic24.vn/">Toeic24</a>
+                            </p>
+                            <br>
+                            <h3 class="wiget-title">Liên hệ</h3>
+                            <ul>
+                                <li><i class="ti-location-arrow"></i> Hai Bà Trưng, HN</li>
+                                <li><i class="ti-mobile"></i> 0963 108 272</li>
+                                <li><i class="ti-email"></i> contact@safedownload.net</li>
                             </ul>
                         </div>
                     </div>
                     <!-- END OF /. FOOTER BOX (Twitter feeds) -->
                     <!-- START FOOTER BOX (Category) -->
                     <div class="col-sm-2 footer-box">
-                        <h3 class="wiget-title">Category</h3>
+                        <h3 class="wiget-title">Chuyên mục</h3>
                         <ul class="menu-services">
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">LifeStyle</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Culture</a></li>
-                            <li><a href="#">Entertainment</a></li>
+                            @foreach ($categoryShare as $categoryFooter)
+                                <li>
+                                    <a style="text-transform: capitalize;" href="{{ route('client.category', ['slug' => $categoryFooter->slug]) }}">{{ $categoryFooter->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- END OF /. FOOTER BOX (Category) -->
                     <!-- START FOOTER BOX (Recent Post) -->
                     <div class="col-sm-4 footer-box">
-                        <h3 class="wiget-title">Recent Post</h3>
+                        <h3 class="wiget-title">Bài viết mới</h3>
                         <div class="footer-news-grid">
-                            <div class="news-list-item">
-                                <div class="img-wrapper">
-                                    <a href="#" class="thumb">
-                                        <img src="assets/images/115x85-1.jpg" alt="" class="img-responsive">
-                                        <div class="link-icon">
-                                            <i class="fa fa-camera"></i>
-                                        </div>
-                                    </a>
+                            @php $dem = 0; @endphp
+                            @foreach ($newPostsSidebar as $postFooter)
+                                @if ($dem++ < 3)
+                                <div class="news-list-item">
+                                    <div class="img-wrapper">
+                                        <a href="{{ route('client.detail', ['category' => $postFooter->subCategory->slug, 'title' => $postFooter->slug, 'id' => $postFooter->id]) }}" class="thumb">
+                                            <img src='{{asset("upload/thumbnails/$postFooter->image")}}' alt="{{ $postFooter->title }}" class="img-responsive">
+                                        </a>
+                                    </div>
+                                    <div class="post-info-2">
+                                        <h5>
+                                            <a href="{{ route('client.detail', ['category' => $postFooter->subCategory->slug, 'title' => $postFooter->slug, 'id' => $postFooter->id]) }}" class="title">
+                                                {{ $postFooter->title }}
+                                            </a>
+                                        </h5>
+                                        <ul class="authar-info">
+                                            <li><i class="ti-timer"></i> {{getWeekday($postFooter->date)}}, {{ date('d/m/Y', strtotime($postFooter->date)) }}</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="post-info-2">
-                                    <h5><a href="#" class="title">Cooking Recipes Anytime And Anywhere</a></h5>
-                                    <ul class="authar-info">
-                                        <li><i class="ti-timer"></i> May 15, 2016</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="news-list-item">
-                                <div class="img-wrapper">
-                                    <a href="#" class="thumb">
-                                        <img src="assets/images/115x85-2.jpg" alt="" class="img-responsive">
-                                        <div class="link-icon">
-                                            <i class="fa fa-camera"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="post-info-2">
-                                    <h5><a href="#" class="title">Cooking Recipes Anytime And Anywhere</a></h5>
-                                    <ul class="authar-info">
-                                        <li><i class="ti-timer"></i> May 15, 2016</li>
-                                    </ul>
-                                </div>
-                            </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <!-- END OF /. FOOTER BOX (Recent Post) -->
@@ -123,6 +113,8 @@
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/client/client.js') }}"></script>
         @yield('script')
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=2581255835435003&autoLogAppEvents=1"></script>
     </body>
 
 <!-- Mirrored from inews.themepk.com/news/inews_v1.0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 23:49:57 GMT -->

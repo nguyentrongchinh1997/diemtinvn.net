@@ -64,7 +64,6 @@
 												</h2>
 												<ul class="authar-info">
 													<li class="date">{{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-													<li class="view"><a href="#">{{ $post->view }} lượt xem</a></li>
 												</ul>
 											</div>
 										</div>
@@ -88,7 +87,6 @@
 											<ul class="authar-info">
 												{{-- <li class="authar hidden-xs hidden-sm"><a href="#">by david hall</a></li> --}}
 												<li class="hidden-xs">{{ date('d/m/Y', strtotime($post->date)) }}</li>
-												<li class="view"><a href="#">{{ $post->view }} lượt xem</a></li>
 											</ul>
 										</div>
 									</div>
@@ -116,11 +114,10 @@
                                             <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                             <ul class="authar-info">
                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                                <li class="like"><a href="#">{{ $post->view }} lượt xem</a></li>
                                             </ul>
                                             <p class="hidden-sm description" style="margin-bottom: 10px">{{ $post->summury }}</p>
                                             <p style="margin-bottom: 0px;">
-												<a class="web" href="{{ route('client.news_soure', ['web' => str_slug($post->web)]) }}">{{ $post->web }}</a>
+												<a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
 											</p>
                                         </div>
                                     </div>
@@ -140,7 +137,7 @@
 				</div>
 					<!-- END OF /. MAIN CONTENT -->
 					<!-- START SIDE CONTENT -->
-					<div class="col-sm-4 col-p rightSidebar sidebar" style="padding: 5px">
+					<div class="col-sm-4 col-p sidebar" style="padding: 5px">
 						<div class="theiaStickySidebar">
 							<!-- START SOCIAL ICON -->
 							@include('client.includes.weather')

@@ -58,6 +58,16 @@ class CloneController extends Controller
 			$this->quanVot = config('config.category.the_thao.quan_vot'); // quần vợt
 	}
 	
+	public function test()
+	{
+		$link = 'https://vnexpress.net/suc-khoe/sang-nay-khong-ghi-nhan-them-ca-nhiem-ncov-4080072.html';
+		$html = file_get_html($link);
+		$title = trim($html->find('.sidebar_1 .title_news_detail')[0]->plaintext);
+		$summury = trim($html->find('.sidebar_1 .description')[0]->plaintext);
+		$content = str_replace('\n', '<br>', $html->find('.content_detail')[0]->innertext);
+		echo $content;
+		//dd(strpos($content, '\n'));
+	}
 
 	public function createCategory()
 	{

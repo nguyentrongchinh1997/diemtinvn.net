@@ -91,7 +91,7 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	color: #444;
 }
 .td-category .post-category:hover{
-	background: red;
+	background: #c90000;
 	transition: 0.3s;
 }
 .title-sidebar::before{
@@ -179,7 +179,14 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	color: #777;
 }
 .description{
-	color: #777;
+	display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 55px;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    font-size: 13px;
+    color: #777;
 }
 .sidebar .description{
 	overflow: hidden;
@@ -318,4 +325,29 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	background: #c90000 !important;
 	border: 0px;
 	outline: none;
+}
+footer h3.wiget-title{
+	position: relative;
+	margin-bottom: 25px;
+}
+footer h3.wiget-title::after {
+    /* margin-bottom: 0px; */
+    left: 0px;
+    bottom: -10px;
+    background: #c90000;
+    content: '';
+    width: 50px;
+    height: 3px;
+    position: absolute;
+}
+footer{
+	background: #2c3442;
+}
+@media (max-width: 767px){
+	.sidebar .articles-list .post-info-2 p {
+	    display: block;
+	}
+	.best-view-sidebar .news-list-item .post-info-2{
+		width: calc(100% - 218px);
+	}
 }

@@ -1,7 +1,7 @@
 <h3 class="title-sidebar">
 	Đọc nhiều nhất
 </h3>
-<div class="tab-content">
+<div class="tab-content best-view-sidebar">
 	<div role="tabpanel" class="tab-pane fade active in" id="home">
 		<div class="most-viewed">
 			<ul id="most-today" class="content tabs-content">

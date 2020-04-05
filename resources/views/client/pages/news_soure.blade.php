@@ -11,10 +11,11 @@
 					<li class="active">
 						<a style="text-transform: capitalize;">
 							@if ($type == 'search')
-								Từ khóa: {{ $key }}
+								Từ khóa:
 							@elseif ($type == 'soure')
-								Báo {{ $web }}
+								Báo:
 							@endif
+							{{ $key }}
 						</a>
 					</li>
 				</ol>

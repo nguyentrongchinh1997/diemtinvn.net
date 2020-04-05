@@ -56,7 +56,7 @@
 					<div class="post_details_inner">
 						<div class="post_details_block details_block2">
 							<div class="post-header">
-								<h2>{{ $post->title }}</h2>
+								<h2 title="{{ $post->title }}" style="font-weight: bold;">{{ $post->title }}</h2>
 								<p style="font-size: 14px; color: #777">
 									<span style="text-transform: capitalize;">
 										<a style="color: #777" href="{{ route('client.category', ['slug' => $post->subCategory->slug]) }}">
@@ -98,7 +98,7 @@
 								{!! $post->content !!}
 							</div>
 							<p style="text-align: right;">
-								Nguồn: <a target="_blank" rel="notfollow" href="{{ $post->url_origin }}">{{ $post->web }}</a>
+								<b>Nguồn:</b> <a target="_blank" rel="notfollow" href="{{ $post->url_origin }}">{{ $post->web }}</a>
 							</p>
 						</div>
 						{{-- <!-- Post footer -->
@@ -123,7 +123,7 @@
 						<p><b>Từ khóa</b></p>
 						<ul class="td-category">
 							@foreach ($keywords as $keyword)
-							<li><a class="post-category" href="{{ route('client.search', ['key' => $keyword]) }}">#{{ $keyword }}</a></li>
+							<li><a class="post-category" href="{{ route('client.search', ['key' => $keyword]) }}">#{{trim($keyword)}}</a></li>
 							@endforeach
 						</ul>
 					</div>
@@ -208,7 +208,7 @@
 									@foreach (\App\Helper\Helper::categoryPost($category->id) as $categoryOtherPost)
 										<div class="news-list-item articles-list" style="border-bottom: 0px">
 											<div>
-												<h4 title="{{ $categoryOtherPost->title }}" style="font-size: 16px">
+												<h4 title="{{ $categoryOtherPost->title }}" style="font-size: 18px; line-height: 25px">
 													<a href="#" class="title">
 														{{ $categoryOtherPost->title }}
 													</a>
@@ -281,8 +281,6 @@
 			}
 		}
 	</script>
-		<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=2581255835435003&autoLogAppEvents=1"></script>
 @endsection
 
 @endsection

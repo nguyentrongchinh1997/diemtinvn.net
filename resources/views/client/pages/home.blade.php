@@ -88,7 +88,9 @@
                                                     <a href="{{ route('client.detail', ['category' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'id' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/og_images/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $firstPostXaHoi->title }}"><a href="#">{{ $firstPostXaHoi->title }}</a></h3>
+                                                    <h3 title="{{ $firstPostXaHoi->title }}">
+                                                        <a href="{{ route('client.detail', ['category' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'id' => $firstPostXaHoi->id]) }}">{{ $firstPostXaHoi->title }}</a>
+                                                    </h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostXaHoi->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostXaHoi->date)) }}</li>
                                                     </ul>
@@ -161,7 +163,9 @@
                                                     <a href="{{ route('client.detail', ['category' => $firstPostDoiSong->subCategory->slug, 'title' => $firstPostDoiSong->slug, 'id' => $firstPostDoiSong->id]) }}"><img src='{{ asset("upload/og_images/$firstPostDoiSong->image") }}' alt="{{ $firstPostDoiSong->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $firstPostDoiSong->title }}"><a href="#">{{ $firstPostDoiSong->title }}</a></h3>
+                                                    <h3 title="{{ $firstPostDoiSong->title }}">
+                                                        <a href="{{ route('client.detail', ['category' => $firstPostDoiSong->subCategory->slug, 'title' => $firstPostDoiSong->slug, 'id' => $firstPostDoiSong->id]) }}">{{ $firstPostDoiSong->title }}</a>
+                                                    </h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostDoiSong->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostDoiSong->date)) }}</li>
                                                     </ul>
@@ -190,7 +194,7 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -547,7 +551,8 @@
                                                         <img src='{{ asset("upload/og_images/$fistPostKinhTe->image") }}' alt="{{ $fistPostKinhTe->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $fistPostKinhTe->title }}"><a href="{{ route('client.detail', ['category' => $fistPostKinhTe->subCategory->slug, 'title' => $fistPostKinhTe->slug, 'id' => $fistPostKinhTe->id]) }}">{{ $fistPostKinhTe->title }}</a></h3>
+                                                    <h3 title="{{ $fistPostKinhTe->title }}">
+                                                        <a href="{{ route('client.detail', ['category' => $fistPostKinhTe->subCategory->slug, 'title' => $fistPostKinhTe->slug, 'id' => $fistPostKinhTe->id]) }}">{{ $fistPostKinhTe->title }}</a></h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($fistPostKinhTe->date) }}, {{ date('H:i d/m/Y', strtotime($fistPostKinhTe->date)) }}</li>
                                                     </ul>
@@ -576,7 +581,7 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -652,7 +657,7 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -704,7 +709,7 @@
                                             </ul>
                                             <p class="description hidden-sm" style="margin-bottom: 10px">{{ $post->summury }}</p>
                                             <p style="margin-bottom: 0px; color: #adb5bd">
-                                                <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | {{ $post->web }}
+                                                <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                             </p>
                                         </div>
                                     </div>

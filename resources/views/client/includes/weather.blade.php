@@ -1,6 +1,6 @@
-<div class="weather-wrapper">
+<div class="hidden-xs weather-wrapper">
     <div class="row thm-margin">
-        <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3 weather-week thm-padding">
+        <div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 weather-week thm-padding">
             <div class="list-group">
                 <a href="#" class="list-group-item active">
                     <img class="weather-image-small" src="{{ asset("images/weather") }}/{{$weather[1]['weather']['icon']}}.png">
@@ -20,7 +20,7 @@
                 </a>
             </div>
         </div>
-        <div class="col-xs-9 col-sm-8 col-md-9 col-lg-9 bhoechie-tab thm-padding">
+        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 bhoechie-tab thm-padding">
             <!-- weather temperature -->
             <div class="weather-temp-wrap active">
                 <div class="city-day">
