@@ -21,7 +21,7 @@
                                             </h2>
                                             <ul class="authar-info">
                                                 <li class="date">{{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                                <li class="view"><a href="#">{{ $post->view }} lượt xem</a></li>
+                                                {{-- <li class="view"><a href="#">{{ $post->view }} lượt xem</a></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -44,7 +44,6 @@
                                         </h2>
                                         <ul class="authar-info">
                                             <li class="date">{{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                            <li class="view"><a href="#">{{ $post->view }} lượt xem</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -85,7 +84,7 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['category' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'id' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/og_images/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['category' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'id' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/thumbnails/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 title="{{ $firstPostXaHoi->title }}">
@@ -705,7 +704,6 @@
                                             <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                             <ul class="authar-info">
                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                                <li class="like"><a href="#">{{ $post->view }} lượt xem</a></li>
                                             </ul>
                                             <p class="description hidden-sm" style="margin-bottom: 10px">{{ $post->summury }}</p>
                                             <p style="margin-bottom: 0px; color: #adb5bd">

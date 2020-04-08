@@ -37,11 +37,11 @@
                                         <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                         <ul class="authar-info">
                                             <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                            <li class="like"><a href="#">{{ $post->view }} lượt xem</a></li>
+                                            {{-- <li class="like"><a href="#">{{ $post->view }} lượt xem</a></li> --}}
                                         </ul>
                                         <p class="hidden-sm description" style="margin-bottom: 10px">{{ $post->summury }}</p>
                                         <p style="margin-bottom: 0px; color: #adb5bd">
-											<a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
+											<a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{route('client.news_soure', ['web' => $post->web])}}">{{ $post->web }}</a>
 										</p>
                                     </div>
                                 </div>

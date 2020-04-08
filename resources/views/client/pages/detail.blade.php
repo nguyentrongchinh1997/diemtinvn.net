@@ -274,6 +274,10 @@
 		}
 	</script> --}}
 	<script type="text/javascript">
+		// if ($('.bk-content p').length) {
+		// 	number_tag_p = $('.bk-content p').length - 1;
+		// 	$('.bk-content p:eq(' + number_tag_p + ')').css({'text-align':'right'});
+		// }
 		if ($('.bk-content a').length) {
 			var numItems = $('.bk-content a').length;
 			for (i = 0; i < numItems; i++) {
