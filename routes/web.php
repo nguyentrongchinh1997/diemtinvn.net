@@ -41,5 +41,3 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::post('add', 'Admin\CategoryController@subCategoryAdd')->name('admin.sub-category.add');
 	});
 });
-
-Route::get('category/add', 'Client\CloneController@createCategory');
