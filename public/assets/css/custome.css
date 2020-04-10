@@ -366,11 +366,42 @@ nav.navbar.bootsnav ul.nav > li > a{
 	font-size: 15px;
 }
 .post_details_block .note-image{
-	text-align: center;
+	text-align: center !important;
     font-style: italic;
     font-size: 15px;
     color: #777;
 }
-.bk-content p:last-child{
-	text-align: right;
+.zoom-image{
+	z-index: 33;
+    top: 0px;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    transition: 0.3s ease-in-out;
+    left: 100%;
+    padding-top: 50px;
+}
+.zoom-image-active{
+	left: 0px;
+}
+#image-full{
+	width: 45%;
+	margin-left: auto;
+	margin-right: auto;
+
+}
+#image-full p{
+	margin-top: 10px;
+}
+#image-full i{
+	font-size: 25px;
+	font-weight: bold;
+	color: #333;
+}
+.image-full{
+	width: 100%;
+}
+.bk-content .image-detail, .post_details_block figure img{
+	cursor: crosshair;
 }

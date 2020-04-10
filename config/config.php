@@ -37,7 +37,13 @@ return [
 			'tt' => 2,
 			'bong_da' => 5,
 			'quan_vot' => 6,
-		]
+		],
+		'the_gioi' => [
+			'tg' => 4,
+			'quan_su' => 28,
+			'tu_lieu' => 29,
+			'phan_tich' => 30,
+		],
 	],
 ];
 

@@ -259,8 +259,26 @@
 			<!-- END OF /. SIDE CONTENT -->
 		</div>
 	</div>
+	<div class="zoom-image">
+		<div id="image-full">
+			<p style="color: #fff; text-align: right;">
+				<button class="close-zoom-image" type="button">
+					<i class="ti-close"></i>
+				</button>
+				
+			</p>
+			<img class="image-full" src="">
+		</div>
+	</div>
 </main>
 <input type="hidden" class="input" id="{{$post->subCategory->category->slug}}{{$post->subCategory->category->id}}" value="{{$post->subCategory->category->id}}">
+<style type="text/css">
+	@if ($post->web != 'laodong.vn' && $post->web != 'vietnamplus.vn')
+		.bk-content p:last-child{
+			text-align: right;
+		}
+	@endif
+</style>
 @section('script')
 	{{-- <script type="text/javascript">
 		if ($('.bk-content img').length) {
@@ -284,6 +302,21 @@
 				$('.bk-content a:eq(' + i + ')').attr('href', '#');
 			}
 		}
+	</script>
+	<script type="text/javascript">
+		$('.bk-content img').click(function(){
+			url = $(this).attr('src');
+			$('.image-full').attr('src', url);
+			$('.zoom-image').addClass('zoom-image-active');
+		})
+		$('.post_details_block figure img').click(function(){
+			url = $(this).attr('src');
+			$('.image-full').attr('src', url);
+			$('.zoom-image').addClass('zoom-image-active');
+		});
+		$('.close-zoom-image').click(function(){
+			$('.zoom-image').removeClass('zoom-image-active');
+		})
 	</script>
 @endsection
 
