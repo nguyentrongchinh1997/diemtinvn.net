@@ -26,26 +26,34 @@ class PostService
 											->orWhere('slug', 'xa-hoi')
 								    		->get();
 			$post->increment('view');
-			$keywords = explode(',', $post->keyword);
-			foreach ($keywords as $keyword) {
-				$postRelate = $this->post->latest('date')
-										 ->whereNotIn('id', $idPostRelate)
-										 ->where('category_id', $categoryId)
-										 ->where(function($query) use ($keyword){
-										 	$query->where('keyword', 'like', '%' . $keyword . '%')
-										 		  ->orWhere('title', 'like', '%' . $keyword . '%');
-										 })
-										 ->get();
-				foreach ($postRelate as $postRelate) {
-					$idPostRelate[] = $postRelate->id;
+
+			if ($post->keyword != '') {
+				$keywords = explode(',', $post->keyword);
+
+				foreach ($keywords as $keyword) {
+					$postRelate = $this->post->latest('date')
+											 ->whereNotIn('id', $idPostRelate)
+											 ->where('category_id', $categoryId)
+											 ->where(function($query) use ($keyword){
+											 	$query->where('keyword', 'like', '%' . $keyword . '%')
+											 		  ->orWhere('title', 'like', '%' . $keyword . '%');
+											 })
+											 ->get();
+					foreach ($postRelate as $postRelate) {
+						$idPostRelate[] = $postRelate->id;
+						if (count($idPostRelate) > 8) {
+							break;
+						}
+					}
 					if (count($idPostRelate) > 8) {
 						break;
 					}
 				}
-				if (count($idPostRelate) > 8) {
-					break;
-				}
+			} else {
+				$keywords = [];
+				$idPostRelate = [];
 			}
+			
 	    	$data = [
 	    		'keywords' => $keywords,
 	    		'post' => $post,

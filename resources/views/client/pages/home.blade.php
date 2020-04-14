@@ -15,7 +15,7 @@
                                     <div class="slider-post post-height-1">
                                         <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="news-image"><img src='{{ asset("upload/og_images/$post->image") }}' alt="{{$post->title}}" class="img-responsive"></a>
                                         <div class="post-text">
-                                            <span class="post-category">{{ $post->subCategory->name }}</span>
+                                            <span class="post-category hidden-xs">{{ $post->subCategory->name }}</span>
                                             <h2 title="{{ $post->title }}">
                                                 <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">{{ $post->title }}</a>
                                             </h2>
@@ -38,7 +38,7 @@
                                 <div class="slider-post post-height-2">
                                     <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="news-image"><img src='{{ asset("upload/og_images/$post->image") }}' alt="{{ $post->title }}" class="img-responsive"></a>
                                     <div class="post-text">
-                                        <span class="post-category">{{ $post->subCategory->name }}</span>
+                                        <span class="post-category hidden-xs">{{ $post->subCategory->name }}</span>
                                         <h2 style="font-size: 18px" title="{{ $post->title }}">
                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">{{ $post->title }}</a>
                                         </h2>
@@ -697,7 +697,7 @@
                                     <div class="news-list-item articles-list">
                                         <div class="img-wrapper">
                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                                <img src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="img-responsive">
+                                                <img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
                                             </a>
                                         </div>
                                         <div class="post-info-2">

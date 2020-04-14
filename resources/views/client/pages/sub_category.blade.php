@@ -53,7 +53,7 @@
 									<div class="item">
 										<div class="slider-post post-height-1">
 											<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="news-image">
-												<img src='{{asset("upload/og_images/$post->image")}}' alt="{{ $post->title }}" class="img-responsive">
+												<img data-src='{{asset("upload/og_images/$post->image")}}' alt="{{ $post->title }}" class="lazy img-responsive">
 											</a>
 											<div class="post-text">
 												{{-- <span class="post-category" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span> --}}
@@ -99,7 +99,7 @@
 		</section>
 		<div class="container">
 			<div class="row row-m">
-				<div class="col-sm-8 col-p  main-content">
+				<div class="col-sm-8 col-p">
 					<div class="theiaStickySidebar">
 						@if (count($postList) > 0)
 						<div class="post-inner categoty-style-1">

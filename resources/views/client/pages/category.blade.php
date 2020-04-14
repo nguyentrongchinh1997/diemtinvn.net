@@ -54,7 +54,7 @@
 												<img src='{{asset("upload/og_images/$post->image")}}' alt="{{ $post->title }}" class="img-responsive">
 											</a>
 											<div class="post-text">
-												<span class="post-category" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span>
+												<span class="post-category hidden-xs" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span>
 												<h2 title="{{ $post->title }}">
 													<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
 														{{ $post->title }}
@@ -80,7 +80,7 @@
 											<img src='{{asset("upload/og_images/$post->image")}}' alt="{{ $post->title }}" class="img-responsive">
 										</a>
 										<div class="post-text">
-											<span class="post-category" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span>
+											<span class="post-category hidden-xs" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span>
 											<h4><a href="#">{{ $post->title }}</a></h4>
 											<ul class="authar-info">
 												{{-- <li class="authar hidden-xs hidden-sm"><a href="#">by david hall</a></li> --}}
@@ -97,7 +97,7 @@
 		</section>
 		<div class="container">
 			<div class="row row-m">
-				<div class="col-sm-8 col-p  main-content">
+				<div class="col-sm-8 col-p">
 					<div class="theiaStickySidebar">
 						@if (count($postList) > 0)
 							<div class="post-inner categoty-style-1">
@@ -105,7 +105,8 @@
 									@foreach ($postList as $post)
 										<div class="news-list-item articles-list">
 	                                        <div class="img-wrapper">
-	                                            <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb"><img src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="img-responsive"></a>
+	                                            <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
+	                                            	<img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
 	                                        </div>
 	                                        <div class="post-info-2">
 	                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>

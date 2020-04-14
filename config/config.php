@@ -44,6 +44,11 @@ return [
 			'tu_lieu' => 29,
 			'phan_tich' => 30,
 		],
+		'phap_luat' => [
+			'pl' => 10,
+			'an_ninh' => 13,
+			'hinh_su' => 14,
+		],
 	],
 ];
 

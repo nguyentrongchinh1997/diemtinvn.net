@@ -2084,7 +2084,7 @@ article figure .post-category {
         margin-bottom: 5px;
     }
     .news-list-item .post-info-2 .authar-info {
-        margin-bottom: 0;
+        margin-bottom: 10;
     }
 }
 
@@ -2216,6 +2216,9 @@ div.bhoechie-tab .weather-temp-wrap:not(.active) {
     }
     .main-temp {
         font-size: 30px;
+    }
+    .post_details_block{
+        padding-right: 0px !important;
     }
 }
 
@@ -3620,7 +3623,7 @@ ul.category-list li a:hover span {
 
 @media (max-width: 767px) {
     .articles-list.news-list-item .img-wrapper {
-        width: 95px;
+        max-width: 150px;
     }
     .articles-list .post-info-2 h4 {
         font-size: 14px;

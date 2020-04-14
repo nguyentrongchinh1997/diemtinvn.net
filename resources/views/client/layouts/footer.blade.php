@@ -112,9 +112,16 @@
         <!-- custom js -->
         <script src="{{ asset('assets/js/custom.js') }}" type="text/javascript"></script>
         <script src="{{ asset('js/client/client.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/client/lazyload/jquery.lazy.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/client/lazyload/jquery.lazy.plugins.min.js') }}"></script>
         @yield('script')
         <div id="fb-root"></div>
         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0&appId=2581255835435003&autoLogAppEvents=1"></script>
+        <script type="text/javascript">
+            $(function() {
+                $('.lazy').Lazy();
+            });
+        </script>
     </body>
 
 <!-- Mirrored from inews.themepk.com/news/inews_v1.0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 23:49:57 GMT -->

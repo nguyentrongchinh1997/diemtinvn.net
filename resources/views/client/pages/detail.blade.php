@@ -119,14 +119,16 @@
 							</div>
 						</div> --}}
 					</div>
-					<div>
-						<p><b>Từ khóa</b></p>
-						<ul class="td-category">
-							@foreach ($keywords as $keyword)
-							<li><a class="post-category" href="{{ route('client.search', ['key' => $keyword]) }}">#{{trim($keyword)}}</a></li>
-							@endforeach
-						</ul>
-					</div>
+					@if ($keywords > 0)
+						<div>
+							<p><b>Từ khóa</b></p>
+							<ul class="td-category">
+								@foreach ($keywords as $keyword)
+								<li><a class="post-category" href="{{ route('client.search', ['key' => $keyword]) }}">#{{trim($keyword)}}</a></li>
+								@endforeach
+							</ul>
+						</div>
+					@endif
 					<div class="post-inner post-inner-2">
 						<!--post header-->
 						<div class="post-head">
@@ -141,39 +143,41 @@
 							<h2 class="title"><strong>Tin liên quan </strong></h2>
 						</div>
 						<!-- post body -->
-						<div class="post-body">
-							<div id="post-slider-2" class="owl-carousel owl-theme">
-								<!-- item one -->
-								<div class="item">
-									<div class="news-grid-2">
-										<div class="row row-margin news-relate">
-											@foreach ($idPostRelate as $newsId)
-												@php $postRealte = \App\Helper\Helper::getNews($newsId) @endphp
-												<div class="col-xs-6 col-sm-4 col-md-4 col-padding">
-													<div class="grid-item">
-														<div class="grid-item-img">
-															<a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}">
-																<img src='{{ asset("upload/thumbnails/$postRealte->image") }}' alt="{{ $postRealte->title }}' alt="{{ $postRealte->title }}">
-															</a>
+						@if (count($idPostRelate) > 0)
+							<div class="post-body">
+								<div id="post-slider-2" class="owl-carousel owl-theme">
+									<!-- item one -->
+									<div class="item">
+										<div class="news-grid-2">
+											<div class="row row-margin news-relate">
+												@foreach ($idPostRelate as $newsId)
+													@php $postRealte = \App\Helper\Helper::getNews($newsId) @endphp
+													<div class="col-xs-6 col-sm-4 col-md-4 col-padding">
+														<div class="grid-item">
+															<div class="grid-item-img">
+																<a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}">
+																	<img src='{{ asset("upload/thumbnails/$postRealte->image") }}' alt="{{ $postRealte->title }}' alt="{{ $postRealte->title }}">
+																</a>
+															</div>
+															<h5 title="{{ $postRealte->title }}">
+																<a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}" class="title">
+																	{{ $postRealte->title }}
+																</a>
+															</h5>
+															{{-- <ul class="authar-info">
+																<li>May 15, 2016</li>
+																<li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
+															</ul> --}}
 														</div>
-														<h5 title="{{ $postRealte->title }}">
-															<a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}" class="title">
-																{{ $postRealte->title }}
-															</a>
-														</h5>
-														{{-- <ul class="authar-info">
-															<li>May 15, 2016</li>
-															<li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-														</ul> --}}
 													</div>
-												</div>
-											@endforeach
+												@endforeach
+											</div>
 										</div>
 									</div>
+									<!-- item two -->
 								</div>
-								<!-- item two -->
 							</div>
-						</div>
+						@endif
 					</div>
 					<div class="post-inner post-inner-2">
 						<div class="post-head">
@@ -273,7 +277,10 @@
 </main>
 <input type="hidden" class="input" id="{{$post->subCategory->category->slug}}{{$post->subCategory->category->id}}" value="{{$post->subCategory->category->id}}">
 <style type="text/css">
-	@if ($post->web != 'laodong.vn' && $post->web != 'vietnamplus.vn')
+	@php 
+		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn'];
+	@endphp
+	@if (!in_array($post->web, $webException))
 		.bk-content p:last-child{
 			text-align: right;
 		}
