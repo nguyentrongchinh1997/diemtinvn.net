@@ -96,7 +96,7 @@
                                                     <p>{{ $firstPostXaHoi->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $firstPostXaHoi->subCategory->category->slug, 'sub_cate' => $firstPostXaHoi->subCategory->slug]) }}">{{ $firstPostXaHoi->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($firstPostXaHoi->web)]) }}">{{ $firstPostXaHoi->web }}</a>
+                                                        <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($firstPostXaHoi->web)]) }}">{{ $firstPostXaHoi->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>
@@ -118,7 +118,7 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($firstPostXaHoi->web)]) }}">{{ $firstPostGiaoDuc->web }}</a>
+                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>

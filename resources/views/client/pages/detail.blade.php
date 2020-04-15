@@ -9,7 +9,7 @@
 <main class="page_main_wrapper">
 	<!-- START PAGE TITLE --> 
 	<div class="page-title" style="margin: 0px">
-		<div class="row" style="background: #f0f0f0">
+		<div class="row" style="background: #f1f9ff">
 			<div class="container">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px">
 					<ol class="breadcrumb breadcrumb-custom">
@@ -278,7 +278,7 @@
 <input type="hidden" class="input" id="{{$post->subCategory->category->slug}}{{$post->subCategory->category->id}}" value="{{$post->subCategory->category->id}}">
 <style type="text/css">
 	@php 
-		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn'];
+		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn'];
 	@endphp
 	@if (!in_array($post->web, $webException))
 		.bk-content p:last-child{

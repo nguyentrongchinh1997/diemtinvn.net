@@ -4,7 +4,7 @@
 
 @section('content')
 	<div class="page-title" style="margin: 0px">
-		<div class="row" style="background: #f0f0f0">
+		<div class="row" style="background: #f1f9ff">
 			<div class="container">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px">
 					<ol class="breadcrumb breadcrumb-custom">
