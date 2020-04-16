@@ -56,6 +56,9 @@ span.post-category{
 .news-list-item{
 	border-bottom: 1px dotted #e0e0e0;
 }
+.news-list-item .img-responsive{
+	width: 100%;
+}
 nav.navbar.bootsnav ul.nav > li:hover{
 	background: #c90000;
 	transition: 0.3s;

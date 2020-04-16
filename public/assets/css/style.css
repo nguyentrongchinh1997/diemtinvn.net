@@ -4845,7 +4845,10 @@ blockquote.no-sign p {
     transition: all 0.5s;
 }
 .bk-content img{
-    width: 100% !important;
+    max-width: 100% !important;
     height: auto !important;
     margin: 10px 0px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
