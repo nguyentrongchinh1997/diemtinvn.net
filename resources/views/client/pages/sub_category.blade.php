@@ -109,7 +109,7 @@
                                         <div class="img-wrapper">
 
                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                            	<img src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="img-responsive"></a>
+                                            	<img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
                                         </div>
                                         <div class="post-info-2">
                                             <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>

@@ -366,6 +366,8 @@ nav.navbar.bootsnav ul.nav > li > a{
 	color: #fff;
 }
 .post_details_block p{
+	margin: 14px 0px;
+	line-height: 22px !important;
 	font-size: 15px;
 }
 .post_details_block .note-image{

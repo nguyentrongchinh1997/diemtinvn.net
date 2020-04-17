@@ -194,7 +194,7 @@
 										<div class="grid-item">
 											<div class="grid-item-img">
 												<a href="{{ route('client.detail', ['category' => $postSame->subCategory->slug, 'title' => $postSame->slug, 'id' => $postSame->id]) }}">
-													<img src='{{ asset("upload/thumbnails/$postSame->image") }}' class="img-responsive" alt="{{ $postSame->title }}">
+													<img data-src='{{ asset("upload/thumbnails/$postSame->image") }}' class="lazy img-responsive" alt="{{ $postSame->title }}">
 												</a>
 											</div>
 											<h5 title="{{ $postSame->title }}"><a href="{{ route('client.detail', ['category' => $postSame->subCategory->slug, 'title' => $postSame->slug, 'id' => $postSame->id]) }}" class="title">{{ $postSame->title }}</a></h5>
@@ -221,7 +221,7 @@
 
 											<div class="img-wrapper" style="float: left; width: 50%">
 												<a class="thumb" href="#">
-													<img src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="Rác thải bủa vây đường liên xã" class="img-responsive"></a>
+													<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive"></a>
 											</div>
 											<div class="post-info-2" style="float: left; width: 50%">
 												<p class="description">
@@ -278,7 +278,7 @@
 <input type="hidden" class="input" id="{{$post->subCategory->category->slug}}{{$post->subCategory->category->id}}" value="{{$post->subCategory->category->id}}">
 <style type="text/css">
 	@php 
-		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn'];
+		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn', 'baotintuc.vn'];
 	@endphp
 	@if (!in_array($post->web, $webException))
 		.bk-content p:last-child{

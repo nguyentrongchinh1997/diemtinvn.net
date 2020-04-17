@@ -91,7 +91,27 @@ class CloneController extends Controller
 		//$this->nguoiDuaTin();
 		//$this->sucKhoeDoiSong();
 		//$this->bongDa();
-		$this->nhanDan();
+		//$this->nhanDan();
+		// $this->danTri();
+		// $this->datViet();
+		//$this->phuNuVietNam();
+		//$this->baoTinTuc();
+		$this->doiSongPhapLuat();
+	}
+
+	public function doiSongPhapLuat()
+	{
+		$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/phap-luat/an-ninh-hinh-su/', $this->hinhSu, $this->phapLuat);
+	}
+
+	public function baoTinTuc()
+	{
+		$this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
+	}
+
+	public function phuNuVietNam()
+	{
+		$this->clonePhuNuVietNam('https://phunuvietnam.vn/khoe.htm', $this->sucKhoe, $this->doiSong);
 	}
 
 	public function nhanDan()
@@ -102,6 +122,11 @@ class CloneController extends Controller
 	public function sucKhoeDoiSong()
 	{
 		$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/y-hoc-co-truyen-c9/', $this->sucKhoe, $this->doiSong);
+	}
+
+	public function danTri()
+	{
+		$this->cloneDanTri('https://dantri.com.vn/the-thao.htm', $this->bongDa, $this->theThao);
 	}
 
 	public function testVnexpress()
@@ -115,6 +140,11 @@ class CloneController extends Controller
 		$this->cloneTestVnexpress('https://vnexpress.net/kinh-doanh', $this->kinhDoanh, $this->kinhTe);
 		$this->cloneTestVnexpress('https://vnexpress.net/giao-duc/du-hoc', $this->duHoc, $this->giaoDuc);
 		$this->cloneTestVnexpress('https://vnexpress.net/suc-khoe', $this->sucKhoe, $this->doiSong);
+	}
+
+	public function datViet()
+	{
+		$this->cloneDatViet('https://baodatviet.vn/kinh-te/tai-chinh/', $this->taiChinh, $this->kinhTe);
 	}
 
 	public function nguoiDuaTin()
@@ -171,6 +201,18 @@ class CloneController extends Controller
 	public function bao24h()
 	{
 		$this->cloneBao24h('https://www.24h.com.vn/bong-da-c48.html', $this->bongDa, $this->theThao);
+	}
+
+	public function cloneDanTri($link, $subCategoryId, $categoryId)
+	{
+		$html = file_get_html($link);
+		$domain = 'https://dantri.com.vn';
+
+		foreach ($html->find('#listcheckepl .mt3') as $link) {
+			$linkFull = $domain . $link->find('a', 0)->href;
+			$thumbnail = $link->find('img', 0)->src;
+			$this->getDataDanTri($linkFull, $subCategoryId, $categoryId, $thumbnail);
+		}
 	}
 
 	public function cloneNguoiDuaTin($link, $subCategoryId, $categoryId)
@@ -365,7 +407,6 @@ class CloneController extends Controller
 			if (!empty(($link->find('.thumb-art')))) {
 				$linkFull = $link->find('.thumb-art a', 0)->href;
 				$this->getDataTestVnexpress($linkFull, $subCategoryId, $categoryId);
-				break;
 			}
 		}
 	}
@@ -420,10 +461,491 @@ class CloneController extends Controller
 		}
 	}
 
+	public function cloneDatViet($link, $subCategoryId, $categoryId)
+	{
+		$html = file_get_html($link);
+		$domain = 'https://baodatviet.vn/';
+
+		foreach ($html->find('.list_top li') as $link) {
+			$linkFull = $domain . $link->find('a', 0)->href;
+			$this->getDataDatViet($linkFull, $subCategoryId, $categoryId);
+		}
+	}
+
+	public function clonePhuNuVietNam($link, $subCategoryId, $categoryId)
+	{
+		$html = file_get_html($link);
+		$domain = 'https://phunuvietnam.vn';
+
+		foreach ($html->find('.section-1 .img') as $link) {
+			try {
+				$linkFull = $domain . $link->href;
+				$thumbnail = $link->find('img', 0)->src;
+				$this->getDataPhuNuVietNam($linkFull, $subCategoryId, $categoryId, $thumbnail);
+			} catch (\Exception $e) {
+				echo 'Lỗi <b>clonePhuNuVietNam</b>' . $e->getMessage() . '<hr>';
+			}
+		}
+
+		foreach ($html->find('.left .list-news-timeline .box') as $link) {
+			try {
+				$linkFull = $domain . $link->find('a', 0)->href;
+				$thumbnail = $link->find('img', 0)->src;
+				$this->getDataPhuNuVietNam($linkFull, $subCategoryId, $categoryId, $thumbnail);
+			} catch (\Exception $e) {
+				echo 'Lỗi <b>clonePhuNuVietNam</b>' . $e->getMessage() . '<hr>';
+			}
+		}
+	}
+
+	public function cloneBaoTinTuc($link, $subCategoryId, $categoryId)
+	{
+		$html = file_get_html($link);
+		$domain = 'https://baotintuc.vn/';
+		
+		foreach ($html->find('#plhMain_ctl00_divFocus .box11') as $link) {
+			$linkFull = $domain . $link->find('a', 0)->href;
+			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, '');
+		}
+
+		foreach ($html->find('#plhMain_ctl00_divFocus .box13 li') as $link) {
+			$linkFull = $domain . $link->find('a', 0)->href;
+			$thumbnail = $link->find('img', 0)->src;
+			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, $thumbnail);
+		}
+
+		foreach ($html->find('.listspecial>ul>li') as $link) {
+			$linkFull = $domain . $link->find('a', 0)->href;
+			$thumbnail = $link->find('img', 0)->src;
+			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, $thumbnail);
+		}
+	}
+
+	public function cloneDoiSongPhapLuat($link, $subCategoryId, $categoryId)
+	{
+		$html = file_get_html($link);
+
+		foreach ($html->find('.art-listing ul .pkg') as $link) {
+			try {
+				$linkFull = $link->find('a', 0)->href;
+				$thumbnail = $link->find('img', 0)->src;
+				$this->getDataDoiSongPhapLuat($linkFull, $subCategoryId, $categoryId, $thumbnail);
+			} catch (\Exception $e) {
+				echo 'Lỗi <b>cloneDoiSongPhapLuat</b>' . $e->getMessage() . '<hr>';
+			}
+		}
+	}
+
+	public function getDataDoiSongPhapLuat($link, $subCategoryId, $categoryId, $thumbnail)
+	{
+		try {
+			$web = 'doisongphapluat.com';
+			$urlMd5 = md5($link);
+			$check = $this->check($urlMd5, $categoryId);
+			$listRand = $listImgAndContent = $listImage = array();
+
+			if ($check == 0) {
+				$html = file_get_html($link);
+				if (!empty($html->find('.right_detail'))) {
+					if (!empty($html->find('.right_detail .fl-right'))) {
+						$date = $html->find('.right_detail .fl-right', 0)->plaintext;
+						$date = trim(explode(',', $date)[1]);
+						$date = str_replace('/', '-', $date);
+						$date = str_replace('|', '', $date);
+						$date = trim(str_replace('GMT+7', '', $date));
+						$date = date('Y-m-d H:i:s', strtotime($date));
+					} else {
+						$date = date('Y-m-d H:i:s');
+					}
+					$folder = date('Y-m', strtotime($date));
+					$this->createFolder($folder);
+					$title = trim(html_entity_decode($html->find('.right_detail .art-title', 0)->plaintext));
+					$summury = html_entity_decode($html->find("meta[property='og:description']", 0)->content);
+					$content = html_entity_decode($html->find('#main-detail div[itemprop="articleBody"]', 0)->innertext);
+					$slug = $nameImage = str_slug($title);
+					$og_image = $html->find("meta[property='og:image']", 0)->content;
+					$keyword = html_entity_decode($html->find("meta[name='keywords']", 0)->content);
+					$content = str_replace($summury, '', $content);
+
+					if (!empty($html->find('#main-detail table.picture'))) {
+						foreach ($html->find('#main-detail table.picture') as $thumb)
+		    			{
+		    				try {
+		    					$rand = rand();
+			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$thumbItem = html_entity_decode($thumb->outertext);
+			    				if ($thumb->find('.caption')) {
+									$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('.caption', 0)->plaintext) . '</p>';
+								} else {
+									$noteImage = '';
+								}
+								if (!empty($thumb->find('img'))) {
+									$img = $thumb->find('img', 0)->src;
+									$imgTag = "<p class='image-detail'><img src=$path alt='$nameImage' title='$title'></p>";
+								} else {
+									$img = '';
+									$imgTag = '';
+								}
+			    			} catch (\Exception $e) {
+			    				$imgTag = '';
+								$noteImage = '';
+			    			}
+			    			$listRand[$rand] = $rand;
+							$listImgAndContent[$rand] = $imgTag . $noteImage;
+							$listImage[$rand] = $img;
+							$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
+		    			}
+					}
+
+					$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins', 'u');
+					$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
+					session()->flush();
+		    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
+					if (!empty($result)) {
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
+					}
+					echo "Thêm thành công <b>doisongphapluat.com</b><hr>";
+				}
+			} else {
+				echo 'Tin này đã thêm <b>doisongphapluat.com</b><hr>';
+			}
+		} catch (\Exception $e) {
+			echo 'Lỗi <b>getDataDoiSongPhapLuat</b>' . $e->getMessage() . '<hr>';
+		}
+	}
+
+	public function getDataBaoTinTuc($link, $subCategoryId, $categoryId, $thumbnail) {
+		try {
+			$web = 'baotintuc.vn';
+			$urlMd5 = md5($link);
+			$check = $this->check($urlMd5, $categoryId);
+			$listRand = $listImgAndContent = $listImage = array();
+
+			if ($check == 0) {
+				$html = file_get_html($link);
+				
+				if (!empty($html->find('.newsdetail'))) {
+					if (!empty($html->find('.newsdetail .sharing .time'))) {
+						$date = $html->find('.newsdetail .sharing .time', 0)->plaintext;
+						$date = trim(explode(',', $date)[1]);
+						$date = str_replace('/', '-', $date);
+						$date = date('Y-m-d H:i:s', strtotime($date));
+					} else {
+						$date = date('Y-m-d H:i:s');
+					}
+					$folder = date('Y-m', strtotime($date));
+					$this->createFolder($folder);
+					$title = trim(html_entity_decode($html->find('.newsdetail .title', 0)->plaintext));
+					$summury = trim(html_entity_decode($html->find(".newsdetail .sapo", 0)->plaintext));
+					$content = html_entity_decode($html->find('.newsdetail .boxdetail', 0)->innertext);
+					$slug = $nameImage = str_slug($title);
+					$og_image = $html->find("meta[property='og:image']", 0)->content;
+					$keyword = html_entity_decode($html->find("meta[name='news_keywords']", 0)->content);
+					$content = str_replace('<br>', '<p>', $content);
+
+					if (!empty($html->find('.newsdetail figure.image'))) {
+						foreach ($html->find('.newsdetail figure.image') as $thumb)
+		    			{
+		    				try {
+		    					$rand = rand();
+			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$thumbItem = html_entity_decode($thumb->outertext);
+			    				if ($thumb->find('figcaption')) {
+									$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('figcaption', 0)->plaintext) . '</p>';
+								} else {
+									$noteImage = '';
+								}
+								if (!empty($thumb->find('img'))) {
+									$img = $thumb->find('img', 0)->src;
+									$imgTag = "<p class='image-detail'><img src=$path alt='$nameImage' title='$title'></p>";
+								} else {
+									$img = '';
+									$imgTag = '';
+								}
+			    			} catch (\Exception $e) {
+			    				$imgTag = '';
+								$noteImage = '';
+			    			}
+			    			$listRand[$rand] = $rand;
+							$listImgAndContent[$rand] = $imgTag . $noteImage;
+							$listImage[$rand] = $img;
+							$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
+		    			}
+					}
+
+					$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins', 'u');
+					$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
+					session()->flush();
+		    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
+					if (!empty($result)) {
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
+					}
+					echo "Thêm thành công <b>baotintuc.vn</b><hr>";
+				}
+			} else {
+				echo 'Tin này đã thêm <b>baotintuc</b><hr>';
+			}
+		} catch (\Exception $e) {
+			echo 'Lỗi <b>getDataBaoTinTuc</b>' . $e->getMessage() . '<hr>';
+		}
+	}
+
+	public function getDataPhuNuVietNam($link, $subCategoryId, $categoryId, $thumbnail){
+		try {
+			$web = 'baotintuc.vn';
+			$urlMd5 = md5($link);
+			$check = $this->check($urlMd5, $categoryId);
+			$listRand = $listImgAndContent = $listImage = array();
+
+			if ($check == 0) {
+				$html = file_get_html($link);
+				if (!empty($html->find('.nguon_date .d'))) {
+					$date = $html->find('.nguon_date .d', 0)->plaintext;
+					$date1 = trim(explode(' ', $date)[0]);
+					$date2 = trim(explode(' ', $date)[2]);
+					$date = $date1 . ' ' . $date2;
+					$date = str_replace('/', '-', $date);
+					$date = date('Y-m-d H:i:s', strtotime($date));
+				} else {
+					$date = date('Y-m-d H:i:s');
+				}
+				$folder = date('Y-m', strtotime($date));
+				$this->createFolder($folder);
+				
+				if (!empty($html->find('.dt_left'))) {
+					$title = trim(html_entity_decode($html->find('.dt_left .title_new', 0)->plaintext));
+					$summury = trim(html_entity_decode($html->find(".dt_left .sapo-detail", 0)->plaintext));
+					$content = $html->find('.dt_left .content-detail', 0)->innertext;
+					$slug = $nameImage = str_slug($title);
+					$og_image = $html->find("meta[property='og:image']", 0)->content;
+					$keyword = html_entity_decode($html->find("meta[name='news_keywords']", 0)->content);
+
+					if (!empty($html->find('.dt_left .content-detail .toc-list-headings '))) {
+						$content = str_replace($html->find('.dt_left .content-detail .toc-list-headings', 0)->outertext, '', $content);
+					}
+					if (!empty($html->find('.dt_left .content-detail .link-content-footer'))) {
+						$content = str_replace($html->find('.dt_left .content-detail .link-content-footer', 0)->outertext, '', $content);
+					}
+
+					if (!empty($html->find('.dt_left .content-detail figure.VCSortableInPreviewMode'))) {
+						foreach ($html->find('.dt_left .content-detail figure.VCSortableInPreviewMode') as $thumb)
+		    			{
+		    				try {
+		    					$rand = rand();
+			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$thumbItem = $thumb->outertext;
+			    				if ($thumb->find('figcaption.PhotoCMS_Caption')) {
+									$noteImage = '<p class="note-image">' . $thumb->find('figcaption.PhotoCMS_Caption', 0)->plaintext . '</p>';
+								} else {
+									$noteImage = '';
+								}
+								if (!empty($thumb->find('img'))) {
+									$img = $thumb->find('img', 0)->src;
+									$imgTag = "<p class='image-detail'><img src=$path alt='$nameImage' title='$title'></p>";
+								} else {
+									$img = '';
+									$imgTag = '';
+								}
+			    			} catch (\Exception $e) {
+			    				$imgTag = '';
+								$noteImage = '';
+			    			}
+			    			$listRand[$rand] = $rand;
+							$listImgAndContent[$rand] = $imgTag . $noteImage;
+							$listImage[$rand] = $img;
+							$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
+		    			}
+					}
+					$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins');
+					$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
+					session()->flush();
+		    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
+					if (!empty($result)) {
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
+					}
+					echo "Thêm thành công <b>nhandan.com.vn</b><hr>";
+				}
+			} else {
+				echo 'Tin này đã thêm <b>phuNuVietNam</b><hr>';
+			}
+		} catch (\Exception $e) {
+			echo 'Lỗi <b>getDataPhuNuVietNam</b>' . $e->getMessage() . '<hr>';
+		}
+	}
+
+	public function getDataDatViet($link, $subCategoryId, $categoryId)
+	{
+		try {
+
+			$thumbnail = '';
+			$web = 'baodatviet.vn';
+			$urlMd5 = md5($link);
+			$check = $this->check($urlMd5, $categoryId);
+			$listRand = $listImgAndContent = $listImage = array();
+			
+			if ($check == 0) {
+				$html = file_get_html($link);
+				if (!empty($html->find('.sharedetail .time'))) {
+					$date = trim($html->find('.sharedetail .time', 0)->plaintext);
+					$date = trim(explode(',', $date)[1]);
+					$date = str_replace('/', '-', $date);
+					$date = date('Y-m-d H:i:s', strtotime($date));
+				} else {
+					$date = date('Y-m-d H:i:s');
+				}
+				$folder = date('Y-m', strtotime($date));
+				$this->createFolder($folder);
+
+				if (!empty($html->find('#left_col #detail'))) {
+					$title = trim(html_entity_decode($html->find('#left_col #detail .title', 0)->plaintext));
+					$summury = trim(html_entity_decode($html->find("#left_col #detail .lead", 0)->plaintext));
+					$content = $html->find('#left_col #detail #divContent', 0)->innertext;
+					$slug = $nameImage = str_slug($title);
+					$og_image = $html->find("meta[property='og:image']", 0)->content;
+					$keyword = html_entity_decode($html->find("meta[name='keywords']", 0)->content);
+
+					if (!empty($html->find('#left_col #detail #divContent table.tblImage'))) {
+		    			foreach ($html->find('#left_col #detail #divContent table.tblImage') as $thumb)
+		    			{
+		    				try {
+		    					$rand = rand();
+			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$thumbItem = $thumb->outertext;
+
+			    				if ($thumb->find('.Image')) {
+									$noteImage = '<p class="note-image">' . $thumb->find('.Image', 0)->plaintext . '</p>';
+								} else {
+									$noteImage = '';
+								}
+								
+
+								if (!empty($thumb->find('img'))) {
+									$img = $thumb->find('img', 0)->src;
+									$imgTag = "<p class='image-detail'><img src=$path alt='$nameImage' title='$title'></p>";
+								} else {
+									$img = '';
+									$imgTag = '';
+								}
+			    			} catch (\Exception $e) {
+			    				$imgTag = '';
+								$noteImage = '';
+			    			}
+			    			$listRand[$rand] = $rand;
+							$listImgAndContent[$rand] = $imgTag . $noteImage;
+							$listImage[$rand] = $img;
+							$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
+		    			}
+		    		}
+		    		$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins');
+					$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
+					session()->flush();
+		    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
+					if (!empty($result)) {
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
+					}
+
+					echo "Thêm thành công <b>nhandan.com.vn</b><hr>";
+				}
+
+			} else {
+				echo 'Tin này đã thêm <b>getDataDatViet</b><hr>';
+			}
+		} catch (\Exception $e) {
+			echo 'Lỗi <b>getDataDatViet</b>' . $e->getMessage() . '<hr>';
+		}
+	}
+
+	public function getDataDanTri($link, $subCategoryId, $categoryId, $thumbnail)
+	{
+		try {
+			$web = 'dantri.com.vn';
+			$urlMd5 = md5($link);
+			$check = $this->check($urlMd5, $categoryId);
+			$listRand = $listImgAndContent = $listImage = array();
+			$html = file_get_html($link);
+			
+			if ($check == 0) {
+				$html = file_get_html($link);
+
+				if (!empty($html->find('.box26 .fr'))) {
+					$date = trim($html->find('.box26 .fr', 0)->plaintext);
+					$date1 = explode(' ', $date)[2];
+					$date2 = explode(' ', $date)[4];
+					$date = $date1 . ' ' . $date2;
+					$date = str_replace('/', '-', $date);
+					$date = date('Y-m-d H:i:s', strtotime($date));
+				} else {
+					$date = date('Y-m-d H:i:s');
+				}
+				//dd($date);
+				$folder = date('Y-m', strtotime($date));
+				$this->createFolder($folder);
+
+				if (!empty($html->find('#ctl00_IDContent_Tin_Chi_Tiet'))) {
+					$title = html_entity_decode($html->find("meta[property='og:title']", 0)->content);
+					$summury = html_entity_decode($html->find("meta[property='og:description']", 0)->content);
+					$summury = trim(str_replace('(Dân trí) -', '', $summury));
+					$content = $html->find('#divNewsContent', 0)->innertext;
+					$slug = $nameImage = str_slug($title);
+					$og_image = $html->find("meta[property='og:image']", 0)->content;
+					$keyword = html_entity_decode($html->find("meta[name='keywords']", 0)->content);
+
+					if (!empty($html->find('.news-tag'))) {
+						$content = str_replace($html->find('.news-tag', 0)->outertext, '', $content);
+					}
+
+					if (!empty($html->find('#divNewsContent figure.image'))) {
+		    			foreach ($html->find('#divNewsContent figure.image') as $thumb)
+		    			{
+		    				try {
+		    					$rand = rand();
+			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$thumbItem = $thumb->outertext;
+
+			    				if ($thumb->find('figcaption')) {
+									$noteImage = '<p class="note-image">' . $thumb->find('figcaption', 0)->plaintext . '</p>';
+								} else {
+									$noteImage = '';
+								}
+
+								if (!empty($thumb->find('img'))) {
+									$img = $thumb->find('img', 0)->src;
+									$imgTag = "<p class='image-detail'><img src=$path alt='$nameImage' title='$title'></p>";
+								} else {
+									$img = '';
+									$imgTag = '';
+								}
+			    			} catch (\Exception $e) {
+			    				$imgTag = '';
+								$noteImage = '';
+			    			}
+			    			$listRand[$rand] = $rand;
+							$listImgAndContent[$rand] = $imgTag . $noteImage;
+							$listImage[$rand] = $img;
+							$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
+		    			}
+		    		}
+		    		$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins');
+					$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
+					session()->flush();
+		    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
+					if (!empty($result)) {
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
+					}
+
+					echo "Thêm thành công <b>nhandan.com.vn</b><hr>";
+				}
+			} else {
+				echo 'Tin này đã thêm <b>dantri.com.vn</b><hr>';
+			}
+		} catch (\Exception $e) {
+			echo 'Lỗi <b>getDataDanTri()</b>' . $e->getMessage() . '<hr>';
+		}
+	}
+
 	public function getDataNhanDan($link, $subCategoryId, $categoryId, $thumbnail, $domain)
 	{
 		try {
-			$thumbnail = '';
 			$web = 'nhandan.com.vn';
 			$urlMd5 = md5($link);
 			$check = $this->check($urlMd5, $categoryId);
