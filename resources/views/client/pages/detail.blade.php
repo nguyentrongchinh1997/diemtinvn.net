@@ -151,7 +151,7 @@
 										<div class="news-grid-2">
 											<div class="row row-margin news-relate">
 												@foreach ($idPostRelate as $newsId)
-													@php $postRealte = \App\Helper\Helper::getNews($newsId) @endphp
+													@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
 													<div class="col-xs-6 col-sm-4 col-md-4 col-padding">
 														<div class="grid-item">
 															<div class="grid-item-img">
@@ -234,12 +234,12 @@
 						</div> --}}
 						<div class="row" style="margin-top: 30px">
 							@foreach ($otherCategory as $category)
-								@if (count(\App\Helper\Helper::categoryPost($category->id)) > 0)
+								@if (count(\App\Helper\helper::categoryPost($category->id)) > 0)
 									<div class="col-md-6 sub-cate-random">
 										<a class="title-popalar" href="{{ route('client.category', ['cate' => $category->slug]) }}">
 											{{ $category->name }}
 										</a>
-										@foreach (\App\Helper\Helper::categoryPost($category->id) as $categoryOtherPost)
+										@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 											<div class="news-list-item articles-list" style="border-bottom: 0px">
 												<div>
 													<h4 title="{{ $categoryOtherPost->title }}" style="font-size: 18px; line-height: 25px">
@@ -265,7 +265,7 @@
 											$dem = 0;
 										@endphp
 										<ul style="padding-left: 15px; list-style-type: square;">
-											@foreach (\App\Helper\Helper::categoryPost($category->id) as $categoryOtherPost)
+											@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 												@if ($dem++ > 0)
 													<li style="padding: 5px 0px">
 														<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">

@@ -88,10 +88,10 @@ class CloneController extends Controller
 
 	public function test()
 	{
-		// $this->laoDong();
+		$this->laoDong();
 		//$this->testVnexpress();
 		// $this->testCafeBiz();
-		$this->vietNamPlus();
+		//$this->vietNamPlus();
 		//$this->vietNamNet();
 		//$this->congAnNhanDan();
 		//$this->bao24h();
