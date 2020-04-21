@@ -2034,26 +2034,7 @@ class CloneController extends Controller
 					$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 					if (!empty($result)) {
-						$arrContextOptions=array(
-						    "ssl"=>array(
-						        "verify_peer"=>false,
-						        "verify_peer_name"=>false,
-						    ),
-						);  
-						if (count($listImage) > 0) {
-							foreach ($listImage as $key => $img) {
-								if ($img != '') {
-									$put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
-									file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
-								}
-								
-							}
-						}
-						$put_og_image = file_get_contents($og_image, false, stream_context_create($arrContextOptions));
-						file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-
-						$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
-						$this->resizeImage($data, $nameImage . '.jpg');
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 					}
 
 					echo "Thêm thành công <b>24h.com.vn</b><hr>";
@@ -2151,26 +2132,7 @@ class CloneController extends Controller
 						$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 						if (!empty($result)) {
-							$arrContextOptions=array(
-							    "ssl"=>array(
-							        "verify_peer"=>false,
-							        "verify_peer_name"=>false,
-							    ),
-							);  
-							if (count($listImage) > 0) {
-								foreach ($listImage as $key => $img) {
-									if ($img != '') {
-										$put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
-										file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
-									}
-									
-								}
-							}
-							$put_og_image = file_get_contents($og_image, false, stream_context_create($arrContextOptions));
-							file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-
-							$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
-							$this->resizeImage($data, $nameImage . '.jpg');
+							$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 						}
 
 						echo "Thêm thành công <b>vietNamPlus.vn</b><hr>";
@@ -2418,26 +2380,7 @@ class CloneController extends Controller
 					$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 					if (!empty($result)) {
-						$arrContextOptions=array(
-						    "ssl"=>array(
-						        "verify_peer"=>false,
-						        "verify_peer_name"=>false,
-						    ),
-						);  
-						if (count($listImage) > 0) {
-							foreach ($listImage as $key => $img) {
-								if ($img != '') {
-									$put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
-									file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
-								}
-								
-							}
-						}
-						$put_og_image = file_get_contents($og_image, false, stream_context_create($arrContextOptions));
-						file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-
-						$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
-						$this->resizeImage($data, $nameImage . '.jpg');
+						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 					}
 
 					echo "Thêm thành công <b>Laodong.vn</b><hr>";
@@ -2561,26 +2504,7 @@ class CloneController extends Controller
 				$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 				if (!empty($result)) {
-					$arrContextOptions=array(
-					    "ssl"=>array(
-					        "verify_peer"=>false,
-					        "verify_peer_name"=>false,
-					    ),
-					);  
-					if (count($listImage) > 0) {
-						foreach ($listImage as $key => $img) {
-							if ($img != '') {
-								$put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
-								file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
-							}
-							
-						}
-					}
-					$put_og_image = file_get_contents($og_image, false, stream_context_create($arrContextOptions));
-					file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-
-					$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
-					$this->resizeImage($data, $nameImage . '.jpg');
+					$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 				}
 				echo "Thêm thành công <b>Vietnamnet</b><hr>";
 			} else {
@@ -2700,13 +2624,11 @@ class CloneController extends Controller
 						$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
 					}
 				}
-				//dd($listImage);
 
 				if (!empty($html->find('.p-source'))) {
 					$p_source = $html->find('.p-source', 0)->innertext;
 					$content = str_replace($p_source, '', $content);
 				}
-				//dd($content);
 				$dom = new \DOMDocument;
 				libxml_use_internal_errors(true); // đối với những thẻ html lạ
 				$dom->loadHTML('<meta http-equiv="Content-Type" content="charset=utf-8" />' . $content);
@@ -2747,19 +2669,7 @@ class CloneController extends Controller
 				$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 				if (!empty($result)) {
-					if (count($listImage) > 0) {
-						foreach ($listImage as $key => $img) {
-							if ($img != '') {
-								$put_img = file_get_contents($img);
-								file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
-							}
-						}
-					}
-					$put_og_image = file_get_contents($og_image);
-					file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-
-					$put_thumbnail = file_get_contents($thumbnail);
-					file_put_contents(public_path("upload/thumbnails/" . $nameImage . '.jpg'), $put_thumbnail);
+					$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 				}
 				echo "Thêm thành công <b>cafeBiz</b><hr>";
 				
