@@ -65,7 +65,7 @@
 									</span>
 									<span>|</span>
 									<span>
-										{{getWeekday($post->date)}}, {{ date('d-m-Y', strtotime($post->date)) }}
+										{{getWeekday($post->date)}}, {{ date('d/m/Y', strtotime($post->date)) }} {{ date('H:i', strtotime($post->date)) }}
 									</span><span>|</span>
 									<span>
 										{{ $post->view }} lượt xem
@@ -181,10 +181,39 @@
 					</div>
 					<div class="post-inner post-inner-2">
 						<div class="post-head">
-							<h2 class="title"><strong>Tin cùng chuyên mục </strong></h2>
+							<h2 class="title"><strong>Cùng chuyên mục </strong></h2>
 						</div>
 						<br>
-						<div class="row row-margin">
+						<div class="post-inner categoty-style-1">
+							<div class="post-body" style="padding: 15px 15px 15px 0px">
+								@foreach ($postSameCategory as $post)
+									<div class="news-list-item articles-list">
+                                        <div class="img-wrapper">
+                                            <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
+                                            	<img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
+                                        </div>
+                                        <div class="post-info-2">
+                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+                                            <ul class="authar-info">
+                                                <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
+                                            </ul>
+                                            <p class="hidden-sm description" style="margin-bottom: 10px">{{ trim($post->summury) }}</p>
+                                            <p style="margin-bottom: 0px; color: #adb5bd">
+												<a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+											</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+							</div>
+							{{-- <div class="post-footer" style="border-top: 0px"> 
+								<div class="row thm-margin">
+									<div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
+										{{ $postList->links() }}
+									</div>
+								</div>
+							</div> --}}
+						</div>
+						{{-- <div class="row row-margin">
 							@php 
 								$stt1 = 1;
 							@endphp
@@ -202,50 +231,54 @@
 									</div>
 								@endif
 							@endforeach
-						</div>
+						</div> --}}
 						<div class="row" style="margin-top: 30px">
 							@foreach ($otherCategory as $category)
-								<div class="col-md-6 sub-cate-random">
-									<a class="title-popalar" href="{{ route('client.category', ['cate' => $category->slug]) }}">
-										{{ $category->name }}
-									</a>
-									@foreach (\App\Helper\Helper::categoryPost($category->id) as $categoryOtherPost)
-										<div class="news-list-item articles-list" style="border-bottom: 0px">
-											<div>
-												<h4 title="{{ $categoryOtherPost->title }}" style="font-size: 18px; line-height: 25px">
-													<a href="#" class="title">
-														{{ $categoryOtherPost->title }}
-													</a>
-												</h4>
-											</div>
-
-											<div class="img-wrapper" style="float: left; width: 50%">
-												<a class="thumb" href="#">
-													<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive"></a>
-											</div>
-											<div class="post-info-2" style="float: left; width: 50%">
-												<p class="description">
-													{{ $categoryOtherPost->summury }}
-												</p>	                            
-											</div>
-										</div>
-										@php break; @endphp
-									@endforeach
-									@php 
-										$dem = 0;
-									@endphp
-									<ul style="padding-left: 15px; list-style-type: square;">
+								@if (count(\App\Helper\Helper::categoryPost($category->id)) > 0)
+									<div class="col-md-6 sub-cate-random">
+										<a class="title-popalar" href="{{ route('client.category', ['cate' => $category->slug]) }}">
+											{{ $category->name }}
+										</a>
 										@foreach (\App\Helper\Helper::categoryPost($category->id) as $categoryOtherPost)
-											@if ($dem++ > 0)
-												<li style="padding: 5px 0px">
-													<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
-														{{ $categoryOtherPost->title }}
-													</a>
-												</li>
-											@endif
+											<div class="news-list-item articles-list" style="border-bottom: 0px">
+												<div>
+													<h4 title="{{ $categoryOtherPost->title }}" style="font-size: 18px; line-height: 25px">
+														<a href="#" class="title">
+															{{ $categoryOtherPost->title }}
+														</a>
+													</h4>
+												</div>
+
+												<div class="img-wrapper" style="float: left; width: 50%">
+													<a class="thumb" href="#">
+														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive"></a>
+												</div>
+												<div class="post-info-2" style="float: left; width: 50%">
+													<p class="description">
+														{{ $categoryOtherPost->summury }}
+													</p>	                            
+												</div>
+											</div>
+											@php break; @endphp
 										@endforeach
-									</ul>
-								</div>
+										@php 
+											$dem = 0;
+										@endphp
+										<ul style="padding-left: 15px; list-style-type: square;">
+											@foreach (\App\Helper\Helper::categoryPost($category->id) as $categoryOtherPost)
+												@if ($dem++ > 0)
+													<li style="padding: 5px 0px">
+														<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
+															{{ $categoryOtherPost->title }}
+														</a>
+													</li>
+												@endif
+											@endforeach
+										</ul>
+									</div>
+								@else
+									{{ $category->name }}
+								@endif
 							@endforeach
 						</div>
 					</div>
@@ -278,7 +311,7 @@
 <input type="hidden" class="input" id="{{$post->subCategory->category->slug}}{{$post->subCategory->category->id}}" value="{{$post->subCategory->category->id}}">
 <style type="text/css">
 	@php 
-		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn', 'baotintuc.vn'];
+		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn', 'baotintuc.vn', 'nld.com.vn'];
 	@endphp
 	@if (!in_array($post->web, $webException))
 		.bk-content p:last-child{

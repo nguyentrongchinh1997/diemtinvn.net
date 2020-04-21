@@ -20,7 +20,7 @@ class NewsSoureService
 		if (count($posts) > 0) {
 			$data = [
 				'posts' => $posts,
-				'key' => $web,
+				'key' => $posts[0]->web_name,
 				'type' => 'soure',
 			];
 

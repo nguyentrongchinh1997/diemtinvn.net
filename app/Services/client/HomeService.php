@@ -30,7 +30,7 @@ class HomeService
 						   	   ->offset(5)
 						   	   ->limit(2)
 						   	   ->get();
-		$postLatest = $this->post->latest('date')->offset(7)->limit(10)->get();
+		$postLatest = $this->post->latest('date')->offset(7)->limit(15)->get();
 		$keywordPopular = $this->post->latest('view')->value('keyword');
 
 		$firstPostXaHoi = $this->firstPostCategory(config('config.category.xa_hoi.xh'));

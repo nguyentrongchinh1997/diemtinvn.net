@@ -21,6 +21,7 @@ class Post extends Model
         'url_md5',
         'url_origin',
         'web',
+        'web_name',
         'date',
     ];
 

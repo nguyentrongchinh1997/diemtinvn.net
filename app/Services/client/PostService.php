@@ -18,14 +18,12 @@ class PostService
 	public function detail($category, $title, $postId)
 	{
 		try {
-			$idPostRelate = array();
 			$post = $this->post->findOrFail($postId);
 			$categoryId = $post->subCategory->category->id;
 			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(12);
-			$otherCategory = $this->category->where('slug', 'doi-song')
-											->orWhere('slug', 'xa-hoi')
-								    		->get();
+			$otherCategory = $this->category->all()->random(2);
 			$post->increment('view');
+			$idPostRelate = [$postId];
 
 			if ($post->keyword != '') {
 				$keywords = explode(',', $post->keyword);
@@ -53,6 +51,18 @@ class PostService
 				$keywords = [];
 				$idPostRelate = [];
 			}
+			//dd($idPostRelate);
+
+			if (count($idPostRelate) < 8) {
+				$limit = 9 - count($idPostRelate);
+				$postRelateRandom = $this->post->whereNotIn('id', $idPostRelate)
+											   ->where('category_id', $categoryId)
+											   ->get()
+											   ->random($limit);
+				foreach ($postRelateRandom as $post) {
+					$idPostRelate[] = $post->id;
+				}
+			}
 			
 	    	$data = [
 	    		'keywords' => $keywords,
@@ -60,7 +70,7 @@ class PostService
 	            'month' => date('Y-m', strtotime($post->date)),
 	            'postSameCategory' => $postSameCategory,
 	            'idPostRelate' => $idPostRelate,
-	            'otherCategory' => $otherCategory
+	            'otherCategory' => $otherCategory,
 	    	];
 
 	    	return $data;

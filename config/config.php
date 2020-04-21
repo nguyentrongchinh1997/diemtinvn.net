@@ -49,6 +49,17 @@ return [
 			'an_ninh' => 13,
 			'hinh_su' => 14,
 		],
+		'cong_nghe' => [
+			'cn' => 9,
+			'cntt-vt' => 15,
+			'thiet-bi' => 16
+		],
+		'van_hoa' => [
+			'vh' => 5,
+			'nghe_thuat' => 23,
+			'am_thuc' => 24,
+			'du_lich' => 25,
+		]
 	],
 ];
 
