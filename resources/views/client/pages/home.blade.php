@@ -1,5 +1,7 @@
 @extends('client.layouts.index')
 
+@section('title', 'Tổng hợp tin tức trong ngày nhanh nhất')
+
 @section('content')
 <main class="page_main_wrapper">
     <!-- START POST BLOCK SECTION -->
@@ -229,48 +231,15 @@
                                 <td style="font-weight: bold; color: #c90000">Vùng 1</td>
                                 <td style="font-weight: bold; color: #c90000">Vùng 2</td>
                             </tr>
+                            @foreach ($oils as $oil)
                             <tr>
-                                <td>Xăng RON 95-IV</td>
+                                <td>{{ $oil->oil_name }}</td>
                                 <td>
-                                    12.660
+                                    {{ $oil->price_1 }}
                                 </td>
-                                <td>12.910</td>
+                                <td>{{ $oil->price_2 }}</td>
                             </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                            </tr>
+                            @endforeach
                             <tr>
                                 <td style="text-align: right;" colspan="3">
                                     Chi tiết xem <a href="https://tygiahomnay.net/gia-xang-dau/petrolimex" target="_blank" style="font-weight: bold; color: #c90000">tại đây</a>
@@ -282,64 +251,24 @@
                     <div class="social-media-inner">
                         <table class="sidebar-oil">
                             <tr style="background: #2c3442">
-                                <td style="color: #fff; text-align: center;" colspan="4">Tỷ giá USD</td>
+                                <td style="color: #fff; text-align: center;" colspan="4">Giá vàng hôm nay</td>
                             </tr>
                             <tr>
                                 <td style="font-weight: bold; color: #c90000">
-                                    Ngân hàng
+                                    Loại vàng
                                 </td>
                                 <td style="font-weight: bold; color: #c90000">Mua vào</td>
                                 <td style="font-weight: bold; color: #c90000">Bán ra</td>
-                                <td style="font-weight: bold; color: #c90000">CK</td>
                             </tr>
+                            @foreach ($golds as $gold)
                             <tr>
-                                <td>Xăng RON 95-IV</td>
+                                <td>{{ $gold->type }}</td>
                                 <td>
-                                    12.660
+                                    {{ $gold->buy }}
                                 </td>
-                                <td>12.910</td>
-                                <td></td>
+                                <td>{{ $gold->sell }}</td>
                             </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>Xăng RON 95-IV</td>
-                                <td>
-                                    12.660
-                                </td>
-                                <td>12.910</td>
-                                <td></td>
-                            </tr>
+                            @endforeach
                             <tr>
                                 <td style="text-align: right;" colspan="4">
                                     Chi tiết xem <a href="https://tygiahomnay.net/gia-xang-dau/petrolimex" target="_blank" style="font-weight: bold; color: #c90000">tại đây</a>
@@ -692,7 +621,7 @@
                                 <h2 class="title"><strong>Tin tức</strong> mới nhất</h2>
                             </div>
                             <!-- post body -->
-                            <div class="post-body">
+                            <div class="post-body post-list-category">
                                 @foreach ($postLatest as $post)
                                     <div class="news-list-item articles-list">
                                         <div class="img-wrapper">
@@ -724,85 +653,17 @@
                             <!-- START TAGS -->
                             <div class="panel_inner">
                                 <div class="panel_header">
-                                    <h4><strong>Từ khóa phổ biến </strong></h4>
+                                    <h4><strong>Chuyên mục </strong></h4>
                                 </div>
                                 <div class="panel_body">
                                     <div class="tags-inner">
-                                        @foreach ($keywordPopular as $keyword)
-                                            <a href="{{ route('client.search', ['key' => $keyword]) }}" class="ui tag">{{ $keyword }}</a>
+                                        @foreach ($subCates as $cate)
+                                            <a style="text-transform: capitalize; margin-bottom: 10px; margin-right: 10px" href="{{ route('client.sub_cate', ['category' => $cate->category->slug, 'subCategory' => $cate->slug]) }}" class="ui tag">{{ $cate->name }}</a>
                                         @endforeach
                                     </div>
                                 </div>
                             </div>
                             <!-- END OF /. TAGS -->
-                            <div class="social-media-inner">
-                                <table class="sidebar-oil">
-                                    <tr style="background: #2c3442">
-                                        <td style="color: #fff; text-align: center;" colspan="4">Giá vàng hôm nay</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="font-weight: bold; color: #c90000">
-                                            Ngân hàng
-                                        </td>
-                                        <td style="font-weight: bold; color: #c90000">Mua vào</td>
-                                        <td style="font-weight: bold; color: #c90000">Bán ra</td>
-                                        <td style="font-weight: bold; color: #c90000">CK</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Xăng RON 95-IV</td>
-                                        <td>
-                                            12.660
-                                        </td>
-                                        <td>12.910</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Xăng RON 95-IV</td>
-                                        <td>
-                                            12.660
-                                        </td>
-                                        <td>12.910</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Xăng RON 95-IV</td>
-                                        <td>
-                                            12.660
-                                        </td>
-                                        <td>12.910</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Xăng RON 95-IV</td>
-                                        <td>
-                                            12.660
-                                        </td>
-                                        <td>12.910</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Xăng RON 95-IV</td>
-                                        <td>
-                                            12.660
-                                        </td>
-                                        <td>12.910</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Xăng RON 95-IV</td>
-                                        <td>
-                                            12.660
-                                        </td>
-                                        <td>12.910</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="text-align: right;" colspan="4">
-                                            Chi tiết xem <a href="https://tygiahomnay.net/gia-xang-dau/petrolimex" target="_blank" style="font-weight: bold; color: #c90000">tại đây</a>
-                                        </td>
-                                    </tr>
-                                </table> 
-                            </div>
                         </div>
                     </div>
                 </div>

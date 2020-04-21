@@ -27,7 +27,7 @@
 			<div class="col-sm-8 col-p  main-content">
 				<div class="theiaStickySidebar">
 					<div class="post-inner categoty-style-1">
-						<div class="post-body" style="padding: 15px 15px 15px 0px">
+						<div class="post-body post-list-category" style="padding: 15px 15px 15px 0px">
 							@foreach ($posts as $post)
 								<div class="news-list-item articles-list">
                                     <div class="img-wrapper">

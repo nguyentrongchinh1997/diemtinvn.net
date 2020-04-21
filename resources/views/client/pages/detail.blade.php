@@ -59,13 +59,13 @@
 								<h2 title="{{ $post->title }}" style="font-weight: bold;">{{ $post->title }}</h2>
 								<p style="font-size: 14px; color: #777">
 									<span style="text-transform: capitalize;">
-										<a style="color: #777" href="{{ route('client.category', ['slug' => $post->subCategory->slug]) }}">
+										<a style="color: #777" href="{{ route('client.sub_cate', ['category' => $post->category->slug, 'sub_category' => $post->subCategory->slug]) }}">
 											<b>{{ $post->subCategory->name }}</b>
 										</a>
 									</span>
 									<span>|</span>
 									<span>
-										{{getWeekday($post->date)}}, {{ date('d/m/Y', strtotime($post->date)) }} {{ date('H:i', strtotime($post->date)) }}
+										{{getWeekday($post->date)}}, {{ date('d/m/Y', strtotime($post->date)) }} {{ date('H:i', strtotime($post->date)) }} GMT+7
 									</span><span>|</span>
 									<span>
 										{{ $post->view }} lượt xem
@@ -184,7 +184,7 @@
 							<h2 class="title"><strong>Cùng chuyên mục </strong></h2>
 						</div>
 						<br>
-						<div class="post-inner categoty-style-1">
+						<div class="post-inner categoty-style-1 post-list-category">
 							<div class="post-body" style="padding: 15px 15px 15px 0px">
 								@foreach ($postSameCategory as $post)
 									<div class="news-list-item articles-list">
@@ -264,13 +264,16 @@
 										@php 
 											$dem = 0;
 										@endphp
-										<ul style="padding-left: 15px; list-style-type: square;">
+										<ul id="most-today" style="padding-left: 15px; list-style-type: square; color: #777">
 											@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 												@if ($dem++ > 0)
 													<li style="padding: 5px 0px">
-														<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
+														<a style="font-weight: bold" href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
 															{{ $categoryOtherPost->title }}
 														</a>
+														<p style="margin-top: 10px; font-size: 13px; color: #727272; margin-bottom: 5px">
+                            							    <span>{{ date('d/m', strtotime($categoryOtherPost->date)) }}</span> | <span style="text-transform: capitalize;">{{ $categoryOtherPost->subCategory->name }}</span>
+                            							</p>
 													</li>
 												@endif
 											@endforeach

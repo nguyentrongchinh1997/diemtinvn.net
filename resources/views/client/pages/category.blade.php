@@ -97,7 +97,7 @@
 		</section>
 		<div class="container">
 			<div class="row row-m">
-				<div class="col-sm-8 col-p">
+				<div class="col-sm-8 col-p post-list-category">
 					<div class="theiaStickySidebar">
 						@if (count($postList) > 0)
 							<div class="post-inner categoty-style-1">

@@ -3,7 +3,7 @@
 </h3>
 <div class="tab-content">
 	<div role="tabpanel" class="tab-pane fade active in" id="home">
-		<div class="most-viewed">
+		<div class="most-viewed post-list-category-sidebar">
 			<ul id="most-today" class="content tabs-content">
 				@php $stt = 1; @endphp
 				@foreach ($newPostsSidebar as $post)
@@ -27,9 +27,12 @@
 						</div>
 					@else
 						<li>
-							<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
+							<a style="font-weight: bold" href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
 								{{ $post->title }}
 							</a>
+							<p style="margin-top: 10px; font-size: 13px; color: #727272">
+							    <span>{{ date('d/m', strtotime($post->date)) }}</span> | <span style="text-transform: capitalize;">{{ $post->subCategory->name }}</span>
+							</p>
 						</li>
 					@endif
 				@endforeach

@@ -59,6 +59,14 @@ span.post-category{
 .news-list-item .img-responsive{
 	width: 100%;
 }
+.post-list-category-sidebar .img-responsive{
+    height: 110px;
+    object-fit: cover;
+}
+.post-list-category .img-responsive{
+    height: 132px;
+    object-fit: cover;
+}
 nav.navbar.bootsnav ul.nav > li:hover{
 	background: #c90000;
 	transition: 0.3s;

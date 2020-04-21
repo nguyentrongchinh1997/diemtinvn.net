@@ -23,7 +23,7 @@ class PostService
 			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(12);
 			$otherCategory = $this->category->all()->random(2);
 			$post->increment('view');
-			$idPostRelate = [$postId];
+			$idPostRelate = array();
 
 			if ($post->keyword != '') {
 				$keywords = explode(',', $post->keyword);
@@ -31,6 +31,7 @@ class PostService
 				foreach ($keywords as $keyword) {
 					$postRelate = $this->post->latest('date')
 											 ->whereNotIn('id', $idPostRelate)
+											 ->where('id', '!=', $postId)
 											 ->where('category_id', $categoryId)
 											 ->where(function($query) use ($keyword){
 											 	$query->where('keyword', 'like', '%' . $keyword . '%')
@@ -51,7 +52,6 @@ class PostService
 				$keywords = [];
 				$idPostRelate = [];
 			}
-			//dd($idPostRelate);
 
 			if (count($idPostRelate) < 8) {
 				$limit = 9 - count($idPostRelate);
@@ -59,8 +59,8 @@ class PostService
 											   ->where('category_id', $categoryId)
 											   ->get()
 											   ->random($limit);
-				foreach ($postRelateRandom as $post) {
-					$idPostRelate[] = $post->id;
+				foreach ($postRelateRandom as $postRelate) {
+					$idPostRelate[] = $postRelate->id;
 				}
 			}
 			

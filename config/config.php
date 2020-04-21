@@ -59,7 +59,12 @@ return [
 			'nghe_thuat' => 23,
 			'am_thuc' => 24,
 			'du_lich' => 25,
-		]
+		],
+		'nha_dat' => [
+		    'nd' => 12,
+		    'quan_ly' => 26,
+		    'khong_gian' => 27,
+		],
 	],
 ];
 

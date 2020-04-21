@@ -3,7 +3,7 @@
 </h3>
 <div class="tab-content best-view-sidebar">
 	<div role="tabpanel" class="tab-pane fade active in" id="home">
-		<div class="most-viewed">
+		<div class="most-viewed post-list-category-sidebar">
 			<ul id="most-today" class="content tabs-content">
 				@foreach ($bestViewSidebar as $post)
 					<div class="news-list-item articles-list">

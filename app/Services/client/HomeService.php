@@ -6,21 +6,28 @@ use App\Model\Post;
 use Carbon\Carbon;
 use App\Model\SubCategory;
 use App\Model\Video;
+use App\Model\GoldTyGia;
+use App\Model\OilTyGia;
 
 class HomeService
 {
-	protected $post, $subCate, $video;
+	protected $post, $subCate, $video, $gold, $oil;
 
-	public function __construct(Post $post, SubCategory $subCate, Video $video)
+	public function __construct(Post $post, SubCategory $subCate, Video $video, GoldTyGia $gold, OilTyGia $oil)
 	{
 		$this->post = $post;
 		$this->subCate = $subCate;
 		$this->video = $video;
+		$this->gold = $gold;
+		$this->oil = $oil;
 	}
 
 	public function home()
 	{
 		$date = date('Y-m-d');
+		$golds = $this->gold->all();
+		$oil = $this->oil->latest()->first();
+		$oils = $this->oil->where('date', $oil->date)->get();
 		$postSlideHome = $this->post
 						   	  ->latest('date')
 						   	  ->limit(5)
@@ -30,8 +37,8 @@ class HomeService
 						   	   ->offset(5)
 						   	   ->limit(2)
 						   	   ->get();
+		$subCates = $this->subCate->all();
 		$postLatest = $this->post->latest('date')->offset(7)->limit(15)->get();
-		$keywordPopular = $this->post->latest('view')->value('keyword');
 
 		$firstPostXaHoi = $this->firstPostCategory(config('config.category.xa_hoi.xh'));
 		$listPostXaHoi = $this->listPostCategory(config('config.category.xa_hoi.xh'), $firstPostXaHoi->id);
@@ -52,6 +59,8 @@ class HomeService
 		$video = $this->video->latest()->first();
 
 		$data = [
+		    'oils' => $oils,
+		    'golds' => $golds,
 			'postSlideHome' => $postSlideHome,
 			'postRightSlide' => $postRightSlide,
 			'postLatest' => $postLatest,
@@ -67,8 +76,8 @@ class HomeService
 			'subCateGiaoDuc' => $subCateGiaoDuc,
 			'firstPostGiaoDuc' => $firstPostGiaoDuc,
 			'listPostGiaoDuc' => $listPostGiaoDuc,
-			'keywordPopular' => explode(',', $keywordPopular),
 			'video' => $video,
+			'subCates' => $subCates,
 		];
 
 		return $data;
