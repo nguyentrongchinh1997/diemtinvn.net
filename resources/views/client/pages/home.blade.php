@@ -4,14 +4,12 @@
 
 @section('content')
 <main class="page_main_wrapper">
-    <!-- START POST BLOCK SECTION -->
-    <section class="slider-inner" style="margin-top: 20px">
+    {{-- <section class="slider-inner" style="margin-top: 20px">
         <div class="container">
-            <div class="row thm-margin">
-                <div class="col-xs-12 col-sm-8 col-md-8 thm-padding">
+            <div class="row thm-margin"> --}}
+                {{-- <div class="col-xs-12 col-sm-8 col-md-8 thm-padding">
                     <div class="slider-wrapper">
                         <div id="owl-slider" class="owl-carousel owl-theme">
-                            <!-- Slider item one -->
                             @foreach ($postSlideHome as $post)
                                 <div class="item">
                                     <div class="slider-post post-height-1">
@@ -23,7 +21,6 @@
                                             </h2>
                                             <ul class="authar-info">
                                                 <li class="date">{{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                                {{-- <li class="view"><a href="#">{{ $post->view }} lượt xem</a></li> --}}
                                             </ul>
                                         </div>
                                     </div>
@@ -32,8 +29,8 @@
                             
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-12 col-sm-4 col-md-4 thm-padding">
+                </div> --}}
+                {{-- <div class="col-xs-12 col-sm-4 col-md-4 thm-padding">
                     <div class="row slider-right-post thm-margin">
                         @foreach ($postRightSlide as $post)
                             <div class="col-xs-6 col-sm-12 col-md-12 thm-padding">
@@ -52,19 +49,83 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
-            </div>
+                </div> --}}
+            {{-- </div>
         </div>
-    </section>
-    <!-- END OF /. POST BLOCK SECTION -->
+    </section> --}}
     <div class="container">
-        <div class="row row-m">
-            <!-- START MAIN CONTENT -->
+        <div class="row row-m" style="margin-top: 20px">
             <div class="col-sm-8 col-p main-content">
-                <div class="theiaStickySidebar">
-                    <!-- START POST CATEGORY STYLE ONE (Popular news) -->
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-md-7">
+                        <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("upload/og_images/$postSlideHome->image")}}'>
+                    </div>
+                    <div class="col-md-5">
+                        <h2 style="margin-top: 0px; line-height: 20px">
+                            <a href="{{ route('client.detail', ['category' => $postSlideHome->subCategory->slug, 'title' => $postSlideHome->slug, 'id' => $postSlideHome->id]) }}" style="font-size: 20px">
+                                {{ $postSlideHome->title }}
+                            </a>
+                        </h2>
+                        <p style="color: #777">
+                            {{ $postSlideHome->summury }} 
+                        </p>
+                        <p style="color: #777">
+                            {{ getWeekday($postSlideHome->date) }}, {{ date('d/m/Y H:i', strtotime($postSlideHome->date)) }} GMT+7
+                        </p>
+                        <p>
+                            <a href="{{ route('client.sub_cate', ['cate' => $postSlideHome->category->slug, 'sub_cate' => $postSlideHome->subCategory->slug]) }}"><strong style="text-transform: capitalize; color: #4f4f4f">{{ $postSlideHome->subCategory->name }}</strong></a> | <a href="{{ route('client.news_soure', ['web' => $postSlideHome->web]) }}" style="color: #777">{{ $postSlideHome->web }}</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 20px">
+                    <div class="col-sm-12">
+                        <div class="featured-inner" style="padding: 0px">
+                            <div id="featured-owl" class="owl-carousel">
+                                @foreach ($postRightSlide as $post)
+                                    <div class="item">
+                                        <div class="featured-post">
+                                            <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="news-image">
+                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive" style="height: 100px; object-fit: cover; width: 100%">
+                                            </a>
+                                            <h4>
+                                                <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                            </h4>
+                                            <p>
+                                                <a style="text-transform: capitalize; color: #727272" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}"><strong>{{ $post->subCategory->name }}</strong></a> | 
+                                                <a style="color: #777" href="{{ route('client.news_soure', ['web' => $post->web]) }}">{{ $post->web }}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- <div class="row" style="margin-bottom: 20px">
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <a href="">
+                            <img width="100%" src="http://localhost/news/public/upload/og_images/uefa-quyet-hoan-tat-champions-league-mua-giai-nay.jpg">
+                            Cách hết chức vụ trong Đảng đối với Phó Chủ tịch HĐND huyện Hớn Quản, Bình Phước
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <a href="">
+                            <img width="100%" src="http://localhost/news/public/upload/og_images/uefa-quyet-hoan-tat-champions-league-mua-giai-nay.jpg">
+                            Cách hết chức vụ trong Đảng đối với Phó Chủ tịch HĐND huyện Hớn Quản, Bình Phước
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 col-md-4">
+                        <a href="">
+                            <img width="100%" src="http://localhost/news/public/upload/og_images/uefa-quyet-hoan-tat-champions-league-mua-giai-nay.jpg">
+                            Cách hết chức vụ trong Đảng đối với Phó Chủ tịch HĐND huyện Hớn Quản, Bình Phước
+                        </a>
+                    </div>
+                </div> --}}
+                <div>
                     <div class="post-inner">
-                        <!--post header-->
                         <div class="post-head" style="padding-left: 0px">
                             <h1 class="title"><strong>Xã Hội</strong></h1>
                             <div class="filter-nav">
@@ -173,7 +234,7 @@
                                                     <p>{{ $firstPostDoiSong->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $firstPostDoiSong->subCategory->category->slug, 'sub_cate' => $firstPostDoiSong->subCategory->slug]) }}">{{ $firstPostDoiSong->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($firstPostDoiSong->web)]) }}">{{ $firstPostDoiSong->web }}</a>
+                                                        <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostDoiSong->web]) }}">{{ $firstPostDoiSong->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>
@@ -487,7 +548,7 @@
                                                     <p>{{ $fistPostKinhTe->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $fistPostKinhTe->subCategory->category->slug, 'sub_cate' => $fistPostKinhTe->subCategory->slug]) }}">{{ $fistPostKinhTe->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($fistPostKinhTe->web)]) }}">{{ $fistPostKinhTe->web }}</a>
+                                                        <a class="web" href="{{ route('client.news_soure', ['web' => $fistPostKinhTe->web]) }}">{{ $fistPostKinhTe->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>
@@ -563,7 +624,7 @@
                                                     <p>{{ $firstPostGiaoDuc->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $firstPostGiaoDuc->subCategory->category->slug, 'sub_cate' => $firstPostGiaoDuc->subCategory->slug]) }}">{{ $firstPostGiaoDuc->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => str_slug($firstPostGiaoDuc->web)]) }}">{{ $firstPostGiaoDuc->web }}</a>
+                                                        <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostGiaoDuc->web]) }}">{{ $firstPostGiaoDuc->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>

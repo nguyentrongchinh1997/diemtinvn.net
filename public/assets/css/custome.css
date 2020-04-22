@@ -1,33 +1,57 @@
+img{
+	border: 1px solid #eaecf1;
+}
+nav.navbar.bootsnav li.dropdown ul.dropdown-menu li a{
+	text-transform: capitalize;
+}
 .navbar-left{
-	height: 51px !important;
+	height: auto !important;
+}
+.navbar{
+	min-height: 35px !important;
+}
+.dropdown-toggle-item::after{
+	content: none !important;
 }
 nav.navbar.bootsnav ul.nav > li{
-	height: 100%;
+	height: 36px;
 }
-.active-color{
+.active-color {
 	background: #c90000;
 }
+.active-color>a{
+	color: #fff !important;
+}
+.breadcrumb{
+	padding: 0px 15px;
+}
 .breadcrumb-custom{
+	margin-bottom: 10px;
 	float: left; 
 	width: 100%; 
 	padding-left: 0px; 
 	border: 0px;
-	background: #f1f9ff;
+	background: #f7f8f9;
+}
+.featured-inner{
+	background: #f7f8f9;
+	border: 1px solid #eaecf1;
 }
 .breadcrumb-custom-sub .active a::before{
 	width: 4px;
-    height: 20px;
+    height: 40px;
     background-color: #c90000;
     content: '';
     display: block;
     float: left;
     margin-right: 8px;
-    margin-top: 4px;
+    margin-top: 0px;
 }
 .breadcrumb-custom-sub .active a{
 	font-size: 20px;
 }
 .breadcrumb-custom-sub a{
+	line-height: 39px;
 	font-size: 15px;
 }
 .breadcrumb-custom-sub{
@@ -204,8 +228,8 @@ nav.navbar.bootsnav ul.nav > li:hover{
     text-overflow: ellipsis;
     display: -webkit-box;
     line-height: 20px !important;
-    max-height: 60px;
-    -webkit-line-clamp: 3;
+    max-height: 120px;
+    -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 .weather-image{
@@ -220,9 +244,9 @@ nav.navbar.bootsnav ul.nav > li:hover{
 .news-soure a{
 	margin-bottom: 0px; color: #adb5bd; font-size: 13px;
 }
-.img-wrapper img{
+/*.img-wrapper img{
 	border-radius: 4px;
-}
+}*/
 .articles-list .post-info-2 h4{
 	margin-top: -6px;
 }
@@ -352,7 +376,8 @@ footer h3.wiget-title::after {
     position: absolute;
 }
 footer{
-	background: #2c3442;
+	background: #f7f8f9;
+	border-top: 1px solid #eaecf1;
 }
 @media (max-width: 767px){
 	.sidebar .articles-list .post-info-2 p {
@@ -366,12 +391,13 @@ nav.navbar.bootsnav .navbar-toggle{
 	background: none;
 }
 nav.navbar.bootsnav .navbar-toggle i{
-	color: #fff;
+	color: #4f4f4f;
 	font-size: 30px;
 }
 nav.navbar.bootsnav ul.nav > li > a{
 	text-transform: capitalize;
-	color: #fff;
+	color: #4f4f4f;
+	line-height: 36px;
 }
 .post_details_block p{
 	margin: 14px 0px;

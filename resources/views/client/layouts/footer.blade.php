@@ -6,7 +6,7 @@
                     <div class="col-sm-3 footer-box">
                         {{-- <h3 class="wiget-title">Giới thiệu</h3> --}}
                         <div class="about-inner">
-                            <img src="assets/images/logo-white.png" class="img-responsive" alt=""/>
+                            <img src="assets/images/logo.png" class="img-responsive" alt=""/>
                             <p>Website tổng hợp tin tức từ nhiều trang báo uy tín, cập nhật tin tức mới nhất </p>
                             
                             <br>
@@ -16,11 +16,6 @@
                     <!-- START FOOTER BOX (Twitter feeds) -->
                     <div class="col-sm-3 footer-box">
                         <div class="twitter-inner">
-                            <h3 class="wiget-title">Sản phẩm</h3>
-                            <p style="color: #fff">
-                                <a style="color: #fff" target="_blank" href="https://moviee.vn">Moviee</a> | <a style="color: #fff" target="_blank" href="https://safedownload.net">Safedownload.net</a> | <a style="color: #fff" target="_blank" href="https://toeic24.vn/">Toeic24</a>
-                            </p>
-                            <br>
                             <h3 class="wiget-title">Liên hệ</h3>
                             <ul>
                                 <li><i class="ti-location-arrow"></i> Hai Bà Trưng, HN</li>

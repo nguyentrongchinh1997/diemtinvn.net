@@ -5,7 +5,7 @@
 
 @section('content')
 	<div class="page-title" style="margin: 0px">
-		<div class="row" style="background: #f1f9ff">
+{{-- 		<div class="row" style="background: #f1f9ff">
 			<div class="container">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px">
 					<ol class="breadcrumb breadcrumb-custom">
@@ -24,16 +24,32 @@
 					</ol>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 		<div class="container">
-			<div class="row" style="margin-top: 20px">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="row" style="margin-top: 10px">
+{{-- 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 					<ol class="breadcrumb breadcrumb-custom-sub" style="float: left;">
 						<li class="active">
 							<a style="text-transform: capitalize;" href="{{ route('client.category', ['slug' => $category->slug]) }}">
 								{{ $category->name }}
 							</a>
 						</li>
+					</ol>
+				</div> --}}
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					<ol class="breadcrumb breadcrumb-custom breadcrumb-custom-sub">
+						<li class="active">
+							<a style="text-transform: capitalize; color: #c90000" href="{{ route('client.category', ['slug' => $category->slug]) }}">
+								{{ $category->name }}
+							</a>
+						</li>
+						@foreach ($category->subCategory as $subCategory)
+							<li>
+								<a style="text-transform: capitalize; color: #6c757d" href="{{ route('client.sub_cate', ['cate' => $subCategory->category->slug, 'sub_cate' => $subCategory->slug]) }}">
+									{{ $subCategory->name }}
+								</a>
+							</li>
+						@endforeach
 					</ol>
 				</div>
 			</div>
@@ -114,8 +130,8 @@
 	                                                <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
 	                                            </ul>
 	                                            <p class="hidden-sm description" style="margin-bottom: 10px">{{ trim($post->summury) }}</p>
-	                                            <p style="margin-bottom: 0px; color: #adb5bd">
-													<a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+	                                            <p style="margin-bottom: 0px;">
+													<a style="font-weight: bold; text-transform: capitalize; color: #727272" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> <span style="color: #adb5bd">|</span> <a style="color: #adb5bd;" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
 												</p>
 	                                        </div>
 	                                    </div>

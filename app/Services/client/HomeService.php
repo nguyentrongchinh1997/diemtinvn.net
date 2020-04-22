@@ -30,12 +30,11 @@ class HomeService
 		$oils = $this->oil->where('date', $oil->date)->get();
 		$postSlideHome = $this->post
 						   	  ->latest('date')
-						   	  ->limit(5)
-						   	  ->get();
+						   	  ->first();
 		$postRightSlide = $this->post
 						   	   ->latest('date')
-						   	   ->offset(5)
-						   	   ->limit(2)
+						   	   ->offset(1)
+						   	   ->limit(6)
 						   	   ->get();
 		$subCates = $this->subCate->all();
 		$postLatest = $this->post->latest('date')->offset(7)->limit(15)->get();

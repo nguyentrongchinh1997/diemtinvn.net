@@ -131,25 +131,31 @@
                             <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         </ul>
                     </div>
-                    <!-- End Atribute Navigation -->
-                    <!-- Start Header Navigation -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-bars"></i>
                         </button>
                         <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><img src="assets/images/logo.png" class="logo" alt=""></a>
                     </div>
-                    <!-- End Header Navigation -->
-                    <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-left" data-in="" data-out="">
                             <li class="dropdown home active-color">
-                                <a href="{{ route('client.home') }}">Trang chủ</a>
+                                <a href="{{ route('client.home') }}"><i style="color: #fff" class="ti-home"></i></a>
                             </li>
                             @foreach ($firstCategoryShare as $category)
-                                <li class="{{$category->slug}}{{$category->id}}" value="{{$category->id}}">
-                                    <a href="{{ route('client.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                <li class="{{$category->slug}}{{$category->id}} dropdown" value="{{$category->id}}">
+                                    <a class="dropdown-toggle dropdown-toggle-item" data-toggle="dropdown" href="{{ route('client.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                    <ul class="dropdown-menu">
+                                        @foreach ($category->subCategory as $subCate)
+                                            <li>
+                                                <a href="{{ route('client.sub_cate', ['category' => $subCate->category->slug, 'sub_cate' => $subCate->slug]) }}">{{$subCate->name}}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </li>
+                                {{-- <li class="{{$category->slug}}{{$category->id}}" value="{{$category->id}}">
+                                    <a href="{{ route('client.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                                </li> --}}
                             @endforeach
                             <li>
                                 <a href="{{ route('client.video') }}">Video</a>
@@ -177,15 +183,13 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                        </div><!-- end row -->
+                                        </div>
                                     </li>
                                 </ul>
                             </li>
                             
                         </ul>
-                    </div><!-- /.navbar-collapse -->
+                    </div>
                 </div>
             </nav>
-            <!-- END OF/. NAVIGATION -->
         </header>
-        <!-- *** END OF /. PAGE HEADER SECTION *** -->

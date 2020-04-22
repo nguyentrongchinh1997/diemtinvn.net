@@ -32,8 +32,6 @@ class CloneController extends Controller
 	protected $quanSu, $tuLieu, $phanTich;
 
 	protected $phapLuat, $anNinh, $hinhSu;
-	
-	protected $nhaDat, $quanLy, $khongGian;
 
 	public function __construct(Category $category, Post $post)
 	{
@@ -86,35 +84,31 @@ class CloneController extends Controller
 			$this->ngheThuat = config('config.category.van_hoa.nghe_thuat');
 			$this->amThuc = config('config.category.van_hoa.am_thuc');
 			$this->duLich = config('config.category.van_hoa.du_lich');
-    // Chuyên mục nhà đất
-        $this->nhaDat = config('config.category.nha_dat.nd');
-            $this->quanLy = config('config.category.nha_dat.quan_ly');
-            $this->khongGian = config('config.category.nha_dat.khong_gian');
 	}
 
 	public function test()
 	{
-// 		$this->laoDong();
-// 		$this->testVnexpress();
-// 		$this->testCafeBiz();
-// 		$this->vietNamPlus();
- 		$this->vietNamNet();
-// 		$this->congAnNhanDan();
-// 		$this->bao24h();
-// 		$this->tuoiTre();
-// 		$this->qdnd();
-// 		$this->nongNghiep();
-// 		$this->nguoiDuaTin();
-// 		$this->sucKhoeDoiSong();
+		//$this->laoDong();
+		//$this->testVnexpress();
+		// $this->testCafeBiz();
+		//$this->vietNamPlus();
+		$this->vietNamNet();
+		//$this->congAnNhanDan();
+		//$this->bao24h();
+		//$this->tuoiTre();
+		//$this->qdnd();
+		//$this->nongNghiep();
+		//$this->nguoiDuaTin();
+		//$this->sucKhoeDoiSong();
 		//$this->bongDa(); // chưa xử lý 100%
 		//$this->nhanDan();
-  		//$this->danTri();
-		//$this->datViet();
+		// $this->danTri();
+		// $this->datViet();
 		//$this->phuNuVietNam();
- 		//$this->baoTinTuc();
- 		//$this->doiSongPhapLuat();
+		//$this->baoTinTuc();
+		//$this->doiSongPhapLuat();
 		//$this->nguoiLaoDong();
- 		//$this->baoQuocTe();
+		//$this->baoQuocTe();
 	}
 
 	public function baoQuocTe()
@@ -219,10 +213,9 @@ class CloneController extends Controller
 
 	public function vietNamNet()
 	{
-// 		$this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/san-pham/', $this->cntt, $this->congNghe);
-// 		$this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/vien-thong/', $this->cntt, $this->congNghe);
-// 		$this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/tai-chinh/', $this->taiChinh, $this->kinhTe);
-		$this->cloneVietNamNet('https://vietnamnet.vn/vn/bat-dong-san/noi-that/', $this->khongGian,$this->nhaDat);
+		$this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/san-pham/', $this->cntt, $this->congNghe);
+		// $this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/vien-thong/', $this->cntt, $this->congNghe);
+		// $this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/tai-chinh/', $this->taiChinh, $this->kinhTe);
 	}
 
 	public function testCafeBiz()
@@ -378,6 +371,7 @@ class CloneController extends Controller
 		foreach($html->find('.list-content .item') as $link) {
 			$linkFull = $domain . $link->find('a')[0]->href;
 			$this->getDataVietNamNet($linkFull, $subCategoryId, $categoryId);
+			break;
 		}
 	}
 
@@ -844,7 +838,6 @@ class CloneController extends Controller
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
 			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
-						
 						if (!empty($result)) {
 							$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 						}
@@ -927,8 +920,7 @@ class CloneController extends Controller
 						$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins', 'u');
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
-			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
-						
+			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
 						if (!empty($result)) {
 							$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 						}
@@ -1019,7 +1011,6 @@ class CloneController extends Controller
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
 			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
-						
 						if (!empty($result)) {
 							$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 						}
@@ -1106,19 +1097,18 @@ class CloneController extends Controller
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
 			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
-						
 						if (!empty($result)) {
 							$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 						}
 
-						echo "Thêm thành công <b>datviet.vn</b><hr>";
+						echo "Thêm thành công <b>nhandan.com.vn</b><hr>";
 					} else {
-                        echo 'Tin này đã thêm <b>datviet.vn</b><hr>';
+
 					}
 				}
 
 			} else {
-				echo 'Tin này đã thêm <b>datviet.vn</b><hr>';
+				echo 'Tin này đã thêm <b>getDataDatViet</b><hr>';
 			}
 		} catch (\Exception $e) {
 			echo 'Lỗi <b>getDataDatViet</b>' . $e->getMessage() . '<hr>';
@@ -1202,12 +1192,11 @@ class CloneController extends Controller
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
 			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
-						
 						if (!empty($result)) {
 							$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 						}
 
-						echo "Thêm thành công <b>dantri.com.vn</b><hr>";
+						echo "Thêm thành công <b>nhandan.com.vn</b><hr>";
 					} else {
 						echo 'Tin này đã thêm <b>dantri.com.vn</b><hr>';
 					}
@@ -2410,6 +2399,7 @@ class CloneController extends Controller
 
 	public function getDataVietNamNet($link, $subCategoryId, $categoryId)
 	{
+		$link = 'https://vietnamnet.vn/vn/bat-dong-san/noi-that/7-loai-tranh-treo-trong-nha-de-gia-dinh-dai-cat-dai-loi-bien-nguy-thanh-an-627449.html';
 		$thumbnail = '';
 		$urlMd5 = md5($link);
     	$check = $this->check($urlMd5, $categoryId);
@@ -2509,6 +2499,7 @@ class CloneController extends Controller
 						$content = str_replace($thumbItem, $rand, $content);
 					}
 				}
+				dd($listImage);
 
 				$htmlTagExeption = array('html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody');
 				$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
@@ -3140,7 +3131,7 @@ class CloneController extends Controller
 	    	);
 	    	
     	} catch (\Exception $e) {
-    		return NULL;
+    		return $e->getMessage();
     	}
     }
 

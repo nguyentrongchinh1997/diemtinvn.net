@@ -9,7 +9,7 @@
 <main class="page_main_wrapper">
 	<!-- START PAGE TITLE --> 
 	<div class="page-title" style="margin: 0px">
-		<div class="row" style="background: #f1f9ff">
+{{-- 		<div class="row" style="background: #f1f9ff">
 			<div class="container">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px">
 					<ol class="breadcrumb breadcrumb-custom">
@@ -26,21 +26,26 @@
 					</ol>
 				</div>
 			</div>
-		</div>
+		</div> --}}
 		<div class="container">
 			<div class="row" style="margin-top: 20px">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					<ol class="breadcrumb breadcrumb-custom-sub" style="float: left;">
+					<ol class="breadcrumb breadcrumb-custom-sub breadcrumb-custom" style="float: left;">
 						<li class="active">
-							<a style="text-transform: capitalize;" href="{{ route('client.category', ['slug' => $post->subCategory->category->slug]) }}">
+							<a style="text-transform: capitalize; color: #c90000" href="{{ route('client.category', ['slug' => $post->subCategory->category->slug]) }}">
 								{{ $post->subCategory->category->name }}
 							</a>
 						</li>
-						<li>
+						@foreach($post->subCategory->category->subCategory as $category)
+							<li>
+								<a style="text-transform: capitalize; color:@if ($category->slug == $post->subCategory->slug){{'#c90000'}}@else{{'#6c757d'}}@endif" href="{{ route('client.sub_cate', ['cate' => $category->category->slug, 'sub_cate' => $category->slug]) }}">{{ $category->name }}</a>
+							</li>
+						@endforeach
+						{{-- <li>
 							<a href="{{ route('client.sub_cate', ['cate' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">
 								{{ $post->subCategory->name }}
 							</a>
-						</li>
+						</li> --}}
 					</ol>
 					
 				</div>

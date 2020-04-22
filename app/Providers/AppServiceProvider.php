@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::composer('*', function($view){
             $value = Cache::remember('users', 1440, function() {
-                $firstCategoryShare = Category::offset(0)->limit(7)->get();
+                $firstCategoryShare = Category::offset(0)->limit(10)->get();
                 $categoryShare = Category::all();
                 $newPostsSidebar = Post::latest('date')->limit(10)->get();
                 $bestViewSidebar = Post::latest('view')->limit(8)->get();

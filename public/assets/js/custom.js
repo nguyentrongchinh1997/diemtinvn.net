@@ -72,7 +72,7 @@ $(document).ready(function () {
     //Featured carousel
     $("#featured-owl").owlCarousel( {
         autoPlay: 4000, //Set AutoPlay to 4 seconds
-        items: 4, lazyLoad: true, pagination: false, navigation: false
+        items: 3, lazyLoad: true, pagination: false, navigation: false
     }
     );
     //Featured carousel rtl
@@ -91,7 +91,7 @@ $(document).ready(function () {
                 items: 3
             }
             , 1199: {
-                items: 4
+                items: 3
             }
         }
     }
