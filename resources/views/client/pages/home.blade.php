@@ -156,7 +156,7 @@
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostXaHoi->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostXaHoi->date)) }}</li>
                                                     </ul>
-                                                    <p>{{ $firstPostXaHoi->summury }}</p>
+                                                    <p class="summury">{{ $firstPostXaHoi->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostXaHoi->subCategory->category->slug, 'sub_cate' => $firstPostXaHoi->subCategory->slug]) }}">{{ $firstPostXaHoi->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($firstPostXaHoi->web)]) }}">{{ $firstPostXaHoi->web }}</a>
@@ -235,7 +235,7 @@
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostDoiSong->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostDoiSong->date)) }}</li>
                                                     </ul>
-                                                    <p>{{ $firstPostDoiSong->summury }}</p>
+                                                    <p class="summury">{{ $firstPostDoiSong->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostDoiSong->subCategory->category->slug, 'sub_cate' => $firstPostDoiSong->subCategory->slug]) }}">{{ $firstPostDoiSong->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostDoiSong->web]) }}">{{ $firstPostDoiSong->web }}</a>
@@ -553,7 +553,7 @@
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($fistPostKinhTe->date) }}, {{ date('H:i d/m/Y', strtotime($fistPostKinhTe->date)) }}</li>
                                                     </ul>
-                                                    <p>{{ $fistPostKinhTe->summury }}</p>
+                                                    <p class="summury">{{ $fistPostKinhTe->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $fistPostKinhTe->subCategory->category->slug, 'sub_cate' => $fistPostKinhTe->subCategory->slug]) }}">{{ $fistPostKinhTe->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => $fistPostKinhTe->web]) }}">{{ $fistPostKinhTe->web }}</a>
@@ -633,7 +633,7 @@
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostGiaoDuc->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostGiaoDuc->date)) }}</li>
                                                     </ul>
-                                                    <p>{{ $firstPostGiaoDuc->summury }}</p>
+                                                    <p class="summury">{{ $firstPostGiaoDuc->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostGiaoDuc->subCategory->category->slug, 'sub_cate' => $firstPostGiaoDuc->subCategory->slug]) }}">{{ $firstPostGiaoDuc->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostGiaoDuc->web]) }}">{{ $firstPostGiaoDuc->web }}</a>

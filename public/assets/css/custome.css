@@ -8,6 +8,9 @@ img{
 	color: #4f4f4f;
 	text-transform: capitalize;
 }
+.summury{
+	color: #777;
+}
 nav.navbar.bootsnav li.dropdown ul.dropdown-menu li a{
 	text-transform: capitalize;
 }
