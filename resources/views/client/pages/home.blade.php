@@ -69,11 +69,11 @@
                         <p style="color: #777">
                             {{ $postSlideHome->summury }} 
                         </p>
-                        <p style="color: #777">
+                        <p>
                             {{ getWeekday($postSlideHome->date) }}, {{ date('d/m/Y H:i', strtotime($postSlideHome->date)) }} GMT+7
                         </p>
                         <p>
-                            <a href="{{ route('client.sub_cate', ['cate' => $postSlideHome->category->slug, 'sub_cate' => $postSlideHome->subCategory->slug]) }}"><strong style="text-transform: capitalize; color: #4f4f4f">{{ $postSlideHome->subCategory->name }}</strong></a> | <a href="{{ route('client.news_soure', ['web' => $postSlideHome->web]) }}" style="color: #777">{{ $postSlideHome->web }}</a>
+                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postSlideHome->category->slug, 'sub_cate' => $postSlideHome->subCategory->slug]) }}">{{ $postSlideHome->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => $postSlideHome->web]) }}" style="color: #777">{{ $postSlideHome->web }}</a>
                         </p>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                                                 </a>
                                             </h4>
                                             <p>
-                                                <a style="text-transform: capitalize; color: #727272" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}"><strong>{{ $post->subCategory->name }}</strong></a> | 
+                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | 
                                                 <a style="color: #777" href="{{ route('client.news_soure', ['web' => $post->web]) }}">{{ $post->web }}</a>
                                             </p>
                                         </div>
@@ -158,7 +158,7 @@
                                                     </ul>
                                                     <p>{{ $firstPostXaHoi->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
-                                                        <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $firstPostXaHoi->subCategory->category->slug, 'sub_cate' => $firstPostXaHoi->subCategory->slug]) }}">{{ $firstPostXaHoi->subCategory->name }}</a> | 
+                                                        <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostXaHoi->subCategory->category->slug, 'sub_cate' => $firstPostXaHoi->subCategory->slug]) }}">{{ $firstPostXaHoi->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($firstPostXaHoi->web)]) }}">{{ $firstPostXaHoi->web }}</a>
                                                     </p>
                                                 </div>
@@ -181,6 +181,10 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
+                                                                <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">
+                                                                    {{ $post->subCategory->name }}
+                                                                </a>
+                                                                |
                                                                 <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
@@ -233,7 +237,7 @@
                                                     </ul>
                                                     <p>{{ $firstPostDoiSong->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
-                                                        <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $firstPostDoiSong->subCategory->category->slug, 'sub_cate' => $firstPostDoiSong->subCategory->slug]) }}">{{ $firstPostDoiSong->subCategory->name }}</a> | 
+                                                        <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostDoiSong->subCategory->category->slug, 'sub_cate' => $firstPostDoiSong->subCategory->slug]) }}">{{ $firstPostDoiSong->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostDoiSong->web]) }}">{{ $firstPostDoiSong->web }}</a>
                                                     </p>
                                                 </div>
@@ -256,6 +260,10 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
+                                                                <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">
+                                                                    {{ $post->subCategory->name }}
+                                                                </a>
+                                                                |
                                                                 <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
@@ -547,7 +555,7 @@
                                                     </ul>
                                                     <p>{{ $fistPostKinhTe->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
-                                                        <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $fistPostKinhTe->subCategory->category->slug, 'sub_cate' => $fistPostKinhTe->subCategory->slug]) }}">{{ $fistPostKinhTe->subCategory->name }}</a> | 
+                                                        <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $fistPostKinhTe->subCategory->category->slug, 'sub_cate' => $fistPostKinhTe->subCategory->slug]) }}">{{ $fistPostKinhTe->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => $fistPostKinhTe->web]) }}">{{ $fistPostKinhTe->web }}</a>
                                                     </p>
                                                 </div>
@@ -570,6 +578,10 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
+                                                                <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">
+                                                                    {{ $post->subCategory->name }}
+                                                                </a>
+                                                                |
                                                                 <a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
@@ -623,7 +635,7 @@
                                                     </ul>
                                                     <p>{{ $firstPostGiaoDuc->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
-                                                        <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $firstPostGiaoDuc->subCategory->category->slug, 'sub_cate' => $firstPostGiaoDuc->subCategory->slug]) }}">{{ $firstPostGiaoDuc->subCategory->name }}</a> | 
+                                                        <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostGiaoDuc->subCategory->category->slug, 'sub_cate' => $firstPostGiaoDuc->subCategory->slug]) }}">{{ $firstPostGiaoDuc->subCategory->name }}</a> | 
                                                         <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostGiaoDuc->web]) }}">{{ $firstPostGiaoDuc->web }}</a>
                                                     </p>
                                                 </div>
@@ -646,6 +658,10 @@
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                                             </ul>
                                                             <p style="margin-bottom: 0px; color: #adb5bd; font-size: 13px">
+                                                                <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">
+                                                                    {{ $post->subCategory->name }}
+                                                                </a>
+                                                                |
                                                                 <a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
@@ -697,7 +713,9 @@
                                             </ul>
                                             <p class="description hidden-sm" style="margin-bottom: 10px">{{ $post->summury }}</p>
                                             <p style="margin-bottom: 0px; color: #adb5bd">
-                                                <a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+                                                <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
+                                                 | 
+                                                 <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                             </p>
                                         </div>
                                     </div>

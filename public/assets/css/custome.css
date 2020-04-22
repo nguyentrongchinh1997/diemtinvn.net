@@ -1,6 +1,13 @@
 img{
 	border: 1px solid #eaecf1;
 }
+.soure{
+	color: #777;
+}
+.sub-category{
+	color: #4f4f4f;
+	text-transform: capitalize;
+}
 nav.navbar.bootsnav li.dropdown ul.dropdown-menu li a{
 	text-transform: capitalize;
 }

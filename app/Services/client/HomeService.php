@@ -103,7 +103,7 @@ class HomeService
 		return $this->post->where('category_id', $categoryId)
 						  ->where('id', '!=', $postId)
 						  ->latest('date')
-						  ->limit('4')
+						  ->limit(3)
 						  ->get();
 	}
 }
