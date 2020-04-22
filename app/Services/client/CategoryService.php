@@ -23,21 +23,19 @@ class CategoryService
 
 		if (isset($category)) {
 			$categoryId = $category->id;
-			$postSlides = $this->post->where('category_id', $categoryId)
+			$postSlide = $this->post->where('category_id', $categoryId)
 									->latest('date')
-									->offset(0)
-									->limit(5)
-									->get();
+									->first();
 			$postTop = $this->post->where('category_id', $categoryId)
 								  ->latest('date')
-								  ->offset(5)
-								  ->limit(4)
+								  ->offset(1)
+								  ->limit(6)
 								  ->get();
 
 			if (isset($postTop) && count($postTop) > 3) {
 				$postList = $this->post->where('category_id', $categoryId)
 								   ->latest('date')
-								   ->where('date', '<', $postTop[3]->date)
+								   ->where('date', '<', $postTop[5]->date)
 								   ->paginate(20);
 			} else {
 				$postList = array();
@@ -47,7 +45,7 @@ class CategoryService
 			return [
 				'postList' => $postList,
 				'postTop' => $postTop,
-				'postSlides' => $postSlides,
+				'postSlide' => $postSlide,
 				'category' => $category,
 			];
 		} else {
@@ -61,20 +59,18 @@ class CategoryService
 
 		if (isset($subCategory)) {
 			$subCategoryId = $subCategory->id;
-			$postSlides = $this->post->where('sub_category_id', $subCategoryId)
+			$postSlide = $this->post->where('sub_category_id', $subCategoryId)
 									->latest('date')
-									->offset(0)
-									->limit(5)
-									->get();
+									->first();
 			$postTop = $this->post->where('sub_category_id', $subCategoryId)
 								  ->latest('date')
-								  ->offset(5)
-								  ->limit(4)
+								  ->offset(1)
+								  ->limit(6)
 								  ->get();
 			if (isset($postTop) && count($postTop) > 3) {
 				$postList = $this->post->where('sub_category_id', $subCategoryId)
 								   ->latest('date')
-								   ->where('date', '<', $postTop[3]->date)
+								   ->where('date', '<', $postTop[5]->date)
 								   ->paginate(20);
 			} else {
 				$postList = array();
@@ -83,7 +79,7 @@ class CategoryService
 			return [
 				'postList' => $postList,
 				'postTop' => $postTop,
-				'postSlides' => $postSlides,
+				'postSlide' => $postSlide,
 				'subCategory' => $subCategory,
 			];
 		} else {

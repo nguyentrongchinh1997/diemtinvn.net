@@ -1,6 +1,9 @@
 img{
 	border: 1px solid #eaecf1;
 }
+.date{
+	color: #9a9a9a;
+}
 .soure{
 	color: #777;
 }
@@ -36,7 +39,8 @@ nav.navbar.bootsnav ul.nav > li{
 	padding: 0px 15px;
 }
 .breadcrumb-custom{
-	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
 	float: left; 
 	width: 100%; 
 	padding-left: 0px; 

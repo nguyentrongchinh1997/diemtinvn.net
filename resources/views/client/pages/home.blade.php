@@ -69,8 +69,8 @@
                         <p style="color: #777">
                             {{ $postSlideHome->summury }} 
                         </p>
-                        <p>
-                            {{ getWeekday($postSlideHome->date) }}, {{ date('d/m/Y H:i', strtotime($postSlideHome->date)) }} GMT+7
+                        <p class="date">
+                            {{ date('d/m/Y H:i', strtotime($postSlideHome->date)) }} GMT+7
                         </p>
                         <p>
                             <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postSlideHome->category->slug, 'sub_cate' => $postSlideHome->subCategory->slug]) }}">{{ $postSlideHome->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => $postSlideHome->web]) }}" style="color: #777">{{ $postSlideHome->web }}</a>
@@ -185,7 +185,7 @@
                                                                     {{ $post->subCategory->name }}
                                                                 </a>
                                                                 |
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="soure" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -238,7 +238,7 @@
                                                     <p class="summury">{{ $firstPostDoiSong->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostDoiSong->subCategory->category->slug, 'sub_cate' => $firstPostDoiSong->subCategory->slug]) }}">{{ $firstPostDoiSong->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostDoiSong->web]) }}">{{ $firstPostDoiSong->web }}</a>
+                                                        <a class="soure" href="{{ route('client.news_soure', ['web' => $firstPostDoiSong->web]) }}">{{ $firstPostDoiSong->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>
@@ -264,7 +264,7 @@
                                                                     {{ $post->subCategory->name }}
                                                                 </a>
                                                                 |
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="soure" href="{{ route('client.news_soure', ['web' => urldecode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -556,7 +556,7 @@
                                                     <p class="summury">{{ $fistPostKinhTe->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $fistPostKinhTe->subCategory->category->slug, 'sub_cate' => $fistPostKinhTe->subCategory->slug]) }}">{{ $fistPostKinhTe->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => $fistPostKinhTe->web]) }}">{{ $fistPostKinhTe->web }}</a>
+                                                        <a class="soure" href="{{ route('client.news_soure', ['web' => $fistPostKinhTe->web]) }}">{{ $fistPostKinhTe->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>
@@ -582,7 +582,7 @@
                                                                     {{ $post->subCategory->name }}
                                                                 </a>
                                                                 |
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>
@@ -636,7 +636,7 @@
                                                     <p class="summury">{{ $firstPostGiaoDuc->summury }}</p>
                                                     <p style="margin-bottom: 0px; color: #adb5bd">
                                                         <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $firstPostGiaoDuc->subCategory->category->slug, 'sub_cate' => $firstPostGiaoDuc->subCategory->slug]) }}">{{ $firstPostGiaoDuc->subCategory->name }}</a> | 
-                                                        <a class="web" href="{{ route('client.news_soure', ['web' => $firstPostGiaoDuc->web]) }}">{{ $firstPostGiaoDuc->web }}</a>
+                                                        <a class="soure" href="{{ route('client.news_soure', ['web' => $firstPostGiaoDuc->web]) }}">{{ $firstPostGiaoDuc->web }}</a>
                                                     </p>
                                                 </div>
                                             </article>
@@ -662,7 +662,7 @@
                                                                     {{ $post->subCategory->name }}
                                                                 </a>
                                                                 |
-                                                                <a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+                                                                <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
                                                             </p>
                                                         </div>
                                                     </div>

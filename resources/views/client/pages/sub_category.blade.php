@@ -38,18 +38,13 @@
 								</a>
 							</li>
 						@endforeach
-						{{-- <li>
-							<a href="{{ route('client.sub_cate', ['cate' => $subCategory->category->slug, 'sub_cate' => $subCategory->slug]) }}">
-								{{ $subCategory->name }}
-							</a>
-						</li> --}}
 					</ol>
 				</div>
 			</div>
 		</div>
 	</div>
 	<main class="page_main_wrapper">
-		<section class="slider-inner">
+		{{-- <section class="slider-inner">
 			<div class="container">
 				<div class="row thm-margin">
 					<div class="col-xs-12 col-sm-6 col-md-6 thm-padding">
@@ -63,7 +58,6 @@
 												<img data-src='{{asset("upload/og_images/$post->image")}}' alt="{{ $post->title }}" class="lazy img-responsive">
 											</a>
 											<div class="post-text">
-												{{-- <span class="post-category" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span> --}}
 												<h2 title="{{ $post->title }}">
 													<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
 														{{ $post->title }}
@@ -75,7 +69,6 @@
 											</div>
 										</div>
 									</div>
-									<!-- /.Slider item one -->
 								@endforeach
 							</div>
 						</div>
@@ -89,10 +82,8 @@
 											<img src='{{asset("upload/og_images/$post->image")}}' alt="{{ $post->title }}" class="img-responsive">
 										</a>
 										<div class="post-text">
-											{{-- <span class="post-category" style="text-transform: capitalize;">{{ $post->subCategory->name }}</span> --}}
 											<h4><a href="#">{{ $post->title }}</a></h4>
 											<ul class="authar-info">
-												{{-- <li class="authar hidden-xs hidden-sm"><a href="#">by david hall</a></li> --}}
 												<li class="hidden-xs">{{ date('d/m/Y', strtotime($post->date)) }}</li>
 											</ul>
 										</div>
@@ -103,10 +94,58 @@
 					</div>
 				</div>
 			</div>
-		</section>
+		</section> --}}
 		<div class="container">
 			<div class="row row-m">
 				<div class="col-sm-8 col-p">
+					<div class="row" style="margin-bottom: 20px">
+	                    <div class="col-md-7">
+	                        <img width="100%" alt="{{$postSlide->title}}" src='{{asset("upload/og_images/$postSlide->image")}}'>
+	                    </div>
+	                    <div class="col-md-5">
+	                        <h2 style="margin-top: 0px; line-height: 20px">
+	                            <a href="{{ route('client.detail', ['category' => $postSlide->subCategory->slug, 'title' => $postSlide->slug, 'id' => $postSlide->id]) }}" style="font-size: 20px">
+	                                {{ $postSlide->title }}
+	                            </a>
+	                        </h2>
+	                        <p class="summury">
+	                            {{ $postSlide->summury }} 
+	                        </p>
+	                        <p class="date">
+	                            {{ date('d/m/Y H:i', strtotime($postSlide->date)) }} GMT+7
+	                        </p>
+	                        <p>
+	                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postSlide->category->slug, 'sub_cate' => $postSlide->subCategory->slug]) }}">{{ $postSlide->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => $postSlide->web]) }}" class="soure">{{ $postSlide->web }}</a>
+	                        </p>
+	                    </div>
+	                </div>
+	                <div class="row" style="margin-bottom: 20px">
+	                    <div class="col-sm-12">
+	                        <div class="featured-inner" style="padding: 0px">
+	                            <div id="featured-owl" class="owl-carousel">
+	                                @foreach ($postTop as $post)
+	                                    <div class="item">
+	                                        <div class="featured-post">
+	                                            <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="news-image">
+	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive" style="height: 100px; object-fit: cover; width: 100%">
+	                                            </a>
+	                                            <h4>
+	                                                <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
+	                                                    {{ $post->title }}
+	                                                </a>
+	                                            </h4>
+	                                            <p>
+	                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | 
+	                                                <a class="soure" href="{{ route('client.news_soure', ['web' => $post->web]) }}">{{ $post->web }}</a>
+	                                            </p>
+	                                        </div>
+	                                    </div>
+	                                @endforeach
+	                                
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
 					<div class="theiaStickySidebar">
 						@if (count($postList) > 0)
 						<div class="post-inner categoty-style-1">
@@ -125,7 +164,7 @@
                                             </ul>
                                             <p class="hidden-sm description" style="margin-bottom: 10px">{{ $post->summury }}</p>
                                             <p style="margin-bottom: 0px;">
-												<a class="web" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+												<a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
 											</p>
                                         </div>
                                     </div>
