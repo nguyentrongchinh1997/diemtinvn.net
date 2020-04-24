@@ -137,8 +137,11 @@ nav.navbar.bootsnav ul.nav > li:hover{
 .filter-nav ul{
 	padding: 0px;
 }
+.category-same-post .post-info h3{
+    height: 65px;
+}
 .post-info h3{
-	height: 65px;
+	max-height: 65px;
     margin-top: 10px;
     overflow: hidden;
     font-size: 17px;

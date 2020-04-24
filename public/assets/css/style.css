@@ -1776,7 +1776,7 @@ article figure .post-category {
 }
 
 .post-info-2 h5 {
-    height: 40px;
+    max-height: 40px;
     overflow: hidden;
     margin-top: 0;
     line-height: 20px;

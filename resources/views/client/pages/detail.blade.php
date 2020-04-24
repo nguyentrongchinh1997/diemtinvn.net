@@ -172,7 +172,7 @@
 							</div>
 						@endif
 					</div> --}}
-					<div class="post-inner post-inner-2">
+					<div class="post-inner post-inner-2 category-same-post">
 						<div class="post-head">
 							<h2 class="title"><strong>Cùng chuyên mục </strong></h2>
 						</div>
