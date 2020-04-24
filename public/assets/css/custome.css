@@ -1,6 +1,10 @@
 img{
 	border: 1px solid #eaecf1;
 }
+.detail-summury{
+	font-weight: bold;
+	color: #4f4f4f;
+}
 .date{
 	color: #9a9a9a;
 }
@@ -109,6 +113,15 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	background: #c90000;
 	transition: 0.3s;
 }
+.category-other-post h4{
+	font-size: 15px;
+    max-height: 40px;
+    overflow: hidden;
+    line-height: 20px;
+}
+.category-other-post{
+	padding-bottom: 0px;
+}
 .youtube-wrapper{
 	padding: 15px 0px;
 }
@@ -125,7 +138,11 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	padding: 0px;
 }
 .post-info h3{
-	margin-top: 10px;
+	height: 65px;
+    margin-top: 10px;
+    overflow: hidden;
+    font-size: 17px;
+    line-height: 22px;
 }
 .authar-info li{
 	font-weight: normal;
@@ -154,6 +171,7 @@ nav.navbar.bootsnav ul.nav > li:hover{
     margin-top: 4px;
 }
 .title-sidebar{
+	color: #111;
 	margin: 0px;
 }
 .most-viewed, .popular-news{
@@ -188,8 +206,9 @@ nav.navbar.bootsnav ul.nav > li:hover{
 	list-style-type: square !important;
 }
 .sidebar ul li{
-	padding: 5px 5px 5px 20px !important;
+	padding: 5px 5px 5px 0px !important;
 	position: relative;
+	text-transform: capitalize;
 }
 .sidebar ul li a{
 	font-size: 13px;
@@ -457,4 +476,16 @@ nav.navbar.bootsnav ul.nav > li > a{
 }
 .bk-content .image-detail, .post_details_block figure img{
 	cursor: crosshair;
+}
+#most-today{
+	padding-left: 0px; 
+	list-style-type: none;
+}
+#most-today li{
+	max-height: 45px;
+	overflow: hidden;
+}
+#most-today hr{
+	margin-top: 8px;
+	margin-bottom: 8px;
 }

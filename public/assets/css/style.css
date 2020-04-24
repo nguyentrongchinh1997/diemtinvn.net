@@ -1563,7 +1563,7 @@ figure img {
 
 .post-head .title,
 .panel_header h4 {
-    color: #000;
+    color: #4f4f4f;
     font-size: 17px;
     font-weight: 400;
     line-height: 25px;
@@ -1776,6 +1776,8 @@ article figure .post-category {
 }
 
 .post-info-2 h5 {
+    height: 40px;
+    overflow: hidden;
     margin-top: 0;
     line-height: 20px;
     font-size: 15px;
@@ -3221,6 +3223,8 @@ ul.category-list li a:hover span {
     margin: 15px;
 }
 #featured-owl .item h4{
+    height: 60px;
+    overflow: hidden;
     font-weight: normal;
     font-size: 15px;
     line-height: 20px;

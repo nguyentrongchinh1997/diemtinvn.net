@@ -103,27 +103,31 @@
 		<div class="container">
 			<div class="row row-m">
 				<div class="col-sm-8 col-p post-list-category">
-					<div class="row" style="margin-bottom: 20px">
-	                    <div class="col-md-7">
-	                        <img width="100%" alt="{{$postSlide->title}}" src='{{asset("upload/og_images/$postSlide->image")}}'>
-	                    </div>
-	                    <div class="col-md-5">
-	                        <h2 style="margin-top: 0px; line-height: 20px">
-	                            <a href="{{ route('client.detail', ['category' => $postSlide->subCategory->slug, 'title' => $postSlide->slug, 'id' => $postSlide->id]) }}" style="font-size: 20px">
-	                                {{ $postSlide->title }}
-	                            </a>
-	                        </h2>
-	                        <p class="summury">
-	                            {{ $postSlide->summury }} 
-	                        </p>
-	                        <p class="date">
-	                           {{ date('d/m/Y H:i', strtotime($postSlide->date)) }} GMT+7
-	                        </p>
-	                        <p>
-	                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postSlide->category->slug, 'sub_cate' => $postSlide->subCategory->slug]) }}">{{ $postSlide->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => $postSlide->web]) }}" class="soure">{{ $postSlide->web }}</a>
-	                        </p>
-	                    </div>
-	                </div>
+					@if (!empty($postSlide))
+						<div class="row" style="margin-bottom: 20px">
+		                    <div class="col-md-7">
+		                    	<a href="{{ route('client.detail', ['category' => $postSlide->subCategory->slug, 'title' => $postSlide->slug, 'id' => $postSlide->id]) }}">
+		                    		<img width="100%" alt="{{$postSlide->title}}" src='{{asset("upload/og_images/$postSlide->image")}}'>
+		                    	</a>
+		                    </div>
+		                    <div class="col-md-5">
+		                        <h2 style="margin-top: 0px; line-height: 20px">
+		                            <a href="{{ route('client.detail', ['category' => $postSlide->subCategory->slug, 'title' => $postSlide->slug, 'id' => $postSlide->id]) }}" style="font-size: 20px">
+		                                {{ $postSlide->title }}
+		                            </a>
+		                        </h2>
+		                        <p class="summury">
+		                            {{ $postSlide->summury }} 
+		                        </p>
+		                        <p class="date">
+		                           {{ date('d/m/Y H:i', strtotime($postSlide->date)) }} GMT+7
+		                        </p>
+		                        <p>
+		                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postSlide->category->slug, 'sub_cate' => $postSlide->subCategory->slug]) }}">{{ $postSlide->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => $postSlide->web]) }}" class="soure">{{ $postSlide->web }}</a>
+		                        </p>
+		                    </div>
+		                </div>
+	                @endif
 	                <div class="row" style="margin-bottom: 20px">
 	                    <div class="col-sm-12">
 	                        <div class="featured-inner" style="padding: 0px">

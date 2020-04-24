@@ -18,10 +18,22 @@ class PostService
 	public function detail($category, $title, $postId)
 	{
 		try {
+			// $webException = [
+			// 	'dantri.com.vn',
+			// 	'baodatviet.vn',
+			// 	'baoquocte.vn',
+			// 	'baotintuc.vn',
+			// 	'cafebiz.vn',
+			// 	'cand.com.vn',
+			// 	'doisongphapluat.com',
+			// 	'nguoiduatin.vn',
+			// 	'nhandan.com.vn',
+			// 	'nld.com.vn',
+			// ];
 			$post = $this->post->findOrFail($postId);
 			$categoryId = $post->subCategory->category->id;
-			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(12);
-			$otherCategory = $this->category->all()->random(2);
+			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(9);
+			$otherCategory = $this->category->all()->random(3);
 			$post->increment('view');
 			$idPostRelate = array();
 

@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row" style="margin-top: 20px">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-				<ol class="breadcrumb breadcrumb-custom-sub" style="float: left;">
+				<ol class="breadcrumb breadcrumb-custom-sub breadcrumb-custom" style="float: left;">
 					<li class="active">
 						<a style="text-transform: capitalize;">
 							@if ($type == 'search')
@@ -24,7 +24,7 @@
 	</div>
 	<div class="container">
 		<div class="row row-m">
-			<div class="col-sm-8 col-p  main-content">
+			<div class="col-sm-8 col-p">
 				<div class="theiaStickySidebar">
 					<div class="post-inner categoty-style-1">
 						<div class="post-body post-list-category" style="padding: 15px 15px 15px 0px">
@@ -38,11 +38,10 @@
                                         <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                         <ul class="authar-info">
                                             <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                            {{-- <li class="like"><a href="#">{{ $post->view }} lượt xem</a></li> --}}
                                         </ul>
                                         <p class="hidden-sm description" style="margin-bottom: 10px">{{ $post->summury }}</p>
-                                        <p style="margin-bottom: 0px; color: #adb5bd">
-											<a style="font-weight: bold; color: #adb5bd; text-transform: capitalize;" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{route('client.news_soure', ['web' => $post->web])}}">{{ $post->web }}</a>
+                                        <p>
+											<a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a class="soure" href="{{route('client.news_soure', ['web' => $post->web])}}">{{ $post->web }}</a>
 										</p>
                                     </div>
                                 </div>

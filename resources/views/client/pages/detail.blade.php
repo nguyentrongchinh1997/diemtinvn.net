@@ -52,12 +52,10 @@
 			</div>
 		</div>
 	</div>
-	<!-- END OF /. PAGE TITLE --> 
 	<div class="container">
 		<div class="row row-m">
-			<!-- START MAIN CONTENT -->
 			<div class="col-sm-8 col-p  main-content">
-				<div class="theiaStickySidebar">
+				<div>
 					<div class="post_details_inner">
 						<div class="post_details_block details_block2">
 							<div class="post-header">
@@ -78,25 +76,9 @@
 								</p>
 								<div class="fb-like" data-href="{{ url()->current() }}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
 								<hr>
-								<p style="font-weight: bold;">
+								<p class="detail-summury">
 									{!! html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8') !!}
 								</p>
-								<figure class="social-icon" style="margin-bottom: 10px">
-									<img src='{{ asset("upload/og_images/$post->image") }}' alt="{{ $post->title }}"/>
-									<div>
-										<a href="#"><i class="fa fa-facebook"></i></a>
-										<a href="#"><i class="fa fa-twitter"></i></a>
-										<a href="#"><i class="fa fa-google-plus"></i></a>
-										<a href="#" class="hidden-xs"><i class="fa fa-linkedin"></i></a>
-										<a href="#" class="hidden-xs"><i class="fa fa-pinterest-p"></i></a>
-									</div>			
-								</figure>
-{{-- 								<ul class="authar-info">
-									<li>s</li>
-									<li><a href="#" class="link">by david hall</a></li>
-									<li>May 29,2016</li>
-									<li><a href="#" class="link">25 views</a></li>
-								</ul> --}}
 							</div> 
 							
 							<div class="bk-content">
@@ -106,23 +88,6 @@
 								<b>Nguồn:</b> <a target="_blank" rel="notfollow" href="{{ $post->url_origin }}">{{ $post->web }}</a>
 							</p>
 						</div>
-						{{-- <!-- Post footer -->
-						<div class="post-footer"> 
-							<div class="row thm-margin">
-								<div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
-									<!-- pagination -->
-									<ul class="pagination">
-										<li class="disabled"><span class="ti-angle-left"></span></li>
-										<li class="active"><span>1</span></li>
-										<li><a href="#">2</a></li>
-										<li><a href="#">3</a></li>
-										<li class="disabled"><span class="extend">...</span></li><li>
-										</li><li><a href="#">12</a></li>
-										<li><a href="#"><i class="ti-angle-right"></i></a></li>
-									</ul> <!-- /.pagination -->
-								</div>
-							</div>
-						</div> --}}
 					</div>
 					@if ($keywords > 0)
 						<div>
@@ -141,13 +106,41 @@
 							<div width='100%' class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5"></div>
 						</div>
 					</div>
-					<!-- START RELATED ARTICLES -->
-					<div class="post-inner post-inner-2">
-						<!--post header-->
+					<div class="post-head">
+						<h2 class="title"><strong>Tin liên quan </strong></h2>
+					</div>
+					<div class="row" style="margin-bottom: 20px">
+	                    <div class="col-sm-12">
+	                        <div class="featured-inner" style="padding: 0px">
+	                            <div id="featured-owl" class="owl-carousel">
+	                                @foreach ($idPostRelate as $newsId)
+	                                	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
+	                                    <div class="item">
+	                                        <div class="featured-post">
+	                                            <a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}" class="news-image">
+	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive" style="height: 100px; object-fit: cover; width: 100%">
+	                                            </a>
+	                                            <h4>
+	                                                <a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}">
+	                                                    {{ $postRealte->title }}
+	                                                </a>
+	                                            </h4>
+	                                            <p>
+	                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postRealte->category->slug, 'sub_cate' => $postRealte->subCategory->slug]) }}">{{ $postRealte->subCategory->name }}</a> | 
+	                                                <a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
+	                                            </p>
+	                                        </div>
+	                                    </div>
+	                                @endforeach
+	                                
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+					{{-- <div class="post-inner post-inner-2">
 						<div class="post-head">
 							<h2 class="title"><strong>Tin liên quan </strong></h2>
 						</div>
-						<!-- post body -->
 						@if (count($idPostRelate) > 0)
 							<div class="post-body">
 								<div id="post-slider-2" class="owl-carousel owl-theme">
@@ -169,27 +162,36 @@
 																	{{ $postRealte->title }}
 																</a>
 															</h5>
-															{{-- <ul class="authar-info">
-																<li>May 15, 2016</li>
-																<li class="hidden-sm"><a href="#" class="link">15 likes</a></li>
-															</ul> --}}
 														</div>
 													</div>
 												@endforeach
 											</div>
 										</div>
 									</div>
-									<!-- item two -->
 								</div>
 							</div>
 						@endif
-					</div>
+					</div> --}}
 					<div class="post-inner post-inner-2">
 						<div class="post-head">
 							<h2 class="title"><strong>Cùng chuyên mục </strong></h2>
 						</div>
 						<br>
-						<div class="post-inner categoty-style-1 post-list-category">
+						<div class="row">
+							@foreach ($postSameCategory as $post)
+								<div class="col-sm-4">
+	                                <article>
+	                                    <figure class="post-list-category">
+	                                        <a href="#"><img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
+	                                    </figure>
+	                                    <div class="post-info">
+	                                        <h3 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h3>
+	                                    </div>
+	                                </article>
+	                            </div>
+                            @endforeach
+						</div>
+						{{-- <div class="post-inner categoty-style-1 post-list-category">
 							<div class="post-body" style="padding: 15px 15px 15px 0px">
 								@foreach ($postSameCategory as $post)
 									<div class="news-list-item articles-list">
@@ -210,14 +212,7 @@
                                     </div>
                                 @endforeach
 							</div>
-							{{-- <div class="post-footer" style="border-top: 0px"> 
-								<div class="row thm-margin">
-									<div class="col-xs-12 col-sm-12 col-md-12 thm-padding">
-										{{ $postList->links() }}
-									</div>
-								</div>
-							</div> --}}
-						</div>
+						</div> --}}
 						{{-- <div class="row row-margin">
 							@php 
 								$stt1 = 1;
@@ -240,46 +235,36 @@
 						<div class="row" style="margin-top: 30px">
 							@foreach ($otherCategory as $category)
 								@if (count(\App\Helper\helper::categoryPost($category->id)) > 0)
-									<div class="col-md-6 sub-cate-random">
+									<div class="col-md-4 sub-cate-random">
 										<a class="title-popalar" href="{{ route('client.category', ['cate' => $category->slug]) }}">
 											{{ $category->name }}
 										</a>
 										@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
-											<div class="news-list-item articles-list" style="border-bottom: 0px">
-												<div>
-													<h4 title="{{ $categoryOtherPost->title }}" style="font-size: 18px; line-height: 25px">
-														<a href="#" class="title">
-															{{ $categoryOtherPost->title }}
-														</a>
-													</h4>
-												</div>
-
-												<div class="img-wrapper" style="float: left; width: 50%">
-													<a class="thumb" href="#">
+											<div class="news-list-item articles-list category-other-post" style="border-bottom: 0px">
+												<div class="img-wrapper">
+													<a class="thumb" href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
 														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive"></a>
 												</div>
-												<div class="post-info-2" style="float: left; width: 50%">
-													<p class="description">
-														{{ $categoryOtherPost->summury }}
-													</p>	                            
-												</div>
+												<h4>
+													<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
+														{{ $categoryOtherPost->title }}
+													</a>
+												</h4>
 											</div>
 											@php break; @endphp
 										@endforeach
 										@php 
 											$dem = 0;
 										@endphp
-										<ul id="most-today" style="padding-left: 15px; list-style-type: square; color: #777">
+										<ul id="most-today">
 											@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 												@if ($dem++ > 0)
 													<li style="padding: 5px 0px">
-														<a style="font-weight: bold" href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
+														<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
 															{{ $categoryOtherPost->title }}
 														</a>
-														<p style="margin-top: 10px; font-size: 13px; color: #727272; margin-bottom: 5px">
-                            							    <span>{{ date('d/m', strtotime($categoryOtherPost->date)) }}</span> | <span style="text-transform: capitalize;">{{ $categoryOtherPost->subCategory->name }}</span>
-                            							</p>
 													</li>
+													<hr>
 												@endif
 											@endforeach
 										</ul>
@@ -294,8 +279,9 @@
 			</div>
 			<!-- END OF /. MAIN CONTENT -->
 			<!-- START SIDE CONTENT -->
-			<div class="col-sm-4 col-p sidebar">
+			<div class="col-sm-4 col-p sidebar" style="padding-left: 25px">
 				@include('client.includes.news_new')
+				<hr>
 				@include('client.includes.best_view')
 				<div class="add-inner rightSidebar">
                     <img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
@@ -317,16 +303,16 @@
 	</div>
 </main>
 <input type="hidden" class="input" id="{{$post->subCategory->category->slug}}{{$post->subCategory->category->id}}" value="{{$post->subCategory->category->id}}">
-<style type="text/css">
+{{-- <style type="text/css">
 	@php 
-		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn', 'baotintuc.vn', 'nld.com.vn'];
+		$webException = ['tuoitre.vn', 'laodong.vn', 'vietnamplus.vn', 'cand.com.vn', 'nongnghiep.vn', 'baotintuc.vn', 'nld.com.vn', 'baotintuc.vn', 'cand.com.vn'];
 	@endphp
 	@if (!in_array($post->web, $webException))
 		.bk-content p:last-child{
 			text-align: right;
 		}
 	@endif
-</style>
+</style> --}}
 @section('script')
 	{{-- <script type="text/javascript">
 		if ($('.bk-content img').length) {

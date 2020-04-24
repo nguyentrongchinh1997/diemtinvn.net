@@ -65,6 +65,12 @@ return [
 		    'quan_ly' => 26,
 		    'khong_gian' => 27,
 		],
+		'giai_tri' => [
+			'gt' => 11,
+			'am_nhac' => 10,
+			'thoi_trang' => 11,
+			'dien_anh' => 12
+		]
 	],
 ];
 

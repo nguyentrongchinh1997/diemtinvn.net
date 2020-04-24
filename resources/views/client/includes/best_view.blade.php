@@ -8,7 +8,7 @@
 				@foreach ($bestViewSidebar as $post)
 					<div class="news-list-item articles-list">
 						<div>
-							<h4 style="line-height: 25px; margin-top: 0px" title="{{ $post->title }}">
+							<h4 style="line-height: 22px; margin-top: 0px; font-weight: normal; font-size: 16px" title="{{ $post->title }}">
 								<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
 						</div>
 

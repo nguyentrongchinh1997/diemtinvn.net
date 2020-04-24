@@ -7,10 +7,10 @@
 			<ul id="most-today" class="content tabs-content">
 				@php $stt = 1; @endphp
 				@foreach ($newPostsSidebar as $post)
-					@if ($stt++ == 1)
+					{{-- @if ($stt++ == 1) --}}
 						<div class="news-list-item articles-list">
 							<div>
-								<h4 title="{{ $post->title }}">
+								<h4 title="{{ $post->title }}" style="font-weight: normal; line-height: 22px; font-size: 16px">
 									<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a>
 								</h4>
 							</div>
@@ -25,7 +25,7 @@
 								</p>	                            
 							</div>
 						</div>
-					@else
+					{{-- @else
 						<li>
 							<a style="font-weight: bold" href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
 								{{ $post->title }}
@@ -34,7 +34,7 @@
 							    <span>{{ date('d/m', strtotime($post->date)) }}</span> | <span style="text-transform: capitalize;">{{ $post->subCategory->name }}</span>
 							</p>
 						</li>
-					@endif
+					@endif --}}
 				@endforeach
 			</ul>
 		</div>

@@ -13,6 +13,6 @@ class Helper
 
 	public static function categoryPost($categoryId)
 	{
-		return Post::where('category_id', $categoryId)->limit(11)->get();
+		return Post::where('category_id', $categoryId)->limit(6)->get();
 	}
 }

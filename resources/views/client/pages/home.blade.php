@@ -58,7 +58,9 @@
             <div class="col-sm-8 col-p main-content">
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-md-7">
-                        <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("upload/og_images/$postSlideHome->image")}}'>
+                        <a href="{{ route('client.detail', ['category' => $postSlideHome->subCategory->slug, 'title' => $postSlideHome->slug, 'id' => $postSlideHome->id]) }}">
+                            <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("upload/og_images/$postSlideHome->image")}}'>
+                        </a>
                     </div>
                     <div class="col-md-5">
                         <h2 style="margin-top: 0px; line-height: 20px">
@@ -726,20 +728,20 @@
                             <!-- END OF /. POST CATEGORY STYLE FOUR (Latest articles ) -->
                         </div>
                     </div>
-                    <div class="col-sm-4 col-p">
+                    <div class="col-sm-4 col-p sidebar">
                         <div class="theiaStickySidebar">
-                            <!-- END OF /. POLL WIDGET -->
-                            <!-- START TAGS -->
                             <div class="panel_inner">
-                                <div class="panel_header">
-                                    <h4><strong>Chuyên mục </strong></h4>
-                                </div>
+                                    <h3 class="title-sidebar">Chuyên mục</h3>
                                 <div class="panel_body">
-                                    <div class="tags-inner">
+                                    <ul style="padding-left: 0px; list-style-type: none;">
                                         @foreach ($subCates as $cate)
-                                            <a style="text-transform: capitalize; margin-bottom: 10px; margin-right: 10px" href="{{ route('client.sub_cate', ['category' => $cate->category->slug, 'subCategory' => $cate->slug]) }}" class="ui tag">{{ $cate->name }}</a>
+                                            <li>
+                                                <a href="{{ route('client.sub_cate', ['category' => $cate->category->slug, 'sub-cate' => $cate->slug]) }}">
+                                                    {{ $cate->name }}
+                                                </a>
+                                            </li>
                                         @endforeach
-                                    </div>
+                                    </ul>
                                 </div>
                             </div>
                             <!-- END OF /. TAGS -->
