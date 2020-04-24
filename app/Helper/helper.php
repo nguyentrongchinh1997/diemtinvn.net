@@ -15,4 +15,13 @@ class Helper
 	{
 		return Post::where('category_id', $categoryId)->limit(6)->get();
 	}
+
+	public static function subCategoryPost($subCateId, $listId, $limit)
+	{
+		return Post::where('sub_category_id', $subCateId)
+					->whereNotIn('id', $listId)
+					->latest('date')
+					->limit($limit)
+					->get();
+	}
 }

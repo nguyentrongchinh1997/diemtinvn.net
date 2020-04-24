@@ -19,10 +19,12 @@ class CategoryService
 
 	public function category($slug)
 	{
+		$listId = array();
 		$category = $this->category->where('slug', $slug)->first();
 
 		if (isset($category)) {
 			$categoryId = $category->id;
+			$subCate = $this->subCategory->where('category_id', $categoryId)->get()->random(2);
 			$postSlide = $this->post->where('category_id', $categoryId)
 									->latest('date')
 									->first();
@@ -36,21 +38,41 @@ class CategoryService
 				$postList = $this->post->where('category_id', $categoryId)
 								   ->latest('date')
 								   ->where('date', '<', $postTop[5]->date)
-								   ->paginate(20);
+								   ->paginate(25);
 			} else {
 				$postList = array();
 			}
-			//dd($postList);
+			$listId = $this->getId($postSlide, $postTop, $postList);
 
 			return [
+				'subCate' => $subCate,
 				'postList' => $postList,
 				'postTop' => $postTop,
 				'postSlide' => $postSlide,
 				'category' => $category,
+				'listId' => $listId,
 			];
 		} else {
 			return NULL;
 		}
+	}
+
+	public function getId($postSlide, $postTop, $postList)
+	{
+		$listId = array();
+		$listId[] = $postSlide->id;
+
+		foreach ($postTop as $post) {
+			$listId[] = $post->id;
+		}
+
+		if (count($postList) > 0) {
+			foreach ($postList as $post) {
+				$listId[] = $post->id;
+			}
+		}
+
+		return $listId;
 	}
 
 	public function subCategory($subCategory)

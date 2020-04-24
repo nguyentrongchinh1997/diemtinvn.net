@@ -5,26 +5,6 @@
 
 @section('content')
 	<div class="page-title" style="margin: 0px">
-{{-- 		<div class="row" style="background: #f1f9ff">
-			<div class="container">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px">
-					<ol class="breadcrumb breadcrumb-custom">
-						<li class="active">
-							<a style="text-transform: capitalize; color: #c90000" href="{{ route('client.category', ['slug' => $category->slug]) }}">
-								{{ $category->name }}
-							</a>
-						</li>
-						@foreach ($category->subCategory as $subCategory)
-							<li>
-								<a style="text-transform: capitalize;" href="{{ route('client.sub_cate', ['cate' => $subCategory->category->slug, 'sub_cate' => $subCategory->slug]) }}">
-									{{ $subCategory->name }}
-								</a>
-							</li>
-						@endforeach
-					</ol>
-				</div>
-			</div>
-		</div> --}}
 		<div class="container">
 			<div class="row" style="margin-top: 10px">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -201,6 +181,37 @@
 							<div class="add-inner">
 								<img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
 							</div>
+							@foreach ($subCate as $cate)
+								<h3 class="title-sidebar" style="text-transform: capitalize;">
+									{{ $cate->name }}
+								</h3>
+								<div class="tab-content best-view-sidebar" style="margin-bottom: 20px">
+									<div role="tabpanel" class="tab-pane fade active in" id="home">
+										<div class="most-viewed post-list-category-sidebar">
+											<ul id="most-today" class="content tabs-content">
+												@foreach (\App\Helper\helper::subCategoryPost($cate->id, $listId, 6) as $post)
+													<div class="news-list-item articles-list">
+														<div>
+															<h4 style="line-height: 22px; margin-top: 0px; font-weight: normal; font-size: 16px" title="{{ $post->title }}">
+																<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+														</div>
+
+														<div class="img-wrapper" style="float: left;">
+															<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
+																<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" class="img-responsive"></a>
+														</div>
+														<div class="post-info-2" style="float: left;">
+															<p class="description">
+																{{ $post->summury }}
+															</p>	                            
+														</div>
+													</div>
+												@endforeach
+											</ul>
+										</div>
+									</div>
+								</div>
+							@endforeach
 							<!-- END OF /. ADVERTISEMENT -->
 							<!-- START NAV TABS -->
 							@include('client.includes.best_view')
