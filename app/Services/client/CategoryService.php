@@ -24,7 +24,13 @@ class CategoryService
 
 		if (isset($category)) {
 			$categoryId = $category->id;
-			$subCate = $this->subCategory->where('category_id', $categoryId)->get()->random(2);
+			
+			if (count($category->subCategory) > 2) {
+				$limit = 2;
+			} else {
+				$limit = 1;
+			}
+			$subCate = $this->subCategory->where('category_id', $categoryId)->get()->random($limit);
 			$postSlide = $this->post->where('category_id', $categoryId)
 									->latest('date')
 									->first();
@@ -77,10 +83,20 @@ class CategoryService
 
 	public function subCategory($subCategory)
 	{
+		$listId = array();
 		$subCategory = $this->subCategory->where('slug', $subCategory)->first();
 
 		if (isset($subCategory)) {
 			$subCategoryId = $subCategory->id;
+
+			if (count($subCategory->category->subCategory) > 2) {
+				$limit = 2;
+			} else {
+				$limit = 1;
+			}
+			$cateChild = $this->subCategory->where('category_id', $subCategory->category->id)
+										 ->where('id', '!=', $subCategoryId)
+										 ->get()->random($limit);
 			$postSlide = $this->post->where('sub_category_id', $subCategoryId)
 									->latest('date')
 									->first();
@@ -98,7 +114,11 @@ class CategoryService
 				$postList = array();
 			}
 
+			$listId = $this->getId($postSlide, $postTop, $postList);
+
 			return [
+				'cateChild' => $cateChild,
+				'listId' => $listId,
 				'postList' => $postList,
 				'postTop' => $postTop,
 				'postSlide' => $postSlide,

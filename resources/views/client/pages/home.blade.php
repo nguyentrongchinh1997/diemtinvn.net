@@ -284,12 +284,9 @@
             </div>
             <!-- END OF /. MAIN CONTENT -->
             <!-- START SIDE CONTENT -->
-            <div class="col-sm-4 col-p rightSidebar">
+            <div class="col-sm-4 col-p rightSidebar hidden-xs">
                 <div class="theiaStickySidebar">
-                    <!-- START WEATHER -->
                     @include('client.includes.weather')
-                    <!-- END OF /. WEATHER -->
-                    <!-- START SOCIAL ICON -->
                     <div class="social-media-inner">
                         <table class="sidebar-oil">
                             <tr style="background: #2c3442">
@@ -347,12 +344,9 @@
                             </tr>
                         </table> 
                     </div>
-                    <!-- END OF /. SOCIAL ICON -->
-                    <!-- START ADVERTISEMENT -->
                     <div class="add-inner">
                         <img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
                     </div>
-                    <!-- END OF /. ADVERTISEMENT -->
                 </div>
             </div>
             <!-- END OF /. SIDE CONTENT -->
@@ -728,7 +722,7 @@
                             <!-- END OF /. POST CATEGORY STYLE FOUR (Latest articles ) -->
                         </div>
                     </div>
-                    <div class="col-sm-4 col-p sidebar">
+                    <div class="hidden-xs col-sm-4 col-p sidebar">
                         <div class="theiaStickySidebar">
                             <div class="panel_inner">
                                     <h3 class="title-sidebar">Chuyên mục</h3>

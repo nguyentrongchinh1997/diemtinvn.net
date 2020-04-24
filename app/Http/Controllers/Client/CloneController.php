@@ -87,10 +87,14 @@ class CloneController extends Controller
 			$this->amThuc = config('config.category.van_hoa.am_thuc');
 			$this->duLich = config('config.category.van_hoa.du_lich');
 	// chuyên mục giải trí
-			$this->giaiTri = config('config.category.giai_tri.gt');
-				$this->amNhac = config('config.category.giai_tri.am_nhac');
-				$this->thoiTrang = config('config.category.giai_tri.thoi_trang');
-				$this->dienAnh = config('config.category.giai_tri.dien_anh');
+		$this->giaiTri = config('config.category.giai_tri.gt');
+			$this->amNhac = config('config.category.giai_tri.am_nhac');
+			$this->thoiTrang = config('config.category.giai_tri.thoi_trang');
+			$this->dienAnh = config('config.category.giai_tri.dien_anh');
+	// chuyên mục nhà đất
+		$this->nhaDat = config('config.category.nha_dat.nd');
+			$this->quanLy = config('config.category.nha_dat.quan_ly');
+			$this->khongGian = config('config.category.nha_dat.khong_gian');
 	}
 
 	public function test()
@@ -99,7 +103,7 @@ class CloneController extends Controller
 		//$this->testVnexpress();
 		// $this->testCafeBiz();
 		//$this->vietNamPlus();
-		//$this->vietNamNet();
+		$this->vietNamNet();
 		//$this->congAnNhanDan();
 		//$this->bao24h();
 		//$this->tuoiTre();
@@ -116,7 +120,7 @@ class CloneController extends Controller
 		//$this->doiSongPhapLuat();
 		//$this->nguoiLaoDong();
 		//$this->baoQuocTe();
-		$this->saoStar();
+		//$this->saoStar();
 	}
 
 	public function saoStar()
@@ -227,6 +231,7 @@ class CloneController extends Controller
 	public function vietNamNet()
 	{
 		$this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/san-pham/', $this->cntt, $this->congNghe);
+		$this->cloneVietNamNet('https://vietnamnet.vn/vn/bat-dong-san/du-an/', $this->quanLy, $this->nhaDat);
 		// $this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/vien-thong/', $this->cntt, $this->congNghe);
 		// $this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/tai-chinh/', $this->taiChinh, $this->kinhTe);
 	}
@@ -413,7 +418,6 @@ class CloneController extends Controller
 		foreach($html->find('.list-content .item') as $link) {
 			$linkFull = $domain . $link->find('a')[0]->href;
 			$this->getDataVietNamNet($linkFull, $subCategoryId, $categoryId);
-			break;
 		}
 	}
 
@@ -3382,12 +3386,17 @@ class CloneController extends Controller
 
 		if ($width1 == NULL || $dem > 0) {
 			$postItem = Post::findOrFail($post->id);
-			unlink(public_path('upload/thumbnails/' . $postItem->image));
-			unlink(public_path('upload/og_images/' . $postItem->image));
+
+			if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
+				unlink(public_path('upload/thumbnails/' . $postItem->image));
+				unlink(public_path('upload/og_images/' . $postItem->image));
+			}
 			
 			foreach ($listImage as $key => $img) {
 				if ($img != '') {
-					unlink(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
+					if (file_exists(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'))) {
+						unlink(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
+					}
 				}
 			}
 			$postItem->delete();
