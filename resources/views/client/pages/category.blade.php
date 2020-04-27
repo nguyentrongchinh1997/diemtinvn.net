@@ -191,19 +191,11 @@
 											<ul id="most-today" class="content tabs-content">
 												@foreach (\App\Helper\helper::subCategoryPost($cate->id, $listId, 6) as $post)
 													<div class="news-list-item articles-list">
-														<div>
-															<h4 style="line-height: 22px; margin-top: 0px; font-weight: normal; font-size: 16px" title="{{ $post->title }}">
+														<h4 title="{{ $post->title }}">
 																<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
-														</div>
-
-														<div class="img-wrapper" style="float: left;">
+														<div class="sidebar-img-wrapper img-wrapper">
 															<a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
 																<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" class="img-responsive"></a>
-														</div>
-														<div class="post-info-2" style="float: left;">
-															<p class="description">
-																{{ $post->summury }}
-															</p>	                            
 														</div>
 													</div>
 												@endforeach

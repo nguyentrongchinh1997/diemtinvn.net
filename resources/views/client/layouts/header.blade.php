@@ -140,7 +140,7 @@
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-left" data-in="" data-out="">
                             <li class="dropdown home active-color">
-                                <a href="{{ route('client.home') }}"><i style="color: #fff" class="ti-home"></i></a>
+                                <a href="{{ route('client.home') }}" style="padding-top: 3px"><i style="color: #fff; font-size: 17px" class="ti-home"></i></a>
                             </li>
                             @foreach ($firstCategoryShare as $category)
                                 <li class="{{$category->slug}}{{$category->id}} dropdown" value="{{$category->id}}">

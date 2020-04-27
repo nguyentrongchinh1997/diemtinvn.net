@@ -37,6 +37,7 @@ return [
 			'tt' => 2,
 			'bong_da' => 5,
 			'quan_vot' => 6,
+			'mon_khac' => 37,
 		],
 		'the_gioi' => [
 			'tg' => 4,
@@ -51,8 +52,8 @@ return [
 		],
 		'cong_nghe' => [
 			'cn' => 9,
-			'cntt-vt' => 15,
-			'thiet-bi' => 16
+			'cntt_vt' => 15,
+			'san_pham' => 16
 		],
 		'van_hoa' => [
 			'vh' => 5,

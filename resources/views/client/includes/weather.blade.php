@@ -10,11 +10,11 @@
                     <img class="weather-image-small" src="{{ asset("images/weather") }}/{{$weather[2]['weather']['icon']}}.png">
                     <div>{{ getWeekday($weather[2]['valid_date']) }}, {{ $weather[2]['min_temp'] }} °C</div>
                 </a>
-{{--                 <a href="#" class="list-group-item">
+                <a href="#" class="list-group-item">
                     <img class="weather-image-small" src="{{ asset("images/weather") }}/{{$weather[3]['weather']['icon']}}.png">
                     <div>{{ getWeekday($weather[3]['valid_date']) }}, {{ $weather[3]['min_temp'] }} °C</div>
                 </a>
-                <a href="#" class="list-group-item">
+       {{--     <a href="#" class="list-group-item">
                     <img class="weather-image-small" src="{{ asset("images/weather") }}/{{$weather[4]['weather']['icon']}}.png">
                     <div>{{ getWeekday($weather[4]['valid_date']) }}, {{ $weather[4]['min_temp'] }} °C</div>
                 </a> --}}

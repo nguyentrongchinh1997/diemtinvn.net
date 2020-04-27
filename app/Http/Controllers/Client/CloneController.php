@@ -68,6 +68,7 @@ class CloneController extends Controller
 		$this->theThao = config('config.category.the_thao.tt'); // thể thao
 			$this->bongDa = config('config.category.the_thao.bong_da'); // bóng đá
 			$this->quanVot = config('config.category.the_thao.quan_vot'); // quần vợt
+			$this->monKhac = config('config.category.the_thao.mon_khac'); // môn khác
 	// Chuyên mục thê giới
 		$this->theGioi = config('config.category.the_gioi.tg');
 			$this->quanSu = config('config.category.the_gioi.quan_su');
@@ -79,8 +80,8 @@ class CloneController extends Controller
 			$this->hinhSu = config('config.category.phap_luat.hinh_su');
 	// chuyên mục công nghệ
 		$this->congNghe = config('config.category.cong_nghe.cn');
-			$this->cntt = config('config.category.cong_nghe.cntt-vt');
-			$this->thietBi = config('config.category.cong_nghe.thiet-bi');
+			$this->cntt = config('config.category.cong_nghe.cntt_vt');
+			$this->sanPham = config('config.category.cong_nghe.san_pham');
 	// chuyên mục văn hóa
 		$this->vanHoa = config('config.category.van_hoa.vh');
 			$this->ngheThuat = config('config.category.van_hoa.nghe_thuat');
@@ -99,33 +100,37 @@ class CloneController extends Controller
 
 	public function test()
 	{
-		//$this->laoDong();
-		//$this->testVnexpress();
-		// $this->testCafeBiz();
-		//$this->vietNamPlus();
-		$this->vietNamNet();
-		//$this->congAnNhanDan();
+// 		$this->laoDong();
+		$this->testVnexpress();
+// 		$this->testCafeBiz();
+// 		$this->vietNamPlus();
+// 		$this->vietNamNet();
+	//	$this->congAnNhanDan();
 		//$this->bao24h();
-		//$this->tuoiTre();
-		//$this->qdnd();
-		//$this->nongNghiep();
-		//$this->nguoiDuaTin();
-		//$this->sucKhoeDoiSong();
 		//$this->bongDa(); // chưa xử lý 100%
-		//$this->nhanDan();
-		//$this->danTri();
-		// $this->datViet();
-		//$this->phuNuVietNam();
-		//$this->baoTinTuc();
-		//$this->doiSongPhapLuat();
-		//$this->nguoiLaoDong();
-		//$this->baoQuocTe();
-		//$this->saoStar();
+// 		$this->tuoiTre();
+// 		$this->qdnd();
+// 		$this->nongNghiep();
+// 		$this->nguoiDuaTin();
+// 		$this->sucKhoeDoiSong();
+// 		$this->nhanDan();
+// 		$this->danTri();
+// 		$this->datViet();
+// 		$this->phuNuVietNam();
+// 		$this->baoTinTuc();
+// 		$this->doiSongPhapLuat();
+//  		$this->nguoiLaoDong();
+// 		$this->baoQuocTe();
+// 		$this->saoStar();
 	}
 
 	public function saoStar()
 	{
 		$this->cloneSaoStar('https://saostar.vn/am-nhac/', $this->amNhac, $this->giaiTri);
+		$this->cloneSaoStar('https://saostar.vn/am-nhac/v-pop/', $this->amNhac, $this->giaiTri);
+		$this->cloneSaoStar('https://saostar.vn/thoi-trang/', $this->thoiTrang, $this->giaiTri);
+		$this->cloneSaoStar('https://saostar.vn/dien-anh/phim-truyen-hinh/', $this->dienAnh, $this->giaiTri);
+		$this->cloneSaoStar('https://saostar.vn/dien-anh/phim-chieu-rap/', $this->dienAnh, $this->giaiTri);
 	}
 
 	public function baoQuocTe()
@@ -137,6 +142,7 @@ class CloneController extends Controller
 	{
 		$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe.htm', $this->sucKhoe, $this->doiSong);
 		$this->cloneNguoiLaoDong('https://nld.com.vn/cong-doan/viec-lam.htm', $this->laoDong, $this->kinhTe);
+		$this->cloneNguoiLaoDong('https://nld.com.vn/nghe-thuat.html', $this->ngheThuat, $this->vanHoa);
 	}
 
 	public function doiSongPhapLuat()
@@ -165,6 +171,7 @@ class CloneController extends Controller
 	{
 		$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/dinh-duong-c38/', $this->dinhDuong, $this->doiSong);
 		$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/y-hoc-co-truyen-c9/', $this->sucKhoe, $this->doiSong);
+		$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/am-thuc-va-dinh-duong-c89/', $this->amThuc, $this->vanHoa);
 	}
 
 	public function danTri()
@@ -174,17 +181,21 @@ class CloneController extends Controller
 
 	public function testVnexpress()
 	{
-		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/quan-su', $this->quanSu, $this->theGioi);
-		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/phan-tich', $this->phanTich, $this->theGioi);
-		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/tu-lieu', $this->tuLieu, $this->theGioi);
-		$this->cloneTestVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
-		$this->cloneTestVnexpress('https://vnexpress.net/bong-da', $this->bongDa, $this->theThao);
-		$this->cloneTestVnexpress('https://vnexpress.net/the-thao/tennis', $this->quanVot, $this->theThao);
-		$this->cloneTestVnexpress('https://vnexpress.net/kinh-doanh', $this->kinhDoanh, $this->kinhTe);
-		$this->cloneTestVnexpress('https://vnexpress.net/giao-duc/du-hoc', $this->duHoc, $this->giaoDuc);
-		$this->cloneTestVnexpress('https://vnexpress.net/suc-khoe', $this->sucKhoe, $this->doiSong);
-		$this->cloneTestVnexpress('https://vnexpress.net/topic/lao-dong-viec-lam-15474', $this->laoDong, $this->kinhTe);
-		$this->cloneTestVnexpress('https://vnexpress.net/tag/tinh-yeu-hon-nhan-gia-dinh-99724', $this->tinhYeu, $this->doiSong);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/quan-su', $this->quanSu, $this->theGioi);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/phan-tich', $this->phanTich, $this->theGioi);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/tu-lieu', $this->tuLieu, $this->theGioi);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/bong-da', $this->bongDa, $this->theThao);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/the-thao/tennis', $this->quanVot, $this->theThao);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/kinh-doanh', $this->kinhDoanh, $this->kinhTe);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/giao-duc/du-hoc', $this->duHoc, $this->giaoDuc);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/suc-khoe', $this->sucKhoe, $this->doiSong);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/topic/lao-dong-viec-lam-15474', $this->laoDong, $this->kinhTe);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/tag/tinh-yeu-hon-nhan-gia-dinh-99724', $this->tinhYeu, $this->doiSong);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/khoa-hoc/the-gioi-dong-vat', $this->tgdv, $this->khoaHoc);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/khoa-hoc/chuyen-la', $this->chuyenLa, $this->khoaHoc);
+// 		$this->cloneTestVnexpress('https://vnexpress.net/khoa-hoc/trong-nuoc', $this->trongNuoc, $this->khoaHoc);
+		$this->cloneTestVnexpress('https://vnexpress.net/the-thao/cac-mon-khac', $this->monKhac, $this->theThao);
 	}
 
 	public function datViet()
@@ -256,11 +267,11 @@ class CloneController extends Controller
 	{
 		$html = file_get_html($link);
 
-		foreach ($html->find('.category-stream-5-bai .post-item') as $link) {
+		foreach ($html->find('.width-offset-30 .post-item') as $link) {
 			$linkFull = $link->find('a', 0)->href;
 			$thumbnail = $link->find('a', 0)->attr['data-src'];
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataSaoStar($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
@@ -275,7 +286,7 @@ class CloneController extends Controller
 			$linkFull = $domain . $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataDanTri($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
@@ -290,7 +301,7 @@ class CloneController extends Controller
 			try {
 				$linkFull = $domain . $link->find('a', 0)->href;
 				$thumbnail = $link->find('img', 0)->src;
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataNguoiDuaTin($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				}
 				
@@ -350,7 +361,7 @@ class CloneController extends Controller
 				$date = str_replace('-', '', $date);
 				$date = str_replace('/', '-', $date);
 				$date = date('Y-m-d H:i:s', strtotime($date));
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataNongNghiep($linkFull, $subCategoryId, $categoryId, $thumbnail, $date);	
 				}
 				
@@ -388,7 +399,7 @@ class CloneController extends Controller
 			$linkFull = $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataBongDa($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				break;
 			}
@@ -404,7 +415,7 @@ class CloneController extends Controller
 			$linkFull = $domain . $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataTuoiTre($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
@@ -430,7 +441,7 @@ class CloneController extends Controller
 				$linkFull = $domain . $link->find('a')[0]->href;
 				$thumbnail = $link->find('.story__thumb img')[0]->src;
 
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataVietNamPlus($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				}
 				
@@ -464,7 +475,7 @@ class CloneController extends Controller
 				$linkFull = $domain . $link->find('a')[0]->href;
 				$thumbnail = $link->find('a')[0]->find('img')[0]->src;
 
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataTestCafeBiz($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				}
 			} catch (\Exception $e) {
@@ -477,7 +488,7 @@ class CloneController extends Controller
 				$linkFull = $domain . $link->find('a')[1]->href;
 				$thumbnail = $link->find('a')[1]->find('img')[0]->src;
 
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataTestCafeBiz($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				}
 			} catch (\Exception $e) {
@@ -534,7 +545,7 @@ class CloneController extends Controller
 			$linkFull = $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataSucKhoeDoiSong($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 			
@@ -550,7 +561,7 @@ class CloneController extends Controller
 			$linkFull = $domain . $link->find('a', 0)->href;
 			$thumbnail = $domain . $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataNhanDan($linkFull, $subCategoryId, $categoryId, $thumbnail, $domain);
 			}
 		}
@@ -590,7 +601,7 @@ class CloneController extends Controller
 				$linkFull = $domain . $link->find('a', 0)->href;
 				$thumbnail = $link->find('img', 0)->src;
 
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataPhuNuVietNam($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				}
 			} catch (\Exception $e) {
@@ -613,7 +624,7 @@ class CloneController extends Controller
 			$linkFull = $domain . $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
@@ -622,7 +633,7 @@ class CloneController extends Controller
 			$linkFull = $domain . $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
@@ -637,7 +648,7 @@ class CloneController extends Controller
 				$linkFull = $link->find('a', 0)->href;
 				$thumbnail = $link->find('img', 0)->src;
 
-				if ($this->checkImage($thumbnail) != NULL) {
+				if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 					$this->getDataDoiSongPhapLuat($linkFull, $subCategoryId, $categoryId, $thumbnail);
 				}
 			} catch (\Exception $e) {
@@ -655,7 +666,7 @@ class CloneController extends Controller
 			$linkFull = $domain . $link->find('a', 0)->href;
 			$thumbnail = $link->find('img', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataNguoiLaoDong($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 			
@@ -670,7 +681,7 @@ class CloneController extends Controller
 			$linkFull = $link->find('a', 0)->href;
 			$thumbnail = $link->find('.itemStory', 0)->src;
 
-			if ($this->checkImage($thumbnail) != NULL) {
+			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
 				$this->getDataBaoQuocTe($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
@@ -747,18 +758,20 @@ class CloneController extends Controller
 							$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins', 'u');
 							$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 							session()->flush();
-							echo $contentInsert;
-
 							$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 							if (!empty($result)) {
 								$alert = $this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder, $result);
-								echo $alert . ' <b>baoQuocTe.vn</b><hr>';
+								echo $alert . ' <b>saostar.vn</b><hr>';
 							}
 						}
 
 					}
+				} else {
+				    echo 'Tin này đã thêm <b>saostar.vn</b><hr>';
 				}
+			} else {
+			    echo 'Tin này đã thêm <b>saostar.vn</b><hr>';
 			}
 		} catch (\Exception $e) {
 			echo 'Lỗi <b>getDataSaoStar</b>' . $e->getMessage() . '<hr>';
@@ -891,7 +904,7 @@ class CloneController extends Controller
 				$checkTitle = $this->checkTitle($slug);
 
 				if ($checkTitle == 0) {
-					$summury = html_entity_decode($html->find('.nld-detail .sapo-detail', 0)->content);
+					$summury = html_entity_decode($html->find('.nld-detail .sapo-detail', 0)->plaintext);
 					$content = html_entity_decode($html->find('.nld-detail .contentbody', 0)->innertext);
 					$og_image = $html->find("meta[property='og:image']", 0)->content;
 					$keyword = html_entity_decode($html->find("meta[name='news_keywords']", 0)->content);
@@ -1097,7 +1110,7 @@ class CloneController extends Controller
 						$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins', 'u');
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
-			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail);
+			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 			    		if (!empty($result)) {
 							$alert = $this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder, $result);
@@ -1736,7 +1749,6 @@ class CloneController extends Controller
 			    		$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins');
 						$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 						session()->flush();
-						$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
 			    		$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 			    		if (!empty($result)) {
@@ -2444,7 +2456,6 @@ class CloneController extends Controller
 						}
 					}
 					session()->flush();
-
 					$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 					if (!empty($result)) {
@@ -2844,14 +2855,12 @@ class CloneController extends Controller
 					}
 				}
 				session()->flush();
-
 				$result = $this->insertPost($title, $slug, $summury, $contentInsert, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name);
 
 				if (!empty($result)) {
-					$this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder);
+				    $alert = $this->uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder, $result);
+					echo $alert . ' <b>cafeBiz</b><hr>';
 				}
-				echo "Thêm thành công <b>cafeBiz</b><hr>";
-				
 			} else {
 				echo "Tin này đã thêm<b>cafeBiz</b><hr>";
 			}
@@ -3307,7 +3316,7 @@ class CloneController extends Controller
 	    	);
 	    	
     	} catch (\Exception $e) {
-    		return $e->getMessage();
+    		return NULL;
     	}
     }
 
@@ -3360,12 +3369,13 @@ class CloneController extends Controller
 		if (count($listImage) > 0) {
 			foreach ($listImage as $key => $img) {
 				if ($img != '') {
-					list($width, $height) = getimagesize($img);
+					//$width = $this->checkImage($img);
 					$img = str_replace(' ', '%20', $img);
 					$put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
 					file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
+					list($width, $height) = getimagesize(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
 
-					if ($width == NULL) {
+					if ($width == NULL || $width == 0) {
 						$dem++;
 					}
 				}
@@ -3373,7 +3383,7 @@ class CloneController extends Controller
 		}
 		$put_og_image = file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions));
 		file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-		list($width1, $height1) = getimagesize($og_image);
+		list($width1, $height1) = getimagesize(public_path("upload/og_images/$nameImage.jpg"));
 
 		if ($thumbnail == '') {
 			$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
@@ -3384,7 +3394,7 @@ class CloneController extends Controller
 			file_put_contents(public_path("upload/thumbnails/" . $nameImage . '.jpg'), $put_thumbnail);
 		}
 
-		if ($width1 == NULL || $dem > 0) {
+		if ($width1 == NULL || $dem > 0 || $width1 == 0) {
 			$postItem = Post::findOrFail($post->id);
 
 			if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
@@ -3406,10 +3416,19 @@ class CloneController extends Controller
 		}
 	}
 
-	public function checkImage($img)
+	public function checkImage($filePath)
 	{
-		list($width, $height) = getimagesize($img);
-
+	    $arrContextOptions=array(
+		    "ssl"=>array(
+		        "verify_peer"=>false,
+		        "verify_peer_name"=>false,
+		    ),
+		);
+		$sourceImage = file_get_contents($filePath, false, stream_context_create($arrContextOptions));
+		$newImage = imagecreatefromstring($sourceImage);
+		$width = imagesx($newImage);
+		$height = imagesy($newImage);
+		
 		return $width;
 	}
 }

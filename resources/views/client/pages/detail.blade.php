@@ -182,7 +182,9 @@
 								<div class="col-sm-4">
 	                                <article>
 	                                    <figure class="post-list-category">
-	                                        <a href="#"><img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
+	                                        <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
+	                                            <img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
+	                                        </a>
 	                                    </figure>
 	                                    <div class="post-info">
 	                                        <h3 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h3>

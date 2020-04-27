@@ -933,7 +933,9 @@ nav.navbar.bootsnav ul.nav > li > a {
         border: 0;
         font-weight: 600;
         font-size: 17px;
-        padding: 10px 15px;
+        padding: 0px 15px;
+        color: #fff;
+        font-weight: normal;
     }
     nav.navbar.bootsnav ul.nav li.dropdown ul.dropdown-menu > li > a,
     nav.navbar.bootsnav .dropdown .megamenu-content .col-menu .title,
@@ -2129,7 +2131,7 @@ article:hover .post-info h3 a,
     font-size: 15px;
     padding: 12px;
     border-radius: 0 !important;
-    border-color: #e0e0e0;
+    border-color: #eaecf1;
     border-width: 1px 1px 1px 0px;
 }
 
@@ -2151,7 +2153,7 @@ article:hover .post-info h3 a,
 .weather-week .list-group > a.active .fa {
     background-color: transparent;
     color: #c90000;
-    border-color: #e0e0e0;
+    border-color: #eaecf1;
     border-radius: 0;
 }
 
@@ -3223,7 +3225,7 @@ ul.category-list li a:hover span {
     margin: 15px;
 }
 #featured-owl .item h4{
-    height: 60px;
+    height: 40px;
     overflow: hidden;
     font-weight: normal;
     font-size: 15px;

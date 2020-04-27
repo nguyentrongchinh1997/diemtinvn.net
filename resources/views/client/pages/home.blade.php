@@ -172,7 +172,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/og_images/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -251,7 +251,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/og_images/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -559,11 +559,11 @@
                                         </div>
                                         <div class="col-sm-6 border-left">
                                             <div class="news-list">
-                                                @foreach ($listPostXaHoi as $post)
+                                                @foreach ($listPostKinhTe as $post)
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/og_images/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -643,7 +643,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/og_images/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -699,7 +699,7 @@
                                     <div class="news-list-item articles-list">
                                         <div class="img-wrapper">
                                             <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                                <img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
+                                                <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
                                             </a>
                                         </div>
                                         <div class="post-info-2">

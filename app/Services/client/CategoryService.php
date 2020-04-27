@@ -44,7 +44,7 @@ class CategoryService
 				$postList = $this->post->where('category_id', $categoryId)
 								   ->latest('date')
 								   ->where('date', '<', $postTop[5]->date)
-								   ->paginate(25);
+								   ->paginate(27);
 			} else {
 				$postList = array();
 			}
@@ -109,7 +109,7 @@ class CategoryService
 				$postList = $this->post->where('sub_category_id', $subCategoryId)
 								   ->latest('date')
 								   ->where('date', '<', $postTop[5]->date)
-								   ->paginate(20);
+								   ->paginate(27);
 			} else {
 				$postList = array();
 			}
