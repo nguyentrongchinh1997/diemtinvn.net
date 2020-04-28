@@ -605,7 +605,7 @@ nav.navbar.bootsnav ul.nav > li > a{
 }
 @media (max-width: 479px) {
 	.post_details_block p {
-		font-size: 17px;
+		font-size: 18px;
 		line-height: 25px !important;
 	}
 	.sidebar-img-wrapper .img-responsive {
