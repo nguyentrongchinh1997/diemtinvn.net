@@ -150,7 +150,7 @@
 														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive">
 													</a>
 												</div>
-												<h4>
+												<h4 class="title-top-page-cate">
 													<a href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
 														{{ $categoryOtherPost->title }}
 													</a>
