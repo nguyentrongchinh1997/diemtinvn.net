@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col-md-5">
-                        <h2 style="margin-top: 0px; line-height: 20px">
+                        <h2 class="title-top-page">
                             <a href="{{ route('client.detail', ['slug' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}" style="font-size: 20px">
                                 {{ $postSlideHome->title }}
                             </a>
@@ -84,7 +84,7 @@
                                                     <a href="{{ route('client.detail', ['title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/thumbnails/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $firstPostXaHoi->title }}">
+                                                    <h3 class="title-top-page-cate" title="{{ $firstPostXaHoi->title }}">
                                                         <a href="{{ route('client.detail', ['title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}">{{ $firstPostXaHoi->title }}</a>
                                                     </h3>
                                                     <ul class="authar-info">
@@ -163,7 +163,7 @@
                                                     <a href="{{ route('client.detail', ['title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}"><img src='{{ asset("upload/og_images/$firstPostDoiSong->image") }}' alt="{{ $firstPostDoiSong->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $firstPostDoiSong->title }}">
+                                                    <h3 class="title-top-page-cate" title="{{ $firstPostDoiSong->title }}">
                                                         <a href="{{ route('client.detail', ['title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}">{{ $firstPostDoiSong->title }}</a>
                                                     </h3>
                                                     <ul class="authar-info">
@@ -361,7 +361,7 @@
                                                         <img src='{{ asset("upload/og_images/$fistPostKinhTe->image") }}' alt="{{ $fistPostKinhTe->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $fistPostKinhTe->title }}">
+                                                    <h3 class="title-top-page-cate" title="{{ $fistPostKinhTe->title }}">
                                                         <a href="{{ route('client.detail', ['title' => $fistPostKinhTe->slug, 'p' => $fistPostKinhTe->id]) }}">{{ $fistPostKinhTe->title }}</a></h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($fistPostKinhTe->date) }}, {{ date('H:i d/m/Y', strtotime($fistPostKinhTe->date)) }}</li>
@@ -440,7 +440,7 @@
                                                     <a href="{{ route('client.detail', ['title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}"><img src='{{ asset("upload/og_images/$firstPostGiaoDuc->image") }}' alt="{{ $firstPostGiaoDuc->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
-                                                    <h3 title="{{ $firstPostGiaoDuc->title }}">
+                                                    <h3 class="title-top-page-cate" title="{{ $firstPostGiaoDuc->title }}">
                                                         <a href="{{ route('client.detail', ['title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}">{{ $firstPostGiaoDuc->title }}</a>
                                                     </h3>
                                                     <ul class="authar-info">

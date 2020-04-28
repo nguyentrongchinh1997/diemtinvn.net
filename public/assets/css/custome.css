@@ -603,6 +603,10 @@ nav.navbar.bootsnav ul.nav > li > a{
 .logo{
 	border: 0px !important;
 }
+.title-top-page{
+	line-height: 22px;
+	margin-top: 0px;
+}
 @media (max-width: 479px) {
 	.post_details_block p {
 		font-size: 18px;
@@ -620,6 +624,12 @@ nav.navbar.bootsnav ul.nav > li > a{
 	}
 }
 @media (max-width: 992px) {
+	.title-top-page {
+		margin-top: 10px;
+	}
+	.title-top-page a {
+		color: #c90000;
+	}
 	.open-menu-mobile{
 		display: block;
 	}
@@ -629,6 +639,14 @@ nav.navbar.bootsnav ul.nav > li > a{
 	}
 }
 @media (max-width: 767px) {
+	.title-top-page-cate a {
+		margin-top: 10px;
+		color: #c90000;
+	}
+	.title-top-page-cate {
+		font-size: 18px !important;
+		
+	}
 	.RYPP.r16-9 .RYPP-video {
 		padding-top: 0px;
 	}

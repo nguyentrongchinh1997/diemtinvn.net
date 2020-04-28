@@ -35,7 +35,7 @@
 		                    	</a>
 		                    </div>
 		                    <div class="col-md-5">
-		                        <h2 style="margin-top: 0px; line-height: 20px">
+		                        <h2 class="title-top-page">
 		                            <a href="{{ route('client.detail', ['title' => $postSlide->slug, 'p' => $postSlide->id]) }}" style="font-size: 20px">
 		                                {{ $postSlide->title }}
 		                            </a>
