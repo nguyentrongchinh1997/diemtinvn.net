@@ -607,6 +607,12 @@ nav.navbar.bootsnav ul.nav > li > a{
 	line-height: 22px;
 	margin-top: 0px;
 }
+.post-list-category-sidebar .news-list-item {
+	padding-bottom: 0px;
+}
+.best-view-item-sidebar {
+	padding-bottom: 15px !important;
+}
 @media (max-width: 479px) {
 	.post_details_block p {
 		font-size: 18px;
