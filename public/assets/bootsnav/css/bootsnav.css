@@ -1002,8 +1002,8 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         float: none;
         display: block;
         text-align: center;
-        padding-left: 30px;
-        padding-right: 30px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     
     nav.navbar.bootsnav .navbar-toggle {
@@ -1304,8 +1304,9 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         margin-right: -280px !important;
     }
     
-    nav.navbar.bootsnav.navbar-mobile .navbar-collapse{
-        position: fixed;
+    nav.navbar.bootsnav.navbar-mobile .navbar-collapse {
+        display: none;
+        /*position: fixed;
         overflow-y: auto !important;
         overflow-x: hidden !important;
         display: block;
@@ -1320,7 +1321,7 @@ body.on-side .wrap-sticky nav.navbar.bootsnav.sticked{
         -moz-transition: all 0.3s ease-in-out;
         -o-transition: all 0.3s ease-in-out;
         -ms-transition: all 0.3s ease-in-out;
-        transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;*/
     }
     
     nav.navbar.bootsnav.navbar-mobile .navbar-collapse.in{

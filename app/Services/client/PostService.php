@@ -15,21 +15,10 @@ class PostService
 		$this->category = $category;
 	}
 
-	public function detail($category, $title, $postId)
+	public function detail($request, $title)
 	{
 		try {
-			// $webException = [
-			// 	'dantri.com.vn',
-			// 	'baodatviet.vn',
-			// 	'baoquocte.vn',
-			// 	'baotintuc.vn',
-			// 	'cafebiz.vn',
-			// 	'cand.com.vn',
-			// 	'doisongphapluat.com',
-			// 	'nguoiduatin.vn',
-			// 	'nhandan.com.vn',
-			// 	'nld.com.vn',
-			// ];
+			$postId = $request->p;
 			$post = $this->post->findOrFail($postId);
 			$categoryId = $post->subCategory->category->id;
 			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(9);

@@ -11,4 +11,15 @@ $(function(){
 		}
 	}
 
+	$('.open-menu-mobile').click(function(){
+		$('.menu-mobile-list').css({"left":"0px"});
+	});
+	$('.menu-mobile-list ul .dropdown').click(function(){
+		$('.menu-mobile-list ul .dropdown').removeClass('dropdown-color');
+		$(this).addClass('dropdown-color');
+		$(this).children('ul').toggle('fast');
+	});
+	$('.menu-mobile-list .close-menu').click(function(){
+		$('.menu-mobile-list').css({"left":"-100%"});
+	})
 })

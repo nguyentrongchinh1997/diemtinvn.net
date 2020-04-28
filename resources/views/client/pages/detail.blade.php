@@ -9,24 +9,6 @@
 <main class="page_main_wrapper">
 	<!-- START PAGE TITLE --> 
 	<div class="page-title" style="margin: 0px">
-{{-- 		<div class="row" style="background: #f1f9ff">
-			<div class="container">
-				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px">
-					<ol class="breadcrumb breadcrumb-custom">
-						<li class="active">
-							<a style="text-transform: capitalize; color: #c90000" href="{{ route('client.category', ['slug' => $post->subCategory->category->slug]) }}">
-								{{ $post->subCategory->category->name }}
-							</a>
-						</li>
-						@foreach($post->subCategory->category->subCategory as $category)
-							<li>
-								<a style="text-transform: capitalize;" href="details_2-2.html">{{ $category->name }}</a>
-							</li>
-						@endforeach
-					</ol>
-				</div>
-			</div>
-		</div> --}}
 		<div class="container">
 			<div class="row" style="margin-top: 20px">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -41,11 +23,6 @@
 								<a style="text-transform: capitalize; color:@if ($category->slug == $post->subCategory->slug){{'#c90000'}}@else{{'#6c757d'}}@endif" href="{{ route('client.sub_cate', ['cate' => $category->category->slug, 'sub_cate' => $category->slug]) }}">{{ $category->name }}</a>
 							</li>
 						@endforeach
-						{{-- <li>
-							<a href="{{ route('client.sub_cate', ['cate' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">
-								{{ $post->subCategory->name }}
-							</a>
-						</li> --}}
 					</ol>
 					
 				</div>
@@ -117,61 +94,27 @@
 	                                	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
 	                                    <div class="item">
 	                                        <div class="featured-post">
-	                                            <a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}" class="news-image">
-	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive" style="height: 100px; object-fit: cover; width: 100%">
+	                                            <a href="{{ route('client.detail', ['title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
+	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
 	                                            </a>
 	                                            <h4>
-	                                                <a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}">
+	                                                <a href="{{ route('client.detail', ['title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
 	                                                    {{ $postRealte->title }}
 	                                                </a>
 	                                            </h4>
 	                                            <p>
-	                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postRealte->category->slug, 'sub_cate' => $postRealte->subCategory->slug]) }}">{{ $postRealte->subCategory->name }}</a> | 
-	                                                <a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
+	                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postRealte->category->slug, 'sub_cate' => $postRealte->subCategory->slug]) }}">{{ $postRealte->subCategory->name }}</a>
+	                                            </p>
+	                                            <p>
+	                                            	<a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
 	                                            </p>
 	                                        </div>
 	                                    </div>
 	                                @endforeach
-	                                
 	                            </div>
 	                        </div>
 	                    </div>
 	                </div>
-					{{-- <div class="post-inner post-inner-2">
-						<div class="post-head">
-							<h2 class="title"><strong>Tin liên quan </strong></h2>
-						</div>
-						@if (count($idPostRelate) > 0)
-							<div class="post-body">
-								<div id="post-slider-2" class="owl-carousel owl-theme">
-									<!-- item one -->
-									<div class="item">
-										<div class="news-grid-2">
-											<div class="row row-margin news-relate">
-												@foreach ($idPostRelate as $newsId)
-													@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
-													<div class="col-xs-6 col-sm-4 col-md-4 col-padding">
-														<div class="grid-item">
-															<div class="grid-item-img">
-																<a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}">
-																	<img src='{{ asset("upload/thumbnails/$postRealte->image") }}' alt="{{ $postRealte->title }}' alt="{{ $postRealte->title }}">
-																</a>
-															</div>
-															<h5 title="{{ $postRealte->title }}">
-																<a href="{{ route('client.detail', ['category' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'id' => $postRealte->id]) }}" class="title">
-																	{{ $postRealte->title }}
-																</a>
-															</h5>
-														</div>
-													</div>
-												@endforeach
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						@endif
-					</div> --}}
 					<div class="post-inner post-inner-2 category-same-post">
 						<div class="post-head">
 							<h2 class="title"><strong>Cùng chuyên mục </strong></h2>
@@ -179,76 +122,36 @@
 						<br>
 						<div class="row">
 							@foreach ($postSameCategory as $post)
-								<div class="col-sm-4">
+								<div class="col-xs-6 col-sm-4">
 	                                <article>
 	                                    <figure class="post-list-category">
-	                                        <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}">
+	                                        <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
 	                                            <img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
 	                                        </a>
 	                                    </figure>
 	                                    <div class="post-info">
-	                                        <h3 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h3>
+	                                        <h3 title="{{ $post->title }}"><a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h3>
 	                                    </div>
 	                                </article>
 	                            </div>
                             @endforeach
 						</div>
-						{{-- <div class="post-inner categoty-style-1 post-list-category">
-							<div class="post-body" style="padding: 15px 15px 15px 0px">
-								@foreach ($postSameCategory as $post)
-									<div class="news-list-item articles-list">
-                                        <div class="img-wrapper">
-                                            <a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="thumb">
-                                            	<img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
-                                        </div>
-                                        <div class="post-info-2">
-                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['category' => $post->subCategory->slug, 'title' => $post->slug, 'id' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
-                                            <ul class="authar-info">
-                                                <li class="date"><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                            </ul>
-                                            <p class="hidden-sm description" style="margin-bottom: 10px">{{ trim($post->summury) }}</p>
-                                            <p style="margin-bottom: 0px; color: #adb5bd">
-												<a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
-											</p>
-                                        </div>
-                                    </div>
-                                @endforeach
-							</div>
-						</div> --}}
-						{{-- <div class="row row-margin">
-							@php 
-								$stt1 = 1;
-							@endphp
-							@foreach ($postSameCategory as $postSame)
-								@if ($stt1++ <= 6)
-									<div class="col-xs-6 col-sm-4 col-md-4 col-padding news-same-category">
-										<div class="grid-item">
-											<div class="grid-item-img">
-												<a href="{{ route('client.detail', ['category' => $postSame->subCategory->slug, 'title' => $postSame->slug, 'id' => $postSame->id]) }}">
-													<img data-src='{{ asset("upload/thumbnails/$postSame->image") }}' class="lazy img-responsive" alt="{{ $postSame->title }}">
-												</a>
-											</div>
-											<h5 title="{{ $postSame->title }}"><a href="{{ route('client.detail', ['category' => $postSame->subCategory->slug, 'title' => $postSame->slug, 'id' => $postSame->id]) }}" class="title">{{ $postSame->title }}</a></h5>
-										</div>
-									</div>
-								@endif
-							@endforeach
-						</div> --}}
 						<div class="row" style="margin-top: 30px">
 							@foreach ($otherCategory as $category)
 								@if (count(\App\Helper\helper::categoryPost($category->id)) > 0)
-									<div class="col-md-4 sub-cate-random">
+									<div class="col-sm-4 col-md-4 sub-cate-random">
 										<a class="title-popalar" href="{{ route('client.category', ['cate' => $category->slug]) }}">
 											{{ $category->name }}
 										</a>
 										@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 											<div class="news-list-item articles-list category-other-post" style="border-bottom: 0px">
 												<div class="img-wrapper">
-													<a class="thumb" href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
-														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive"></a>
+													<a class="thumb" href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
+														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive">
+													</a>
 												</div>
 												<h4>
-													<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
+													<a href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
 														{{ $categoryOtherPost->title }}
 													</a>
 												</h4>
@@ -262,7 +165,7 @@
 											@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 												@if ($dem++ > 0)
 													<li style="padding: 5px 0px">
-														<a href="{{ route('client.detail', ['category' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'id' => $categoryOtherPost->id]) }}">
+														<a href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
 															{{ $categoryOtherPost->title }}
 														</a>
 													</li>
@@ -281,7 +184,7 @@
 			</div>
 			<!-- END OF /. MAIN CONTENT -->
 			<!-- START SIDE CONTENT -->
-			<div class="col-sm-4 col-p sidebar" style="padding-left: 25px">
+			<div class="col-sm-4 col-p sidebar">
 				@include('client.includes.news_new')
 				<hr>
 				@include('client.includes.best_view')

@@ -16,9 +16,9 @@ class PostController extends Controller
         $this->post = $post;
     }
 
-    public function detail($category, $title, $postId)
+    public function detail(Request $request, $title)
     {
-    	$data = $this->post->detail($category, $title, $postId);
+    	$data = $this->post->detail($request, $title);
 
     	if (!empty($data)) {
     		return view('client.pages.detail', $data);

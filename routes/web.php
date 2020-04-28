@@ -18,7 +18,7 @@ Route::get('test', 'Client\CloneController@test');
 
 Route::get('video', 'Client\VideoController@list')->name('client.video');
 Route::get('video/{title}-{id}.html', 'Client\VideoController@detail')->where(array('id' => '[0-9]+', 'title' => '[a-z0-9\-]+', 'nameCategory' => '[a-z0-9\-]+'))->name('client.video.detail');
-Route::get('{nameCategory}/{title}-{id}.html', 'Client\PostController@detail')->where(array('id' => '[0-9]+', 'title' => '[a-z0-9\-]+', 'nameCategory' => '[a-z0-9\-]+'))->name('client.detail');
+Route::get('{title}', 'Client\PostController@detail')->where(array('id' => '[0-9]+', 'title' => '[a-z0-9\-]+'))->name('client.detail');
 Route::get('tin-tuc/{soure}', 'Client\NewsSoureController@newsSoure')->name('client.news_soure');
 Route::get('tim-kiem', 'Client\NewsSoureController@keywordSearch')->name('client.search');
 
@@ -41,3 +41,4 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::post('add', 'Admin\CategoryController@subCategoryAdd')->name('admin.sub-category.add');
 	});
 });
+

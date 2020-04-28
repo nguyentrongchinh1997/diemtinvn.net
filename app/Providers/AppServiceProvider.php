@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Cache::flush();
         View::composer('*', function($view){
             $value = Cache::remember('users', 1440, function() {
                 $firstCategoryShare = Category::offset(0)->limit(10)->get();

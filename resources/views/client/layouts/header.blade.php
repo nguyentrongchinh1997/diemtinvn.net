@@ -132,11 +132,12 @@
                         </ul>
                     </div>
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
+                        {{-- <button type="button" class="navbar-toggle"> --}}
+                            <i class="ti-align-justify open-menu-mobile"></i>
+                        {{-- </button> --}}
                         <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><img src="assets/images/logo.png" class="logo" alt=""></a>
                     </div>
+                    
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-left" data-in="" data-out="">
                             <li class="dropdown home active-color">
@@ -153,9 +154,6 @@
                                         @endforeach
                                     </ul>
                                 </li>
-                                {{-- <li class="{{$category->slug}}{{$category->id}}" value="{{$category->id}}">
-                                    <a href="{{ route('client.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
-                                </li> --}}
                             @endforeach
                             <li>
                                 <a href="{{ route('client.video') }}">Video</a>
@@ -192,4 +190,31 @@
                     </div>
                 </div>
             </nav>
+            <div class="menu-mobile-list">
+                <ul>
+                    <i class="ti-close close-menu"></i>
+                    <li style="padding-left: 0px">
+                        <img style="border: 0px" src="assets/images/logo.png" class="img-responsive">
+                    </li>
+                    <li>
+                        <a href=""><i class="ti-home"></i> Trang chủ</a>
+                    </li>
+                    @foreach ($categoryShare as $category)
+                        <li class="dropdown">
+                            <a href="{{ route('client.category', ['slug' => $category->slug]) }}">{{ $category->name }}</a>
+                            <span>
+                                <i class="ti-angle-down"></i>
+                            </span>
+                            <ul>
+                                @foreach ($category->subCategory as $subCate)
+                                    <li>
+                                        <i class="ti-angle-right" style="padding-right: 5px; font-size: 10px"></i><a href="{{ route('client.sub_cate', ['category' => $subCate->category->slug, 'sub_cate' => $subCate->slug]) }}">{{$subCate->name}}</a>
+                                        
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
         </header>
