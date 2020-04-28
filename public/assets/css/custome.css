@@ -604,6 +604,10 @@ nav.navbar.bootsnav ul.nav > li > a{
 	border: 0px !important;
 }
 @media (max-width: 479px) {
+	.post_details_block p {
+		font-size: 17px;
+		line-height: 23px !important;
+	}
 	.sidebar-img-wrapper .img-responsive {
 		height: auto;
 	}
