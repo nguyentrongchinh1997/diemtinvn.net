@@ -123,10 +123,7 @@
 					<!-- START SIDE CONTENT -->
 					<div class="col-sm-4 col-p sidebar">
 						<div class="theiaStickySidebar">
-							<!-- START SOCIAL ICON -->
 							@include('client.includes.weather')
-							<!-- END OF /. SOCIAL ICON -->
-							<!-- START ADVERTISEMENT -->
 							<div class="add-inner">
 								<img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
 							</div>
@@ -140,13 +137,23 @@
 											<ul id="most-today" class="content tabs-content">
 												@foreach (\App\Helper\helper::subCategoryPost($cate->id, $listId, 6) as $post)
 													<div class="news-list-item articles-list">
-														
 														<div class="sidebar-img-wrapper img-wrapper">
 															<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
 																<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" class="img-responsive"></a>
 														</div>
 														<h4 title="{{ $post->title }}">
 																<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+														<div class="hidden-sm hidden-md hidden-lg">
+															<p class="summury" style="font-size: 13px; max-height: 40px; overflow: hidden;">
+																{!! $post->summury !!}
+															</p>
+															<p>
+																<a class="sub-category" href="">{{$post->subCategory->name}}</a><span> | </span><a class="soure" href="">{{$post->web}}</a>
+															</p>
+															<p class="soure">
+																{{ getWeekday($post->date) }}, {{ date('d/m/Y H:i', strtotime($post->date)) }} +GMT7
+															</p>
+														</div>
 													</div>
 												@endforeach
 											</ul>

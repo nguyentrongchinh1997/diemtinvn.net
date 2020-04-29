@@ -645,6 +645,12 @@ nav.navbar.bootsnav ul.nav > li > a{
 	}
 }
 @media (max-width: 767px) {
+	.best-view-sidebar .img-responsive {
+		height: auto !important;
+	}
+	.best-view-sidebar h4 {
+		font-size: 18px !important;
+	}
 	.title-top-page-cate a {
 		margin-top: 10px;
 		color: #c90000;
