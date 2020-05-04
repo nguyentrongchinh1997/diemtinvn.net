@@ -66,7 +66,7 @@
 							</p>
 						</div>
 					</div>
-					@if ($keywords > 0)
+					@if (count($keywords) > 0)
 						<div>
 							<p><b>Từ khóa</b></p>
 							<ul class="td-category">
@@ -182,17 +182,70 @@
 					</div>
 				</div>
 			</div>
-			<!-- END OF /. MAIN CONTENT -->
-			<!-- START SIDE CONTENT -->
 			<div class="col-sm-4 col-p sidebar">
-				@include('client.includes.news_new')
+				<h3 class="title-sidebar">
+                	Tin mới
+                </h3>
+                <br>
+                <div class="tab-content best-view-sidebar">
+                	<div role="tabpanel" class="tab-pane fade active in" id="home">
+                		<div class="most-viewed post-list-category-sidebar">
+                			<ul id="most-today" class="content tabs-content">
+                				@foreach ($newPost as $post)
+                					<div class="news-list-item articles-list">
+                						<div class="sidebar-img-wrapper img-wrapper">
+                							<a class="thumb" href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
+                								<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
+                						</div>
+                						<h4 title="{{ $post->title }}">
+                							<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+                						</h4>
+                						<div class="hidden-sm hidden-md hidden-lg">
+                							<p class="summury" style="font-size: 13px; max-height: 40px; overflow: hidden;">
+                								{!! $post->summury !!}
+                							</p>
+                							<p>
+                								<a class="sub-category" href="">{{$post->subCategory->name}}</a><span> | </span><a class="soure" href="">{{$post->web}}</a>
+                							</p>
+                							<p class="soure">
+                								{{ getWeekday($post->date) }}, {{ date('d/m/Y H:i', strtotime($post->date)) }} +GMT7
+                							</p>
+                						</div>
+                					</div>
+                				@endforeach
+                			</ul>
+                		</div>
+                	</div>
+                </div>
 				<hr>
-				@include('client.includes.best_view')
+				<h3 class="title-sidebar">
+                	Đọc nhiều nhất
+                </h3>
+                <br>
+                <div class="tab-content best-view-sidebar">
+                	<div role="tabpanel" class="tab-pane fade active in" id="home">
+                		<div class="most-viewed post-list-category-sidebar">
+                			<ul id="most-today" class="content tabs-content">
+                				@foreach ($bestViewPost as $post)
+                					<div class="best-view-item-sidebar news-list-item articles-list">
+                						<div class="post-info-2">
+                							<h4 title="{{ $post->title }}">
+                								<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>                         
+                						</div>
+                						<div class="img-wrapper">
+                							<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                								<img src='{{ asset("upload/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
+                						</div>
+                					</div>
+                				@endforeach
+                			</ul>
+                		</div>
+                	</div>
+                </div>
 				<div class="add-inner rightSidebar">
                     <img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
                 </div>
 			</div>
-			<!-- END OF /. SIDE CONTENT -->
 		</div>
 	</div>
 	<div class="zoom-image">
@@ -201,7 +254,6 @@
 				<button class="close-zoom-image" type="button">
 					<i class="ti-close"></i>
 				</button>
-				
 			</p>
 			<img class="image-full" src="">
 		</div>

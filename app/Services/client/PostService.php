@@ -21,6 +21,16 @@ class PostService
 			$postId = $request->p;
 			$post = $this->post->findOrFail($postId);
 			$categoryId = $post->subCategory->category->id;
+			$newPost = $this->post->latest()
+			                      ->where('category_id', $categoryId)
+			                      ->whereNotIn('id', [$postId])
+			                      ->limit(10)
+			                      ->get();
+			$bestViewPost = $this->post->latest('view')
+			                      ->where('category_id', $categoryId)
+			                      ->whereNotIn('id', $this->getId($newPost))
+			                      ->limit(10)
+			                      ->get();
 			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(9);
 			$otherCategory = $this->category->all()->random(3);
 			$post->increment('view');
@@ -64,8 +74,10 @@ class PostService
 					$idPostRelate[] = $postRelate->id;
 				}
 			}
-			
+
 	    	$data = [
+	    	    'bestViewPost' => $bestViewPost,
+	    	    'newPost' => $newPost,
 	    		'keywords' => $keywords,
 	    		'post' => $post,
 	            'month' => date('Y-m', strtotime($post->date)),
@@ -78,5 +90,16 @@ class PostService
 		} catch (\Exception $e) {
 			return NULL;
 		}
+	}
+	
+	public function getId($posts)
+	{
+	    $idList = array();
+	    
+	    foreach ($posts as $post) {
+	        $idList[] = $post->id;
+	    }
+	    
+	    return $idList;
 	}
 }

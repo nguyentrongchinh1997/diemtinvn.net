@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    
-<!-- Mirrored from inews.themepk.com/news/inews_v1.0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 23:45:48 GMT -->
 <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -114,12 +112,12 @@
                 <!-- Start Top Search -->
                 <div class="top-search">
                     <div class="container">
-                        <form method="get" action="tim-kiem">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" name="key" class="form-control" placeholder="Nhập từ khóa tại đây...">
-                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                        </div>
+                        <form method="GET" action="{{route('client.search')}}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                                <input type="text" name="key" class="form-control" placeholder="Nhập từ khóa tại đây...">
+                                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                            </div>
                         </form>
                     </div>
                 </div>

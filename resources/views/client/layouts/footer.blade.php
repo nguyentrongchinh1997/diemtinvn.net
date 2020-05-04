@@ -46,13 +46,13 @@
                                 @if ($dem++ < 3)
                                 <div class="news-list-item">
                                     <div class="img-wrapper">
-                                        <a href="{{ route('client.detail', ['category' => $postFooter->subCategory->slug, 'title' => $postFooter->slug, 'id' => $postFooter->id]) }}" class="thumb">
+                                        <a href="{{ route('client.detail', ['title' => $postFooter->slug, 'p' => $postFooter->id]) }}" class="thumb">
                                             <img src='{{asset("upload/thumbnails/$postFooter->image")}}' alt="{{ $postFooter->title }}" class="img-responsive">
                                         </a>
                                     </div>
                                     <div class="post-info-2">
                                         <h5>
-                                            <a href="{{ route('client.detail', ['category' => $postFooter->subCategory->slug, 'title' => $postFooter->slug, 'id' => $postFooter->id]) }}" class="title">
+                                            <a href="{{ route('client.detail', ['title' => $postFooter->slug, 'p' => $postFooter->id]) }}" class="title">
                                                 {{ $postFooter->title }}
                                             </a>
                                         </h5>

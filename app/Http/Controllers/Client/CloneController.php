@@ -102,7 +102,7 @@ class CloneController extends Controller
 	{
 // 		$this->laoDong();
 		//$this->testVnexpress();
- 		//$this->testCafeBiz();
+ 	//	$this->testCafeBiz();
 // 		$this->vietNamPlus();
 // 		$this->vietNamNet();
 	//	$this->congAnNhanDan();
@@ -181,7 +181,7 @@ class CloneController extends Controller
 
 	public function testVnexpress()
 	{
-// 		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/quan-su', $this->quanSu, $this->theGioi);
+		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/quan-su', $this->quanSu, $this->theGioi);
 // 		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/phan-tich', $this->phanTich, $this->theGioi);
 // 		$this->cloneTestVnexpress('https://vnexpress.net/the-gioi/tu-lieu', $this->tuLieu, $this->theGioi);
 // 		$this->cloneTestVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
@@ -3342,7 +3342,6 @@ class CloneController extends Controller
     public function check($urlMd5, $categoryId)
     {
     	$result = $this->post->where('url_md5', $urlMd5)
-    						 ->where('category_id', $categoryId)
     						 ->get();
 
     	return count($result);
@@ -3377,7 +3376,7 @@ class CloneController extends Controller
 
     public function uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder, $post)
 	{
-		$dem = 0;
+		$width1 = NULL;$dem = 0;
 		$arrContextOptions=array(
 		    "ssl"=>array(
 		        "verify_peer"=>false,
@@ -3400,20 +3399,24 @@ class CloneController extends Controller
 				}
 			}
 		}
-		$put_og_image = file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions));
-		file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-		list($width1, $height1) = getimagesize(public_path("upload/og_images/$nameImage.jpg"));
-
-		if ($thumbnail == '') {
-			$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
-			$this->resizeImage($data, $nameImage . '.jpg');
-		} else {
-			$thumbnail = str_replace(' ', '%20', $thumbnail);
-			$put_thumbnail = file_get_contents($thumbnail, false, stream_context_create($arrContextOptions));
-			file_put_contents(public_path("upload/thumbnails/" . $nameImage . '.jpg'), $put_thumbnail);
+		$checkUrl = $this->checkUrl($og_image);
+		
+		if ($checkUrl == 1) {
+		    $put_og_image = file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions));
+		    file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
+		    list($width1, $height1) = getimagesize(public_path("upload/og_images/$nameImage.jpg"));
+		    
+		    if ($thumbnail == '') {
+    			$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
+    			$this->resizeImage($data, $nameImage . '.jpg');
+    		} else {
+    			$thumbnail = str_replace(' ', '%20', $thumbnail);
+    			$put_thumbnail = file_get_contents($thumbnail, false, stream_context_create($arrContextOptions));
+    			file_put_contents(public_path("upload/thumbnails/" . $nameImage . '.jpg'), $put_thumbnail);
+    		}
 		}
 
-		if ($width1 == NULL || $dem > 0 || $width1 == 0) {
+		if ($width1 == NULL || $width1 == 0 || $checkUrl == 0) {
 			$postItem = Post::findOrFail($post->id);
 
 			if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
