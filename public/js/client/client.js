@@ -7,7 +7,8 @@ $(function(){
 		if (valueClass == value) {
 			$('.' + id).addClass('active-color');
 			//$('.home').removeClass('active-color');
-			$('.home').css({'color':'#4f4f4f', 'background':'#ccc'});
+			$('.home').css({'background':'#f0f0f0'});
+			$('.home i').css({'color':'#4f4f4f'});
 		}
 	}
 
