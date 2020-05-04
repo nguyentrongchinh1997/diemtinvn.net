@@ -95,7 +95,7 @@
 	                                    <div class="item">
 	                                        <div class="featured-post">
 	                                            <a href="{{ route('client.detail', ['title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
-	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
+	                                                <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
 	                                            </a>
 	                                            <h4>
 	                                                <a href="{{ route('client.detail', ['title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
@@ -126,7 +126,7 @@
 	                                <article>
 	                                    <figure class="post-list-category">
 	                                        <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
-	                                            <img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
+	                                            <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
 	                                        </a>
 	                                    </figure>
 	                                    <div class="post-info">
