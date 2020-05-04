@@ -222,7 +222,7 @@
 					<!-- <li><a href="#"><i class="icon-user"></i> Profile</a></li>
 					<li><a href="#"><i class="icon-bubble4"></i> Messages</a></li>
 					<li><a href="#"><i class="icon-cog"></i> Settings</a></li> -->
-					<li><a href=""><i class="icon-exit"></i>Đăng xuất</a></li>
+					<li><a href="{{route('admin.logout')}}"><i class="icon-exit"></i>Đăng xuất</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -295,10 +295,7 @@
 						<a href="#"><span>Bài viết</span> <i class="icon-arrow-right3"></i></a>
 						<ul>
 							<li>
-								<a href="#">Danh sách</a>
-							</li>
-							<li>
-								<a href="#">Thêm</a>
+								<a href="{{route('admin.post.list')}}">Danh sách</a>
 							</li>
 						</ul>
 					</li>
