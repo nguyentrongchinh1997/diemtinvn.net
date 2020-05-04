@@ -9,13 +9,13 @@
             <div class="col-sm-8 col-p main-content">
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-md-7">
-                        <a href="{{ route('client.detail', ['slug' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}">
+                        <a href="{{ route('client.detail', ['title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}">
                             <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("upload/og_images/$postSlideHome->image")}}'>
                         </a>
                     </div>
                     <div class="col-md-5">
                         <h2 class="title-top-page">
-                            <a href="{{ route('client.detail', ['slug' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}" style="font-size: 20px">
+                            <a href="{{ route('client.detail', ['title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}" style="font-size: 20px">
                                 {{ $postSlideHome->title }}
                             </a>
                         </h2>
@@ -37,11 +37,11 @@
                                 @foreach ($postRightSlide as $post)
                                     <div class="item">
                                         <div class="featured-post">
-                                            <a href="{{ route('client.detail', ['slug' => $post->slug, 'p' => $post->id]) }}" class="news-image">
+                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
                                                 <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
                                             </a>
                                             <h4>
-                                                <a href="{{ route('client.detail', ['slug' => $post->slug, 'p' => $post->id]) }}">
+                                                <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
                                                     {{ $post->title }}
                                                 </a>
                                             </h4>

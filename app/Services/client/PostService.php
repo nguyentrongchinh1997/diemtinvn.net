@@ -15,7 +15,7 @@ class PostService
 		$this->category = $category;
 	}
 
-	public function detail($request, $title)
+	public function detail($request)
 	{
 		try {
 			$postId = $request->p;
