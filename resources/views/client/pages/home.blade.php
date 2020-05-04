@@ -38,7 +38,7 @@
                                     <div class="item">
                                         <div class="featured-post">
                                             <a href="{{ route('client.detail', ['slug' => $post->slug, 'p' => $post->id]) }}" class="news-image">
-                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
+                                                <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
                                             </a>
                                             <h4>
                                                 <a href="{{ route('client.detail', ['slug' => $post->slug, 'p' => $post->id]) }}">

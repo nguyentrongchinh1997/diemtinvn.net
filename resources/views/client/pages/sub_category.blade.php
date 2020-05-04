@@ -31,7 +31,7 @@
 						<div class="row" style="margin-bottom: 20px">
 		                    <div class="col-md-7">
 		                    	<a href="{{ route('client.detail', ['title' => $postSlide->slug, 'p' => $postSlide->id]) }}">
-		                    		<img width="100%" alt="{{$postSlide->title}}" src='{{asset("upload/og_images/$postSlide->image")}}'>
+		                    		<img width="100%" alt="{{$postSlide->title}}" src='{{asset("upload/thumbnails/$postSlide->image")}}'>
 		                    	</a>
 		                    </div>
 		                    <div class="col-md-5">
