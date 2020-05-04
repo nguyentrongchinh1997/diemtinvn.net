@@ -101,8 +101,8 @@ class CloneController extends Controller
 	public function test()
 	{
 // 		$this->laoDong();
-		$this->testVnexpress();
-// 		$this->testCafeBiz();
+		//$this->testVnexpress();
+ 		//$this->testCafeBiz();
 // 		$this->vietNamPlus();
 // 		$this->vietNamNet();
 	//	$this->congAnNhanDan();
@@ -250,7 +250,7 @@ class CloneController extends Controller
 	public function testCafeBiz()
 	{
 		$this->cloneTestCafeBiz('https://cafebiz.vn/thoi-su.chn', $this->thoiSu, $this->xaHoi);
-		$this->cloneTestCafeBiz('https://cafebiz.vn/cau-chuyen-kinh-doanh.chn', $this->kinhDoanh, $this->kinhTe);
+		//$this->cloneTestCafeBiz('https://cafebiz.vn/cau-chuyen-kinh-doanh.chn', $this->kinhDoanh, $this->kinhTe);
 	}
 
 	public function laoDong()
@@ -499,14 +499,17 @@ class CloneController extends Controller
 
 	public function cloneTestVnexpress($link, $subCategoryId, $categoryId)
 	{
-		$html = file_get_html($link);
-		$stt = 0;
-
-		foreach ($html->find('.item-news') as $link) {
-			if (!empty(($link->find('.thumb-art')))) {
-				$linkFull = $link->find('.thumb-art a', 0)->href;
-				$this->getDataTestVnexpress($linkFull, $subCategoryId, $categoryId);
+		try {
+			$html = file_get_html($link);
+			$stt = 0;
+			foreach ($html->find('.item-news') as $link) {
+				if (!empty($link->find('a'))) {
+					$linkFull = $link->find('a', 0)->href;
+					$this->getDataTestVnexpress($linkFull, $subCategoryId, $categoryId);
+				}
 			}
+		} catch (\Exception $e) {
+			echo 'Lỗi hàm <b>cloneTestVnexpress</b>' . $e->getMessage();
 		}
 	}
 
@@ -2344,18 +2347,35 @@ class CloneController extends Controller
 		try {		
 			if ($check == 0) {
 				$html = file_get_html($link);
-				$title = trim($html->find('.sidebar-1 .title-detail', 0)->plaintext);
-				$slug = str_slug($title);
-				$summury = trim($html->find('.sidebar-1 .description')[0]->plaintext);
-				$content = trim($html->find('.sidebar-1 .fck_detail')[0]->innertext);
-				$nameImage = str_slug($title);
+
+				if (!empty($html->find('.sidebar-1'))) {
+					$title = trim($html->find('.sidebar-1 .title-detail', 0)->plaintext);
+					$summury = trim($html->find('.sidebar-1 .description')[0]->plaintext);
+					$content = trim($html->find('.sidebar-1 .fck_detail')[0]->innertext);
+				} else if (!empty($html->find('.sidebar_1'))){
+					$title = trim($html->find('.sidebar_1 .title_news_detail', 0)->plaintext);
+					$summury = trim($html->find('.sidebar_1 .description')[0]->plaintext);
+					$content = trim($html->find('.sidebar_1 .fck_detail')[0]->innertext);
+				}
+
+				$nameImage = $slug = str_slug($title);
 				$thumbnail = '';
 				$checkTitle = $this->checkTitle($slug);
 
 				if ($checkTitle == 0) {
-					if (!empty($html->find('.header-content span.date')[0])) {
-			    		$date = trim(explode(',', $html->find('.header-content span.date')[0]->plaintext)[1]);
-				    	$date = str_replace('/', '-', $date). ' ' . date('H:i:s');
+					if (!empty($html->find('.sidebar-1 .header-content span.date'))) {
+						$date = trim($html->find('.header-content span.date')[0]->plaintext);
+			    		$date1 = trim(explode(',', $date)[1]);
+			    		$date2 = trim(str_replace('(GMT+7)', '', explode(',', $date)[2]));
+			    		$date = $date1 . ' ' . $date2;
+				    	$date = str_replace('/', '-', $date);
+				    	$date = date('Y-m-d H:i:s', strtotime($date));
+			    	} else if (!empty($html->find('.sidebar_1 header.clearfix span.time'))) {
+			    		$date = trim($html->find('header.clearfix span.time')[0]->plaintext);
+			    		$date1 = trim(explode(',', $date)[1]);
+			    		$date2 = trim(str_replace('(GMT+7)', '', explode(',', $date)[2]));
+			    		$date = $date1 . ' ' . $date2;
+				    	$date = str_replace('/', '-', $date);
 				    	$date = date('Y-m-d H:i:s', strtotime($date));
 			    	} else {
 			    		$date = date('Y-m-d H:i:s');
@@ -2469,7 +2489,7 @@ class CloneController extends Controller
 				echo "Tin này đã thêm<b>vnExpress</b><hr>";
 			}
 		} catch (\Exception $e) {
-			echo "Lỗi hàm <b>testVnexpress</b><hr>" . $e->getMessage();
+			echo "Lỗi hàm <b>testVnexpress</b>" . $e->getMessage() . '<hr>';
 		}
 	}
 
@@ -2777,8 +2797,7 @@ class CloneController extends Controller
 		    	if (!file_exists('upload/images/' . $folder)) {
 				    mkdir('upload/images/' . $folder, 0777, true);
 				}
-				// dd($html->find('.detail-content .VCSortableInPreviewMode img', 0)->src);
-				// dd(1);
+
 				if (!empty($html->find('.detail-content .VCSortableInPreviewMode'))) {
 					foreach ($html->find('.detail-content .VCSortableInPreviewMode') as $key => $thumb) {
 						$thumbItem = $thumb->innertext;
@@ -3430,5 +3449,17 @@ class CloneController extends Controller
 		$height = imagesy($newImage);
 		
 		return $width;
+	}
+
+	public function checkUrl($url)
+	{
+		$headers = @get_headers($url);
+
+		if($headers && strpos( $headers[0], '200')) {
+		    return 1;
+		} 
+		else { 
+		    return 0;
+		} 
 	}
 }
