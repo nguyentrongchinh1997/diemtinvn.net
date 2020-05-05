@@ -1,9 +1,37 @@
 @extends('client.layouts.index')
 
-@section('title', $post->title . ' - ' . ucwords($post->subCategory->name))
+@section('title', $post->title)
 @section('description', html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8'))
 @section('keywords', html_entity_decode($post->keyword, ENT_QUOTES, 'UTF-8'))
 @section('image', asset('upload/og_images/' . $post->image))
+@section('json')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Trang chủ",
+            "item": "http://diembao24h.net/"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{$post->category->name}}",
+            "item": "{{ route('client.category', ['cate' => $post->category->slug]) }}"
+          },{
+            "@type": "ListItem",
+            "position": 3,
+            "name" : "{{$post->subCategory->name}}",
+            "item": "{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug]) }}"
+          },{
+            "@type": "ListItem",
+            "position": 4,
+            "name" : "{{$post->title}}",
+          }]
+        }
+    </script>
+@endsection
 
 @section('content')
 <main class="page_main_wrapper">
@@ -94,11 +122,11 @@
 	                                	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
 	                                    <div class="item">
 	                                        <div class="featured-post">
-	                                            <a href="{{ route('client.detail', ['title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
+	                                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
 	                                                <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
 	                                            </a>
 	                                            <h4>
-	                                                <a href="{{ route('client.detail', ['title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
+	                                                <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
 	                                                    {{ $postRealte->title }}
 	                                                </a>
 	                                            </h4>
@@ -125,12 +153,12 @@
 								<div class="col-xs-6 col-sm-4">
 	                                <article>
 	                                    <figure class="post-list-category">
-	                                        <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
+	                                        <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug,'title' => $post->slug, 'p' => $post->id]) }}">
 	                                            <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
 	                                        </a>
 	                                    </figure>
 	                                    <div class="post-info">
-	                                        <h3 title="{{ $post->title }}"><a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h3>
+	                                        <h3 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug,'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h3>
 	                                    </div>
 	                                </article>
 	                            </div>
@@ -146,12 +174,12 @@
 										@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 											<div class="news-list-item articles-list category-other-post" style="border-bottom: 0px">
 												<div class="img-wrapper">
-													<a class="thumb" href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
+													<a class="thumb" href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
 														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive">
 													</a>
 												</div>
 												<h4 class="title-top-page-cate">
-													<a href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
+													<a href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
 														{{ $categoryOtherPost->title }}
 													</a>
 												</h4>
@@ -165,7 +193,7 @@
 											@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
 												@if ($dem++ > 0)
 													<li style="padding: 5px 0px">
-														<a href="{{ route('client.detail', ['title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
+														<a href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
 															{{ $categoryOtherPost->title }}
 														</a>
 													</li>
@@ -194,11 +222,11 @@
                 				@foreach ($newPost as $post)
                 					<div class="news-list-item articles-list">
                 						<div class="sidebar-img-wrapper img-wrapper">
-                							<a class="thumb" href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
+                							<a class="thumb" href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
                 								<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 						<h4 title="{{ $post->title }}">
-                							<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+                							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
                 						</h4>
                 						<div class="hidden-sm hidden-md hidden-lg">
                 							<p class="summury" style="font-size: 13px; max-height: 40px; overflow: hidden;">
@@ -230,10 +258,10 @@
                 					<div class="best-view-item-sidebar news-list-item articles-list">
                 						<div class="post-info-2">
                 							<h4 title="{{ $post->title }}">
-                								<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>                         
+                								<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>                         
                 						</div>
                 						<div class="img-wrapper">
-                							<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                 								<img src='{{ asset("upload/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 					</div>
@@ -241,9 +269,6 @@
                 			</ul>
                 		</div>
                 	</div>
-                </div>
-				<div class="add-inner rightSidebar">
-                    <img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
                 </div>
 			</div>
 		</div>

@@ -1,6 +1,8 @@
 @extends('client.layouts.index')
 
-@section('title', 'Tổng hợp tin tức trong ngày nhanh nhất')
+@section('title', 'Diembao24h.net - Trang Web tổng hợp tin tức mới nhất 24h | Đọc báo Online')
+@section('description', 'Cập nhật tin tức, sự kiện mới nhất 24h qua. Tin nhanh Việt Nam và Thế giới. Đọc báo mới Online, tin tức trong ngày mới nhất. Thông tin Kinh tế, Thể thao, Văn hóa, Giải trí, Công nghệ')
+@section('keywords', 'báo mới, tin mới, tin hot, báo điện tử, tin nhanh, tin nóng, tin tức, điểm tin, điểm báo')
 
 @section('content')
 <main class="page_main_wrapper">
@@ -9,13 +11,13 @@
             <div class="col-sm-8 col-p main-content">
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-md-7">
-                        <a href="{{ route('client.detail', ['title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}">
+                        <a href="{{ route('client.detail', ['cate' => $postSlideHome->category->slug, 'sub-cate' => $postSlideHome->subCategory->slug, 'title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}">
                             <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("upload/og_images/$postSlideHome->image")}}'>
                         </a>
                     </div>
                     <div class="col-md-5">
                         <h2 class="title-top-page">
-                            <a href="{{ route('client.detail', ['title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}" style="font-size: 20px">
+                            <a href="{{ route('client.detail', ['cate' => $postSlideHome->category->slug, 'sub-cate' => $postSlideHome->subCategory->slug, 'title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}" style="font-size: 20px">
                                 {{ $postSlideHome->title }}
                             </a>
                         </h2>
@@ -37,11 +39,11 @@
                                 @foreach ($postRightSlide as $post)
                                     <div class="item">
                                         <div class="featured-post">
-                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
+                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
                                                 <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
                                             </a>
                                             <h4>
-                                                <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
+                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
                                                     {{ $post->title }}
                                                 </a>
                                             </h4>
@@ -81,11 +83,11 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/thumbnails/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['cate' => $firstPostXaHoi->category->slug, 'sub-cate' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/thumbnails/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $firstPostXaHoi->title }}">
-                                                        <a href="{{ route('client.detail', ['title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}">{{ $firstPostXaHoi->title }}</a>
+                                                        <a href="{{ route('client.detail', ['cate' => $firstPostXaHoi->category->slug, 'sub-cate' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}">{{ $firstPostXaHoi->title }}</a>
                                                     </h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostXaHoi->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostXaHoi->date)) }}</li>
@@ -103,13 +105,13 @@
                                                 @foreach ($listPostXaHoi as $post)
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
-                                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                                                 <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
                                                             <h5 title="{{ $post->title }}">
-                                                                <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+                                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
                                                             </h5>
                                                             <ul class="authar-info">
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
@@ -131,13 +133,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END OF /. POST CATEGORY STYLE ONE (Popular news) -->
-                    <!-- START ADVERTISEMENT -->
-                    <div class="add-inner" style="padding-left: 0px">
-                        <img src="https://docbaothayban.com/wp-content/themes/thaytoidocbao/image/banner1.png" class="img-responsive" alt="">
-                    </div>
-                    <!-- END OF /. ADVERTISEMENT -->
-                    <!-- START POST CATEGORY STYLE TWO (Travel news) -->
                     <div class="post-inner post-inner-2">
                         <!--post header-->
                         <div class="post-head" style="padding-left: 0px">
@@ -160,11 +155,11 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}"><img src='{{ asset("upload/og_images/$firstPostDoiSong->image") }}' alt="{{ $firstPostDoiSong->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['cate' => $firstPostDoiSong->category->slug, 'sub-cate' => $firstPostDoiSong->subCategory->slug, 'title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}"><img src='{{ asset("upload/og_images/$firstPostDoiSong->image") }}' alt="{{ $firstPostDoiSong->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $firstPostDoiSong->title }}">
-                                                        <a href="{{ route('client.detail', ['title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}">{{ $firstPostDoiSong->title }}</a>
+                                                        <a href="{{ route('client.detail', ['cate' => $firstPostDoiSong->category->slug, 'sub-cate' => $firstPostDoiSong->subCategory->slug, 'title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}">{{ $firstPostDoiSong->title }}</a>
                                                     </h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostDoiSong->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostDoiSong->date)) }}</li>
@@ -182,13 +177,13 @@
                                                 @foreach ($listPostDoiSong as $post)
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
-                                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                                                 <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
                                                             <h5 title="{{ $post->title }}">
-                                                                <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+                                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
                                                             </h5>
                                                             <ul class="authar-info">
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
@@ -276,20 +271,11 @@
                             </tr>
                         </table> 
                     </div>
-                    <div class="add-inner">
-                        <img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
-                    </div>
                 </div>
             </div>
             <!-- END OF /. SIDE CONTENT -->
         </div>
     </div>
-    <div class="container">
-        <div class="add-inner" style="padding-left: 0px">
-            <img src="https://docbaothayban.com/wp-content/themes/thaytoidocbao/image/banner_antivirut.png" class="img-responsive" alt="">
-        </div>
-    </div>
-
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -357,12 +343,12 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['title' => $fistPostKinhTe->slug, 'p' => $fistPostKinhTe->id]) }}">
+                                                    <a href="{{ route('client.detail', ['cate' => $fistPostKinhTe->category->slug, 'sub-cate' => $fistPostKinhTe->subCategory->slug, 'title' => $fistPostKinhTe->slug, 'p' => $fistPostKinhTe->id]) }}">
                                                         <img src='{{ asset("upload/og_images/$fistPostKinhTe->image") }}' alt="{{ $fistPostKinhTe->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $fistPostKinhTe->title }}">
-                                                        <a href="{{ route('client.detail', ['title' => $fistPostKinhTe->slug, 'p' => $fistPostKinhTe->id]) }}">{{ $fistPostKinhTe->title }}</a></h3>
+                                                        <a href="{{ route('client.detail', ['cate' => $fistPostKinhTe->category->slug, 'sub-cate' => $fistPostKinhTe->subCategory->slug, 'title' => $fistPostKinhTe->slug, 'p' => $fistPostKinhTe->id]) }}">{{ $fistPostKinhTe->title }}</a></h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($fistPostKinhTe->date) }}, {{ date('H:i d/m/Y', strtotime($fistPostKinhTe->date)) }}</li>
                                                     </ul>
@@ -379,13 +365,13 @@
                                                 @foreach ($listPostKinhTe as $post)
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
-                                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                                                 <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
                                                             <h5 title="{{ $post->title }}">
-                                                                <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+                                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
                                                             </h5>
                                                             <ul class="authar-info">
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
@@ -408,13 +394,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- END OF /. POST CATEGORY STYLE ONE (Popular news) -->
-                    <!-- START ADVERTISEMENT -->
-                    <div class="add-inner" style="padding-left: 0px">
-                        <img src="https://docbaothayban.com/wp-content/themes/thaytoidocbao/image/banner1.png" class="img-responsive" alt="">
-                    </div>
-                    <!-- END OF /. ADVERTISEMENT -->
-                    <!-- START POST CATEGORY STYLE TWO (Travel news) -->
                     <div class="post-inner post-inner-2">
                         <!--post header-->
                         <div class="post-head" style="padding-left: 0px">
@@ -437,11 +416,11 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}"><img src='{{ asset("upload/og_images/$firstPostGiaoDuc->image") }}' alt="{{ $firstPostGiaoDuc->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['cate' => $firstPostGiaoDuc->category->slug, 'sub-cate' => $firstPostGiaoDuc->subCategory->slug, 'title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}"><img src='{{ asset("upload/og_images/$firstPostGiaoDuc->image") }}' alt="{{ $firstPostGiaoDuc->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $firstPostGiaoDuc->title }}">
-                                                        <a href="{{ route('client.detail', ['title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}">{{ $firstPostGiaoDuc->title }}</a>
+                                                        <a href="{{ route('client.detail', ['cate' => $firstPostGiaoDuc->category->slug, 'sub-cate' => $firstPostGiaoDuc->subCategory->slug, 'title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}">{{ $firstPostGiaoDuc->title }}</a>
                                                     </h3>
                                                     <ul class="authar-info">
                                                         <li><i class="ti-timer"></i> {{ getWeekday($firstPostGiaoDuc->date) }}, {{ date('H:i d/m/Y', strtotime($firstPostGiaoDuc->date)) }}</li>
@@ -459,13 +438,13 @@
                                                 @foreach ($listPostGiaoDuc as $post)
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
-                                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                                                 <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
                                                             <h5 title="{{ $post->title }}">
-                                                                <a href="{{ route('client.detail', ['title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}" class="title">{{ $post->title }}</a>
+                                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}" class="title">{{ $post->title }}</a>
                                                             </h5>
                                                             <ul class="authar-info">
                                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
@@ -515,12 +494,12 @@
                                 @foreach ($postLatest as $post)
                                     <div class="news-list-item articles-list">
                                         <div class="img-wrapper">
-                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                                 <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
                                             </a>
                                         </div>
                                         <div class="post-info-2">
-                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                             <ul class="authar-info">
                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                             </ul>

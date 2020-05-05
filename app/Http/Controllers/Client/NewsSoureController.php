@@ -31,7 +31,7 @@ class NewsSoureController extends Controller
 		$data = $this->newsSoure->keywordSearch($request->key);
 
     	if (!empty($data)) {
-    		return view('client.pages.news_soure', $data);
+    		return view('client.pages.search', $data);
     	} else {
     		return redirect()->route('client.home');
     	}

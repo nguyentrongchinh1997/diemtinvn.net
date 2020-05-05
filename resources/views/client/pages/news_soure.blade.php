@@ -1,6 +1,31 @@
 @extends('client.layouts.index')
 
-@section('title', 'Kết quả tin tức cho từ khóa ' . $key)
+@section('title', $key . ': Đọc báo ' . $key . ', tin tức mới nhất trên ' . $key)
+@section('description', 'Điểm tin ' . $key . ', tổng hợp tin tức mới nhất trên báo điện tử ' . $key . ', tin hot ' . $key . ', đọc báo ' . $key)
+@section('keywords', 'tin tức ' . $key . ', đọc báo ' . $key . ', báo ' . $key . ', tin mới ' . $key)
+@section('json')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Trang chủ",
+            "item": "http://diembao24h.net/"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Điểm báo",
+            "item": "{{url()->current()}}"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{$key}}"
+          }]
+        }
+    </script>
+@endsection
 
 @section('content')
 <main class="page_main_wrapper">
@@ -31,11 +56,11 @@
 							@foreach ($posts as $post)
 								<div class="news-list-item articles-list">
                                     <div class="img-wrapper">
-                                        <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                        <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                         	<img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
                                     </div>
                                     <div class="post-info-2">
-                                        <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+                                        <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                         <ul class="authar-info">
                                             <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                         </ul>

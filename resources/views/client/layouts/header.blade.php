@@ -11,8 +11,9 @@
         <meta content="@yield('image')" property="og:image"/>
 
         <base href="{{ asset('/') }}">
+        @yield('json')
         <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="assets/images/ico/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('images/diembao24_short_cut.png')}}" type="image/x-icon">
         <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/images/ico/apple-touch-icon-57-precomposed.png') }}">
         <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/images/ico/apple-touch-icon-72-precomposed.png') }}">
         <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('assets/images/ico/apple-touch-icon-114-precomposed.png') }}">
@@ -48,41 +49,33 @@
         <link href="//db.onlinewebfonts.com/c/ac6286065aab4824af64a06aa5467f04?family=Swiss+721" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <!-- PAGE LOADER -->
         <div class="se-pre-con"></div>
-        <!-- *** START PAGE HEADER SECTION *** -->
         <header>
-            <!-- START HEADER TOP SECTION -->
             <div class="header-top">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
-                            <!-- Start header social -->
                             <div class="header-social">
                                 <ul>
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-vk"></i></a></li>
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                    <li class="hidden-xs"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
-                                    <li class="hidden-xs"><a href="#"><i class="fa fa-vimeo"></i></a></li>
                                 </ul>
                             </div>
-                            <!-- End of /. header social -->
-                            <!-- Start top left menu -->
-                            <div class="top-left-menu">
-                                <ul>
-                                    <li><a href="#">Liên hệ</a></li>
-                                    <li><a href="#">Donation</a></li>
-                                </ul>
-                            </div>
+                            <!--<div class="top-left-menu">-->
+                            <!--    <ul>-->
+                            <!--        <li><a href="#">Liên hệ</a></li>-->
+                            <!--    </ul>-->
+                            <!--</div>-->
                             <!-- End of /. top left menu -->
                         </div>
                         <!-- Start header top right menu -->
                         <div class="hidden-xs col-md-6 col-sm-6 col-lg-6">
                             <div class="header-right-menu">
                                 <ul>
-                                    <li> <a href="#"><i class="fa fa-lock"></i> Đăng Ký </a>or<a href="#">   Đăng Nhập</a></li>
+                                    <li><a href="#">Đăng ký</a></li>
+                                    <li><a href="#">Đăng nhập</a></li>
+                                    <!--<li> <a href="#"><i class="fa fa-lock"></i> Đăng Ký </a>or<a href="#">   Đăng Nhập</a></li>-->
+                                    <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </div>
                         </div> <!-- end of /. header top right menu -->
@@ -96,7 +89,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/images/logo.png" class="img-responsive" alt=""></a>
+                                <a href="{{asset('')}}"><img style="border: 0px; width: 50%" src="{{asset('images/diembao24_logo.png')}}" class="img-responsive" alt=""></a>
 
                             </div>
                         </div>
@@ -133,7 +126,7 @@
                         {{-- <button type="button" class="navbar-toggle"> --}}
                             <i class="ti-align-justify open-menu-mobile"></i>
                         {{-- </button> --}}
-                        <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><img src="assets/images/logo.png" class="logo" alt=""></a>
+                        <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><img src="{{asset('images/diembao24_logo.png')}}" class="logo" alt=""></a>
                     </div>
                     
                     <div class="collapse navbar-collapse" id="navbar-menu">
@@ -192,7 +185,7 @@
                 <ul>
                     <i class="ti-close close-menu"></i>
                     <li style="padding-left: 0px">
-                        <img style="border: 0px" src="assets/images/logo.png" class="img-responsive">
+                        <img style="border: 0px" src="{{asset('images/diembao24_logo.png')}}" class="img-responsive">
                     </li>
                     <li>
                         <a href=""><i class="ti-home"></i> Trang chủ</a>

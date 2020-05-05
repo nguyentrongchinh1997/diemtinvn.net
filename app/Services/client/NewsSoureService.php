@@ -15,7 +15,6 @@ class NewsSoureService
 
 	public function newsSoure($web)
 	{
-	    dd($web);
 		$posts = $this->post->where('web', $web)->paginate(40);
 
 		if (count($posts) > 0) {

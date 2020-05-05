@@ -10,11 +10,11 @@
 				@foreach ($newPostsSidebar as $post)
 					<div class="news-list-item articles-list">
 						<div class="sidebar-img-wrapper img-wrapper">
-							<a class="thumb" href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
+							<a class="thumb" href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
 								<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
 						</div>
 						<h4 title="{{ $post->title }}">
-							<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
 						</h4>
 						<div class="hidden-sm hidden-md hidden-lg">
 							<p class="summury" style="font-size: 13px; max-height: 40px; overflow: hidden;">

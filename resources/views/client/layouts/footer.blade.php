@@ -6,8 +6,8 @@
                     <div class="col-sm-3 footer-box">
                         {{-- <h3 class="wiget-title">Giới thiệu</h3> --}}
                         <div class="about-inner">
-                            <img src="assets/images/logo.png" class="img-responsive" alt=""/>
-                            <p>Website tổng hợp tin tức từ nhiều trang báo uy tín, cập nhật tin tức mới nhất </p>
+                            <img src="{{asset('images/diembao24_logo.png')}}" style="border: 0px" class="img-responsive" alt=""/>
+                            <p>Website cập nhật tin tức mới nhất 24h </p>
                             
                             <br>
                         </div>
@@ -20,7 +20,7 @@
                             <ul>
                                 <li><i class="ti-location-arrow"></i> Hai Bà Trưng, HN</li>
                                 <li><i class="ti-mobile"></i> 0963 108 272</li>
-                                <li><i class="ti-email"></i> contact@safedownload.net</li>
+                                <li><i class="ti-email"></i> contact@diembao24h.net</li>
                             </ul>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <!-- END OF /. FOOTER BOX (Category) -->
                     <!-- START FOOTER BOX (Recent Post) -->
                     <div class="col-sm-4 footer-box">
-                        <h3 class="wiget-title">Bài viết mới</h3>
+                        <h3 class="wiget-title">Tin mới</h3>
                         <div class="footer-news-grid">
                             @php $dem = 0; @endphp
                             @foreach ($newPostsSidebar as $postFooter)
@@ -74,18 +74,18 @@
         <div class="sub-footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-5 col-md-5">
-                        <div class="copy">Copyright@2017 I-News Inc.</div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div style="text-align: center" class="copy">Copyright@ {{date('Y')}} Diembao24h.net</div>
                     </div>
-                    <div class="col-xs-12 col-sm-7 col-md-7">
-                        <ul class="footer-nav">
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Donation</a></li>
-                            <li><a href="#">F.A.Q</a></li>
-                        </ul>
-                    </div>
+                    <!--<div class="col-xs-12 col-sm-7 col-md-7">-->
+                    <!--    <ul class="footer-nav">-->
+                    <!--        <li><a href="#">Privacy</a></li>-->
+                    <!--        <li><a href="#">Contact</a></li>-->
+                    <!--        <li><a href="#">About</a></li>-->
+                    <!--        <li><a href="#">Donation</a></li>-->
+                    <!--        <li><a href="#">F.A.Q</a></li>-->
+                    <!--    </ul>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>

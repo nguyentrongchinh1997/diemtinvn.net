@@ -10,10 +10,10 @@
 					<div class="best-view-item-sidebar news-list-item articles-list">
 						<div class="post-info-2">
 							<h4 title="{{ $post->title }}">
-								<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>                         
+								<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>                         
 						</div>
 						<div class="img-wrapper">
-							<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
 								<img src='{{ asset("upload/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
 						</div>
 					</div>

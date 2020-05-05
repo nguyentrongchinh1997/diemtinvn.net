@@ -1,6 +1,32 @@
 @extends('client.layouts.index')
 
-@section('title', 'Tin tức ' . $subCategory->name . ' - ' . $subCategory->category->name)
+@section('title', $subCategory->category->name . ' - ' . $subCategory->name . ': Cập nhật liên tục tin tức ' . $subCategory->name . ' mới nhất 24h')
+@section('description', 'Tổng hợp tin tức ' . $subCategory->category->name . ' - ' . $subCategory->name . ' mới nhất 24h qua. Diembao24h.net - Website cập nhật tin tức báo chí đầy đủ, nhanh chóng, chính xác, tin cậy')
+@section('keywords', 'tin tức ' . $subCategory->category->name . ' - ' . $subCategory->name . ', thông tin ' . $subCategory->category->name . ' - ' . $subCategory->name . ', ' . $subCategory->category->name . ' - ' . $subCategory->name . ' 24h, tin mới ' . $subCategory->category->name . ' - ' . $subCategory->name . ', đọc báo ' . $subCategory->category->name . ' - ' . $subCategory->name)
+@section('json')
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Trang chủ",
+            "item": "http://diembao24h.net/"
+          },{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{$subCategory->category->name}}",
+            "item": "{{ route('client.category', ['cate' => $subCategory->category->slug]) }}"
+          },{
+            "@type": "ListItem",
+            "position": 3,
+            "name" : "{{$subCategory->name}}",
+            "item": "{{ route('client.sub_cate', ['cate' => $subCategory->category->slug, 'sub' => $subCategory->slug]) }}"
+          }]
+        }
+    </script>
+@endsection
 
 @section('content')
 	<div class="page-title" style="margin: 0px">
@@ -30,13 +56,13 @@
 					@if (!empty($postSlide))
 						<div class="row" style="margin-bottom: 20px">
 		                    <div class="col-md-7">
-		                    	<a href="{{ route('client.detail', ['title' => $postSlide->slug, 'p' => $postSlide->id]) }}">
+		                    	<a href="{{ route('client.detail', ['cate' => $postSlide->category->slug, 'sub-cate' => $postSlide->subCategory->slug, 'title' => $postSlide->slug, 'p' => $postSlide->id]) }}">
 		                    		<img width="100%" alt="{{$postSlide->title}}" src='{{asset("upload/thumbnails/$postSlide->image")}}'>
 		                    	</a>
 		                    </div>
 		                    <div class="col-md-5">
 		                        <h2 class="title-top-page">
-		                            <a href="{{ route('client.detail', ['title' => $postSlide->slug, 'p' => $postSlide->id]) }}" style="font-size: 20px">
+		                            <a href="{{ route('client.detail', ['cate' => $postSlide->category->slug, 'sub-cate' => $postSlide->subCategory->slug, 'title' => $postSlide->slug, 'p' => $postSlide->id]) }}" style="font-size: 20px">
 		                                {{ $postSlide->title }}
 		                            </a>
 		                        </h2>
@@ -59,11 +85,11 @@
 	                                @foreach ($postTop as $post)
 	                                    <div class="item">
 	                                        <div class="featured-post">
-	                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
+	                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
 	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
 	                                            </a>
 	                                            <h4>
-	                                                <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}">
+	                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
 	                                                    {{ $post->title }}
 	                                                </a>
 	                                            </h4>
@@ -86,11 +112,11 @@
 									<div class="news-list-item articles-list">
                                         <div class="img-wrapper">
 
-                                            <a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
                                             	<img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
                                         </div>
                                         <div class="post-info-2">
-                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
                                             <ul class="authar-info">
                                                 <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
                                             </ul>
@@ -119,9 +145,6 @@
 					<div class="col-sm-4 col-p sidebar" style="padding: 5px">
 						<div class="theiaStickySidebar">
 							@include('client.includes.weather')
-							<div class="add-inner">
-								<img src="assets/images/add320x270-1.jpg" class="img-responsive" alt="">
-							</div>
 							@foreach ($cateChild as $cate)
 								<h3 class="title-sidebar" style="text-transform: capitalize;">
 									{{ $cate->name }}
@@ -133,11 +156,11 @@
 												@foreach (\App\Helper\helper::subCategoryPost($cate->id, $listId, 6) as $post)
 													<div class="news-list-item articles-list">
  														<div class="sidebar-img-wrapper img-wrapper">
-															<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+															<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
 																<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" class="img-responsive"></a>
 														</div>
 														<h4 title="{{ $post->title }}">
-															<a href="{{ route('client.detail', ['title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+															<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
 													    </h4>
 													    <div class="hidden-sm hidden-md hidden-lg">
 															<p class="summury" style="font-size: 13px; max-height: 40px; overflow: hidden;">
