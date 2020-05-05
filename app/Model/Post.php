@@ -13,6 +13,7 @@ class Post extends Model
         'slug',
         'summury',
         'content',
+        'content_soure',
         'image',
         'view',
         'keyword',
@@ -22,6 +23,7 @@ class Post extends Model
         'url_origin',
         'web',
         'web_name',
+        'status',
         'date',
     ];
 
