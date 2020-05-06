@@ -20,14 +20,14 @@
     <body>
         <div class="container">
             <div class="row">
-                {{-- @if ($rand % 2 == 0) --}}
+                <p style="text-align: right; margin-bottom: 0px; font-size: 12px">QC</p>
+                @if ($rand % 2 == 0)
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                         <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id])}}">
                             <img src='{{ asset("upload/thumbnails/$post->image") }}' width="100%">
                         </a>
                     </div>
                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                        <p style="text-align: right; margin-bottom: 0px; font-size: 12px">QC</p>
                         <h3 style="margin: 0px 0px 10px 0px">
                             <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id])}}">
                                 {{ $post->title }}
@@ -37,8 +37,17 @@
                             {!! $post->summury !!}
                         </p>
                     </div>
-                {{-- @else
-                @endif --}}
+                @else
+                    <ul>
+                        @foreach ($postList as $post)
+                            <li>
+                                <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id])}}">
+                                    {{ $post->title }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
         </div>
     </body>

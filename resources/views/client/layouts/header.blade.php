@@ -14,11 +14,6 @@
         @yield('json')
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="{{asset('images/diembao24_short_cut.png')}}" type="image/x-icon">
-        <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('assets/images/ico/apple-touch-icon-57-precomposed.png') }}">
-        <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('assets/images/ico/apple-touch-icon-72-precomposed.png') }}">
-        <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('assets/images/ico/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('assets/images/ico/apple-touch-icon-144-precomposed.png') }}">
-
         <!-- jquery ui css -->
         <link href="{{ asset('assets/css/jquery-ui.min.css') }}" rel="stylesheet" type="text/css"/>
         <!-- Bootstrap -->
@@ -46,7 +41,6 @@
         <!-- style css -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/css/custome.css') }}" rel="stylesheet" type="text/css"/>
-        <link href="//db.onlinewebfonts.com/c/ac6286065aab4824af64a06aa5467f04?family=Swiss+721" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div class="se-pre-con"></div>

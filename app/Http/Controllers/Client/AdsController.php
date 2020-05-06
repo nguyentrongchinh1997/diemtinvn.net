@@ -10,7 +10,7 @@ class AdsController extends Controller
 {
     public function ads()
     {
-    	$postList = Post::latest('date')->limit(5)->get();
+    	$postList = Post::latest('date')->get()->random(5);
     	$post = Post::all()->random(1)->first();
     	$data = [
     		'rand' => rand(1,9),
