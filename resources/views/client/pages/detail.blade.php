@@ -104,6 +104,7 @@
 							</ul>
 						</div>
 					@endif
+					<iframe src="http://localhost/news/public/ads/json"></iframe>
 					<div class="post-inner post-inner-2">
 						<!--post header-->
 						<div class="post-head">
