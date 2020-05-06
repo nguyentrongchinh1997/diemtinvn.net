@@ -9,6 +9,8 @@
 
 define('LARAVEL_START', microtime(true));
 
+set_time_limit(3600);
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

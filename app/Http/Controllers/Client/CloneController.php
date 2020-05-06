@@ -109,31 +109,36 @@ class CloneController extends Controller
 	public function test()
 	{
 		//$this->deleteSoure('suckhoedoisong.vn');
+		
+	//	$a = time()%12;
+		//switch($a){
+		  	$this->doiSong();
 
+        /*
 		// xã hội
-		// 	$this->xaHoi();
-		// // thể thao
-		// 	$this->theThao();
+		 	$this->xaHoi();
+		// thể thao
+			$this->theThao();
 		// đời sống
-		//$this->doiSong();
+		    $this->doiSong();
 		// thê giới
-		// 	$this->theGioi();
-		// // văn hóa
-		// 	$this->vanHoa();
-		// // kinh tế
-		// 	$this->kinhTe();
-		// // giáo dục
-		// 	$this->giaoDuc();
-		// // khoa học
-		// 	$this->khoaHoc();
-		// // công nghệ
-		// 	$this->congNghe();
-		// // pháp luật
-		// 	$this->phapLuat();
-		// // giải trí
-		// 	$this->giaiTri();
-		// // nhà đất
-		// 	$this->nhaDat();
+			$this->theGioi();
+		// văn hóa
+			$this->vanHoa();
+		// kinh tế
+			$this->kinhTe();
+		// giáo dục
+			$this->giaoDuc();
+		// khoa học
+			$this->khoaHoc();
+		// công nghệ
+			$this->congNghe();
+		// pháp luật
+			$this->phapLuat();
+		// giải trí
+			$this->giaiTri();
+		// nhà đất
+			$this->nhaDat();*/
 
 		// $this->laoDong();
 		// $this->vnexpress();
@@ -184,7 +189,6 @@ class CloneController extends Controller
 		// quần vợt
 			$this->cloneDanTri('https://dantri.com.vn/the-thao/tennis.htm', $this->quanVot, $this->theThao);
 			$this->cloneVietNamPlus('https://www.vietnamplus.vn/thethao/quanvot.vnp', $this->quanVot, $this->theThao);
-
 		// các môn khác
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/the-thao/cac-mon-khac/', $this->monKhac, $this->theThao);
 			$this->cloneVnexpress('https://vnexpress.net/the-thao/cac-mon-khac', $this->monKhac, $this->theThao);
@@ -193,19 +197,19 @@ class CloneController extends Controller
 	public function doiSong()
 	{
 		// dinh dưỡng làm đẹp
-			//$this->cloneVnexpress('https://vnexpress.net/suc-khoe/dinh-duong', $this->dinhDuong, $this->doiSong);
-			//$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe/thuoc-dinh-duong.htm', $this->dinhDuong, $this->doiSong);
+			$this->cloneVnexpress('https://vnexpress.net/suc-khoe/dinh-duong', $this->dinhDuong, $this->doiSong);
+			$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe/thuoc-dinh-duong.htm', $this->dinhDuong, $this->doiSong);
 			$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/dinh-duong-phong-chong-ung-thu-c100/', $this->dinhDuong, $this->doiSong);
 			$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/tham-my-c62/', $this->dinhDuong, $this->doiSong);
 		// tình yêu hôn nhân
-			//$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/doi-song/gia-dinh-tinh-yeu/', $this->tinhYeu, $this->doiSong);
-			//$this->cloneVnexpress('https://vnexpress.net/tag/tinh-yeu-hon-nhan-gia-dinh-99724', $this->tinhYeu, $this->doiSong);
-			//$this->cloneDanTri('https://dantri.com.vn/tinh-yeu-gioi-tinh.htm', $this->tinhYeu, $this->doiSong);
+			$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/doi-song/gia-dinh-tinh-yeu/', $this->tinhYeu, $this->doiSong);
+			$this->cloneVnexpress('https://vnexpress.net/tag/tinh-yeu-hon-nhan-gia-dinh-99724', $this->tinhYeu, $this->doiSong);
+			$this->cloneDanTri('https://dantri.com.vn/tinh-yeu-gioi-tinh.htm', $this->tinhYeu, $this->doiSong);
 		// sức khỏe y tế
-			//$this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/yte.vnp', $this->sucKhoe, $this->doiSong);
-			//$this->cloneVietNamPlus('https://www.vietnamplus.vn/doisong/suckhoe.vnp', $this->sucKhoe, $this->doiSong);
-			//$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe.htm', $this->sucKhoe, $this->doiSong);
-			//$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/doi-song/suc-khoe-lam-dep/', $this->sucKhoe, $this->doiSong);
+			$this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/yte.vnp', $this->sucKhoe, $this->doiSong);
+			$this->cloneVietNamPlus('https://www.vietnamplus.vn/doisong/suckhoe.vnp', $this->sucKhoe, $this->doiSong);
+			$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe.htm', $this->sucKhoe, $this->doiSong);
+			$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/doi-song/suc-khoe-lam-dep/', $this->sucKhoe, $this->doiSong);
 	}
 
 	public function theGioi()
@@ -3497,18 +3501,22 @@ class CloneController extends Controller
 
 	public function checkImage($filePath)
 	{
-	    $arrContextOptions=array(
-		    "ssl"=>array(
-		        "verify_peer"=>false,
-		        "verify_peer_name"=>false,
-		    ),
-		);
-		$sourceImage = file_get_contents($filePath, false, stream_context_create($arrContextOptions));
-		$newImage = imagecreatefromstring($sourceImage);
-		$width = imagesx($newImage);
-		$height = imagesy($newImage);
-		
-		return $width;
+	    try {
+			$arrContextOptions=array(
+			    "ssl"=>array(
+			        "verify_peer"=>false,
+			        "verify_peer_name"=>false,
+			    ),
+			);
+			$sourceImage = file_get_contents($filePath, false, stream_context_create($arrContextOptions));
+			$newImage = imagecreatefromstring($sourceImage);
+			$width = imagesx($newImage);
+			$height = imagesy($newImage);
+			
+			return $width;
+		} catch (\Exception $e) {
+			return NULL;
+		}
 	}
 
 	public function checkUrl($url)
