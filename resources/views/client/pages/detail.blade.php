@@ -131,9 +131,6 @@
 	                                                </a>
 	                                            </h4>
 	                                            <p>
-	                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postRealte->category->slug, 'sub_cate' => $postRealte->subCategory->slug]) }}">{{ $postRealte->subCategory->name }}</a>
-	                                            </p>
-	                                            <p>
 	                                            	<a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
 	                                            </p>
 	                                        </div>

@@ -110,20 +110,24 @@
 								<div class="post-body" style="padding: 15px 15px 15px 0px">
 									@foreach ($postList as $post)
 										<div class="news-list-item articles-list">
-	                                        <div class="img-wrapper">
-	                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-	                                            	<img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
-	                                        </div>
-	                                        <div class="post-info-2">
-	                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
-	                                            <ul class="authar-info">
-	                                                <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-	                                            </ul>
-	                                            <p class="hidden-sm description" style="margin-bottom: 10px">{{ trim($post->summury) }}</p>
-	                                            <p style="margin-bottom: 0px;">
-													<a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> <span style="color: #adb5bd">|</span> <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
-												</p>
-	                                        </div>
+											<div class="row" style="margin: 0px">
+		                                        <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 news-list-item-left">
+		                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+		                                            	<img data-src="{{ asset("upload/og_images/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
+		                                        </div>
+		                                        <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 news-list-item-right">
+		                                            <h4 title="{{ $post->title }}">
+		                                            	<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+		                                            </h4>
+		                                            <ul class="authar-info">
+		                                                <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
+		                                            </ul>
+		                                            <p class="hidden-xs hidden-sm description" style="margin-bottom: 10px">{{ trim($post->summury) }}</p>
+		                                            <p style="margin-bottom: 0px;">
+														<a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> <span style="color: #adb5bd">|</span> <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+													</p>
+		                                        </div>
+		                                    </div>
 	                                    </div>
                                     @endforeach
 								</div>

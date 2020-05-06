@@ -493,22 +493,24 @@
                             <div class="post-body post-list-category">
                                 @foreach ($postLatest as $post)
                                     <div class="news-list-item articles-list">
-                                        <div class="img-wrapper">
-                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                                                <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
-                                            </a>
-                                        </div>
-                                        <div class="post-info-2">
-                                            <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
-                                            <ul class="authar-info">
-                                                <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
-                                            </ul>
-                                            <p class="description hidden-sm" style="margin-bottom: 10px">{{ $post->summury }}</p>
-                                            <p style="margin-bottom: 0px; color: #adb5bd">
-                                                <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
-                                                 | 
-                                                 <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
-                                            </p>
+                                        <div class="row" style="margin: 0px">
+                                            <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 news-list-item-left">
+                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                                    <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
+                                                </a>
+                                            </div>
+                                            <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 news-list-item-right">
+                                                <h4 title="{{ $post->title }}"><a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a></h4>
+                                                <ul class="authar-info">
+                                                    <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
+                                                </ul>
+                                                <p class="description hidden-sm" style="margin-bottom: 10px">{{ $post->summury }}</p>
+                                                <p style="margin-bottom: 0px; color: #adb5bd">
+                                                    <a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
+                                                     | 
+                                                     <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
