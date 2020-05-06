@@ -110,9 +110,23 @@ class CloneController extends Controller
 	{
 		//$this->deleteSoure('suckhoedoisong.vn');
 		
-	//	$a = time()%12;
-		//switch($a){
-		  	$this->doiSong();
+		$a = time()%12;
+		echo $a;
+		switch($a){
+		    case 0 : $this->xaHoi(); break;
+		    case 1 : $this->theThao(); break;
+		    case 2 : $this->doiSong(); break;
+		    case 3 : $this->theGioi(); break;
+		    case 4 : $this->vanHoa(); break;
+		    case 5 : $this->kinhTe(); break;
+		    case 6 : $this->giaoDuc(); break;
+		    case 7 : $this->khoaHoc(); break;
+		    case 8 : $this->congNghe(); break;
+		    case 9 : $this->phapLuat(); break;
+		    case 10 : $this->giaiTri(); break;
+		    case 11: $this->nhaDat(); break;
+		}
+		 // 	$this->doiSong();
 
         /*
 		// xã hội

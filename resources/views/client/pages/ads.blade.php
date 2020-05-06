@@ -26,7 +26,8 @@
             .title{
                 font-size: 16px; 
                 margin-top: 15px; 
-                height: 59px; 
+                height: 65px;
+                overflow: hidden;
                 font-weight: bold;
             }
         </style>
@@ -34,14 +35,14 @@
     <body>
         <div class="container">
             <div class="row">
-                <h3 style="padding-left: 15px; padding-right: 15px">
+                <h4 style="padding-left: 15px; padding-right: 15px">
                         Tin tài trợ <span style="float: right; font-weight: normal; font-size: 12px; margin-top: 10px">
                             <a target="_blank" href="{{asset('')}}" style="color: #c90000">diemtin24h.net</a></span>
-                </h3>
+                </h4>
                 @foreach ($postList as $post)
-                    <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
-                        <a href="">
-                            <img src='{{ asset("upload/thumbnails/$post->image") }}' style="height: 155px; width: 100%; object-fit: cover;">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id])}}">
+                            <img src='{{ asset("upload/thumbnails/$post->image") }}' style="height: 100px; width: 100%; object-fit: cover;">
                             <p class="title">
                                 {{$post->title}}
                             </p>

@@ -5,6 +5,10 @@
 @section('keywords', html_entity_decode($post->keyword, ENT_QUOTES, 'UTF-8'))
 @section('image', asset('upload/og_images/' . $post->image))
 @section('json')
+    <meta property="og:url"                content="{{url()->full()}}" />
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="{{$post->title}}" />
+    <meta property="og:description"        content="{{html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8')}}" />
     <script type="application/ld+json">
         {
           "@context": "https://schema.org",
