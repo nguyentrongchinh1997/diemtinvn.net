@@ -27,7 +27,7 @@
           },{
             "@type": "ListItem",
             "position": 4,
-            "name" : "{{$post->title}}",
+            "name" : "{{$post->title}}"
           }]
         }
     </script>
