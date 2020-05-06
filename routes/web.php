@@ -37,6 +37,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 	});
 });
 
+Route::get('ads/json', 'Client\AdsController@ads');
 Route::get('/', 'Client\HomeController@home')->name('client.home');
 
 Route::get('clone', 'Client\CloneController@clone');
