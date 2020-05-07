@@ -41,12 +41,12 @@
         <div class="container">
             <div class="row">
                 <h4 style="padding-left: 15px; padding-right: 15px">
-                        Tin tài trợ <span style="float: right; font-weight: normal; font-size: 12px; margin-top: 10px">
-                            <a target="_blank" href="{{asset('')}}" style="color: #c90000">diemtin24h.net</a></span>
+                        Tin hot <span style="float: right; font-weight: normal; font-size: 12px; margin-top: 10px">
+                            <a target="_blank" href="{{route('client.home')}}" style="color: #c90000">diembao24h.net</a></span>
                 </h4>
                 @foreach ($postList as $post)
                     <div class="ads-post-item col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                        <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id])}}">
+                        <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id, 'soure' => 'ads'])}}">
                             <img src='{{ asset("upload/thumbnails/$post->image") }}' style="height: 100px; width: 100%; object-fit: cover;">
                             <p class="title">
                                 {{$post->title}}

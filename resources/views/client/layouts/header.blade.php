@@ -12,6 +12,18 @@
 
         <base href="{{ asset('/') }}">
         @yield('json')
+        
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-137275219-10"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+        
+          gtag('config', 'UA-137275219-10');
+        </script>
+
+
         <!-- Favicon and touch icons -->
         <link rel="shortcut icon" href="{{asset('images/diembao24_short_cut.png')}}" type="image/x-icon">
         <!-- jquery ui css -->
