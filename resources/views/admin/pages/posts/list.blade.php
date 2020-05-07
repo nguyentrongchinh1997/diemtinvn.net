@@ -32,6 +32,14 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <td colspan="7"></td>
+                            <td>
+                                <button class="btn btn-primary">
+                                    <a style="color: #fff" href="{{route('admin.post.add_form')}}">Thêm</a>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
                             <th>STT</th>
                             <th>Ảnh</th>
                             <th>Tiêu đề</th>
@@ -39,6 +47,7 @@
                             <th>Lượt xem</th>
                             <th>Nguồn</th>
                             <th>Ngày đăng</th>
+                            <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
@@ -69,6 +78,11 @@
                                 </td>
                                 <td>
                                     {{ $post->date }}
+                                </td>
+                                <td>
+                                    <a href="{{route('admin.post.edit', ['id' => $post->id])}}">
+                                        <i class="icon-pencil3 edit-category"></i>
+                                    </a>
                                 </td>
                                 <td>
                                     <a onclick="return question()" href="{{ route('admin.post.delete', ['id' => $post->id]) }}">

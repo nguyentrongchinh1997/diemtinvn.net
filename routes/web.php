@@ -34,6 +34,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 	Route::group(['prefix' => 'post'], function(){
 		Route::get('list', 'Admin\PostController@list')->name('admin.post.list');
 		Route::get('delete/{id}', 'Admin\PostController@delete')->name('admin.post.delete');
+		Route::get('add', 'Admin\PostController@addForm')->name('admin.post.add_form');
+		Route::post('add', 'Admin\PostController@add')->name('admin.post.add');
+		Route::get('edit/{id}', 'Admin\PostController@editForm')->name('admin.post.edit_form');
+		Route::post('edit/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
 	});
 });
 

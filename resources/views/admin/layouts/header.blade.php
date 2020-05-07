@@ -297,6 +297,9 @@
 							<li>
 								<a href="{{route('admin.post.list')}}">Danh sách</a>
 							</li>
+							<li>
+								<a href="{{route('admin.post.add')}}">Thêm</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
