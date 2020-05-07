@@ -91,7 +91,11 @@
 							</div> 
 							
 							<div class="bk-content">
-								{!! $post->content !!}
+								@if ($post->status == 1)
+									{!! $post->content !!}
+								@elseif ($post->status == 0)
+									{!! $post->content_soure !!}
+								@endif
 							</div>
 							<p style="text-align: right;">
 								<b>Nguồn:</b> <a target="_blank" rel="notfollow" href="{{ $post->url_origin }}">{{ $post->web }}</a>
