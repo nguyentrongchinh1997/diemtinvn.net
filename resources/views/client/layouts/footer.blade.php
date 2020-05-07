@@ -69,7 +69,11 @@
         </div>
         <!-- *** END OF /. SUB FOOTER *** -->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        
+
         <script src="{{ asset('assets/js/jquery.min.js') }}" type="text/javascript"></script>
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script src="{{asset('slick/slick.js')}}" type="text/javascript" charset="utf-8"></script>
         <!-- jquery ui js -->
         <script src="{{ asset('assets/js/jquery-ui.min.js') }}" type="text/javascript"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -93,6 +97,42 @@
         <script type="text/javascript">
             $(function() {
                 $('.lazy').Lazy();
+            });
+        </script>        
+        <script type="text/javascript">
+            $(document).on('ready', function() {
+                $('.responsive').slick({
+                  dots: true,
+                  infinite: false,
+                  speed: 300,
+                  slidesToShow: 4,
+                  slidesToScroll: 2,
+                  responsive: [
+                    {
+                      breakpoint: 1024,
+                      settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        infinite: true,
+                        dots: true
+                      }
+                    },
+                    {
+                      breakpoint: 600,
+                      settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1
+                      }
+                    },
+                    {
+                      breakpoint: 480,
+                      settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                      }
+                    }
+                  ]
+                });
             });
         </script>
     </body>

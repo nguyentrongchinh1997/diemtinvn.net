@@ -75,7 +75,7 @@
 		                    </div>
 		                </div>
 	                @endif
-	                <div class="row" style="margin-bottom: 20px">
+{{-- 	                <div class="row" style="margin-bottom: 20px">
 	                	<div class="col-sm-12">
 	                		<div class="loop news-slide">
 	                			@foreach ($postTop as $post)
@@ -100,6 +100,26 @@
                                 @endforeach
 	                		</div>
 	                	</div>
+	                </div> --}}
+	                <div class="row responsive slider" style="margin-top: 30px">
+	                    @foreach ($postTop as $post)
+		                    <div class="news-slide">
+		                        <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
+		                            <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
+		                        </a>
+		                        <h4>
+		                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
+		                                {{$post->title}}
+		                            </a>
+		                        </h4>
+		                        <p>
+		                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
+		                        </p>
+		                        <p>
+		                            <a class="soure" href="{{ route('client.news_soure', ['web' => $post->web]) }}">{{ $post->web }}</a>
+		                        </p>
+		                    </div>
+	                    @endforeach
 	                </div>
 					<div class="theiaStickySidebar">
 						@if (count($postList) > 0)

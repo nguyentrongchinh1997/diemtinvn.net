@@ -55,6 +55,9 @@
         <!-- style css -->
         <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css"/>
         <link href="{{ asset('assets/css/custome.css') }}" rel="stylesheet" type="text/css"/>
+          <link rel="stylesheet" type="text/css" href="{{asset('slick/slick.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{asset('slick/slick-theme.css')}}">
+
     </head>
     <body>
         <div class="se-pre-con"></div>

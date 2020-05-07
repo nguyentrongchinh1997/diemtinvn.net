@@ -40,7 +40,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 		Route::post('edit/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
 	});
 });
-
+Route::get('slick/h/i', function(){
+	return view('client.pages.slick');
+});
 Route::get('ads/json', 'Client\AdsController@ads');
 Route::get('/', 'Client\HomeController@home')->name('client.home');
 
@@ -54,4 +56,6 @@ Route::get('tin-tuc/{soure}', 'Client\NewsSoureController@newsSoure')->name('cli
 
 Route::get('{category}.html', 'Client\CategoryController@category')->name('client.category');
 Route::get('{category}/{subCategory}.html', 'Client\CategoryController@subCategory')->name('client.sub_cate');
+
+
 

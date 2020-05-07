@@ -120,30 +120,28 @@
 	                <div class="post-head" style="border-bottom: 0px">
 						<h2 class="title"><strong>Tin liên quan </strong></h2>
 					</div>
-	                <div class="row">
-	                	<div class="col-sm-12">
-	                		<div class="loop news-slide">
-	                			@foreach ($idPostRelate as $newsId)
-                                	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
-                                    <div class="item">
-                                        <div class="featured-post">
-                                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
-                                                <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
-                                            </a>
-                                            <h4>
-                                                <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
-                                                    {{ $postRealte->title }}
-                                                </a>
-                                            </h4>
-                                            <p>
-                                            	<a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
-                                            </p>
-                                        </div>
-                                    </div>
-                                @endforeach
-	                		</div>
-	                	</div>
+					<div class="row responsive slider">
+	                    @foreach ($idPostRelate as $newsId)
+	                    	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
+		                    <div class="news-slide">
+		                        <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
+		                            <img title="{{$postRealte->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
+		                        </a>
+		                        <h4>
+		                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
+		                                {{$postRealte->title}}
+		                            </a>
+		                        </h4>
+		                        <p>
+		                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $postRealte->category->slug, 'sub_cate' => $postRealte->subCategory->slug]) }}">{{ $postRealte->subCategory->name }}</a>
+		                        </p>
+		                        <p>
+		                            <a class="soure" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
+		                        </p>
+		                    </div>
+	                    @endforeach
 	                </div>
+	                
 					<div class="post-inner post-inner-2 category-same-post">
 						<div class="post-head">
 							<h2 class="title"><strong>Cùng chuyên mục </strong></h2>

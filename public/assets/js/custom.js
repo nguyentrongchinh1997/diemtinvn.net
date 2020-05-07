@@ -96,23 +96,6 @@ $(document).ready(function () {
         }
     }
     );
-
-    $('.loop').owlCarousel({
-        center: true,
-        items:4,
-        loop:true,
-        margin:20,
-        responsive:{
-            600:{
-                items:4
-            },
-            1024:{
-                items:4,
-                nav:true,
-                loop:false
-            }
-        }
-    });
     //Post carousel
     var owl=$("#post-slider");
     owl.owlCarousel( {
