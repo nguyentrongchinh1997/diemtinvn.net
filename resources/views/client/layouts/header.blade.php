@@ -59,7 +59,7 @@
     <body>
         <div class="se-pre-con"></div>
         <header>
-            <div class="header-top">
+            <div class="hidden-xs hidden-sm header-top">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6">
@@ -69,29 +69,19 @@
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                 </ul>
                             </div>
-                            <!--<div class="top-left-menu">-->
-                            <!--    <ul>-->
-                            <!--        <li><a href="#">Liên hệ</a></li>-->
-                            <!--    </ul>-->
-                            <!--</div>-->
-                            <!-- End of /. top left menu -->
                         </div>
-                        <!-- Start header top right menu -->
                         <div class="hidden-xs col-md-6 col-sm-6 col-lg-6">
                             <div class="header-right-menu">
                                 <ul>
                                     <li><a href="#">Đăng ký</a></li>
                                     <li><a href="#">Đăng nhập</a></li>
-                                    <!--<li> <a href="#"><i class="fa fa-lock"></i> Đăng Ký </a>or<a href="#">   Đăng Nhập</a></li>-->
                                     <li><a href="#">Liên hệ</a></li>
                                 </ul>
                             </div>
-                        </div> <!-- end of /. header top right menu -->
-                    </div> <!-- end of /. row -->
-                </div> <!-- end of /. container -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- END OF /. HEADER TOP SECTION -->
-            <!-- START MIDDLE SECTION -->
             <div class="header-mid hidden-xs">
                 <div class="container">
                     <div class="row">
@@ -107,10 +97,7 @@
                     </div>
                 </div>
             </div>
-            <!-- END OF /. MIDDLE SECTION -->
-            <!-- START NAVIGATION -->
             <nav class="navbar navbar-default navbar-sticky navbar-mobile bootsnav">
-                <!-- Start Top Search -->
                 <div class="top-search">
                     <div class="container">
                         <form method="GET" action="{{route('client.search')}}">
@@ -122,18 +109,14 @@
                         </form>
                     </div>
                 </div>
-                <!-- End Top Search -->
                 <div class="container">            
-                    <!-- Start Atribute Navigation -->
                     <div class="attr-nav">
                         <ul>
                             <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         </ul>
                     </div>
                     <div class="navbar-header">
-                        {{-- <button type="button" class="navbar-toggle"> --}}
                             <i class="ti-align-justify open-menu-mobile"></i>
-                        {{-- </button> --}}
                         <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><img src="{{asset('images/diembao24_logo.png')}}" class="logo" alt=""></a>
                     </div>
                     

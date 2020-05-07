@@ -1,19 +1,13 @@
-<!-- *** START FOOTER *** -->
         <footer>
             <div class="container">
                 <div class="row">
-                    <!-- START FOOTER BOX (About) -->
                     <div class="col-sm-3 footer-box">
-                        {{-- <h3 class="wiget-title">Giới thiệu</h3> --}}
                         <div class="about-inner">
-                            <img src="{{asset('images/diembao24_logo.png')}}" style="border: 0px" class="img-responsive" alt=""/>
-                            <p>Website cập nhật tin tức mới nhất 24h </p>
-                            
+                            <img src="{{asset('images/diembao24_logo.png')}}" style="border: 0px" class="img-responsive logo-footer" alt=""/>
+                            <p class="intro-footer">Website cập nhật tin tức mới nhất 24h </p>
                             <br>
                         </div>
                     </div>
-                    <!--  END OF /. FOOTER BOX (About) -->
-                    <!-- START FOOTER BOX (Twitter feeds) -->
                     <div class="col-sm-3 footer-box">
                         <div class="twitter-inner">
                             <h3 class="wiget-title">Liên hệ</h3>
@@ -24,8 +18,6 @@
                             </ul>
                         </div>
                     </div>
-                    <!-- END OF /. FOOTER BOX (Twitter feeds) -->
-                    <!-- START FOOTER BOX (Category) -->
                     <div class="col-sm-2 footer-box">
                         <h3 class="wiget-title">Chuyên mục</h3>
                         <ul class="menu-services">
@@ -36,8 +28,6 @@
                             @endforeach
                         </ul>
                     </div>
-                    <!-- END OF /. FOOTER BOX (Category) -->
-                    <!-- START FOOTER BOX (Recent Post) -->
                     <div class="col-sm-4 footer-box">
                         <h3 class="wiget-title">Tin mới</h3>
                         <div class="footer-news-grid">
@@ -65,27 +55,15 @@
                             @endforeach
                         </div>
                     </div>
-                    <!-- END OF /. FOOTER BOX (Recent Post) -->
                 </div>
             </div>
         </footer>
-        <!-- *** END OF /. FOOTER *** -->
-        <!-- *** START SUB FOOTER *** -->
         <div class="sub-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div style="text-align: center" class="copy">Copyright@ {{date('Y')}} Diembao24h.net</div>
                     </div>
-                    <!--<div class="col-xs-12 col-sm-7 col-md-7">-->
-                    <!--    <ul class="footer-nav">-->
-                    <!--        <li><a href="#">Privacy</a></li>-->
-                    <!--        <li><a href="#">Contact</a></li>-->
-                    <!--        <li><a href="#">About</a></li>-->
-                    <!--        <li><a href="#">Donation</a></li>-->
-                    <!--        <li><a href="#">F.A.Q</a></li>-->
-                    <!--    </ul>-->
-                    <!--</div>-->
                 </div>
             </div>
         </div>

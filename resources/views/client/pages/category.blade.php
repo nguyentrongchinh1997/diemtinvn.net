@@ -76,33 +76,30 @@
 		                </div>
 	                @endif
 	                <div class="row" style="margin-bottom: 20px">
-	                    <div class="col-sm-12">
-	                        <div class="featured-inner" style="padding: 0px">
-	                            <div id="featured-owl" class="owl-carousel">
-	                                @foreach ($postTop as $post)
-	                                    <div class="item">
-	                                        <div class="featured-post">
-	                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
-	                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
-	                                            </a>
-	                                            <h4>
-	                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
-	                                                    {{ $post->title }}
-	                                                </a>
-	                                            </h4>
-	                                            <p>
-	                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
-	                                            </p>
-	                                            <p>
-	                                            	<a class="soure" href="{{ route('client.news_soure', ['web' => $post->web]) }}">{{ $post->web }}</a>
-	                                            </p>
-	                                        </div>
-	                                    </div>
-	                                @endforeach
-	                                
-	                            </div>
-	                        </div>
-	                    </div>
+	                	<div class="col-sm-12">
+	                		<div class="loop news-slide">
+	                			@foreach ($postTop as $post)
+                                    <div class="item">
+                                        <div class="featured-post">
+                                            <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
+                                                <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
+                                            </a>
+                                            <h4>
+                                                <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
+                                                    {{ $post->title }}
+                                                </a>
+                                            </h4>
+                                            <p>
+                                                <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a>
+                                            </p>
+                                            <p>
+                                            	<a class="soure" href="{{ route('client.news_soure', ['web' => $post->web]) }}">{{ $post->web }}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
+	                		</div>
+	                	</div>
 	                </div>
 					<div class="theiaStickySidebar">
 						@if (count($postList) > 0)

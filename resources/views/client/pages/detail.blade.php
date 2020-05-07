@@ -39,7 +39,6 @@
 
 @section('content')
 <main class="page_main_wrapper">
-	<!-- START PAGE TITLE --> 
 	<div class="page-title" style="margin: 0px">
 		<div class="container">
 			<div class="row" style="margin-top: 20px">
@@ -51,12 +50,11 @@
 							</a>
 						</li>
 						@foreach($post->subCategory->category->subCategory as $category)
-							<li>
+							<li class="@if($category->slug != $post->subCategory->slug){{'hidden-xs'}}@endif">
 								<a style="text-transform: capitalize; color:@if ($category->slug == $post->subCategory->slug){{'#c90000'}}@else{{'#6c757d'}}@endif" href="{{ route('client.sub_cate', ['cate' => $category->category->slug, 'sub_cate' => $category->slug]) }}">{{ $category->name }}</a>
 							</li>
 						@endforeach
 					</ol>
-					
 				</div>
 			</div>
 		</div>
@@ -119,34 +117,32 @@
 							<div width='100%' class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5"></div>
 						</div>
 					</div>
-					<div class="post-head">
+	                <div class="post-head" style="border-bottom: 0px">
 						<h2 class="title"><strong>Tin liên quan </strong></h2>
 					</div>
-					<div class="row" style="margin-bottom: 20px">
-	                    <div class="col-sm-12">
-	                        <div class="featured-inner" style="padding: 0px">
-	                            <div id="featured-owl" class="owl-carousel">
-	                                @foreach ($idPostRelate as $newsId)
-	                                	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
-	                                    <div class="item">
-	                                        <div class="featured-post">
-	                                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
-	                                                <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
-	                                            </a>
-	                                            <h4>
-	                                                <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
-	                                                    {{ $postRealte->title }}
-	                                                </a>
-	                                            </h4>
-	                                            <p>
-	                                            	<a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
-	                                            </p>
-	                                        </div>
-	                                    </div>
-	                                @endforeach
-	                            </div>
-	                        </div>
-	                    </div>
+	                <div class="row">
+	                	<div class="col-sm-12">
+	                		<div class="loop news-slide">
+	                			@foreach ($idPostRelate as $newsId)
+                                	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
+                                    <div class="item">
+                                        <div class="featured-post">
+                                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="news-image">
+                                                <img title="{{$post->title}}" src='{{asset("upload/thumbnails/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
+                                            </a>
+                                            <h4>
+                                                <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug,'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
+                                                    {{ $postRealte->title }}
+                                                </a>
+                                            </h4>
+                                            <p>
+                                            	<a style="color: #777" href="{{ route('client.news_soure', ['web' => $postRealte->web]) }}">{{ $postRealte->web }}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                @endforeach
+	                		</div>
+	                	</div>
 	                </div>
 					<div class="post-inner post-inner-2 category-same-post">
 						<div class="post-head">
