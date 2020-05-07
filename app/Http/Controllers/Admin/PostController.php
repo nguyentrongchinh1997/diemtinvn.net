@@ -22,16 +22,16 @@ class PostController extends Controller
     public function delete($id)
     {
     	$post = Post::findOrFail($id);
-    	$link = route('client.detail', ['title' => $post->slug, 'p' => $post->id]);
+        $post->status = 0;
+        $post->save();
+    	$link = route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]);
+    	// if (file_exists(public_path('upload/thumbnails/' . $post->image))) {
+    	// 	unlink(public_path('upload/thumbnails/' . $post->image));
+    	// }
 
-    	if (file_exists(public_path('upload/thumbnails/' . $post->image))) {
-    		unlink(public_path('upload/thumbnails/' . $post->image));
-    	}
-
-    	if (file_exists(public_path('upload/og_images/' . $post->image))) {
-    		unlink(public_path('upload/og_images/' . $post->image));
-    	}
-
+    	// if (file_exists(public_path('upload/og_images/' . $post->image))) {
+    	// 	unlink(public_path('upload/og_images/' . $post->image));
+    	// }
     	$html = file_get_html($link);
 
     	foreach ($html->find('.bk-content .image-detail img') as $image) {
@@ -41,8 +41,6 @@ class PostController extends Controller
     			unlink($file);
     		}
     	}
-
-    	$post->delete();
 
     	return back()->with('thongbao', 'Xóa thành công');
     }
