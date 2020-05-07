@@ -22,6 +22,8 @@
         
           gtag('config', 'UA-137275219-10');
         </script>
+        
+        <script data-ad-client="ca-pub-2710240011197720" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
 
         <!-- Favicon and touch icons -->

@@ -110,7 +110,7 @@ class CloneController extends Controller
 	{
 		//$this->deleteSoure('suckhoedoisong.vn');
 	
-		$a = time()%12;
+		$a = rand(0,11);
 		echo $a;
 		switch($a){
 		    case 0 : $this->xaHoi(); break;
