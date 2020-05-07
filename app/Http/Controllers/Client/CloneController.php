@@ -12,6 +12,7 @@ use Nesk\Rialto\Data\JsFunction;
 use Nesk\Puphpeteer\Resources\ElementHandle;
 use Sunra\PhpSimple\HtmlDomParser;
 use VIPSoft\Unzip\Unzip;
+use App\Model\Value;
 
 class CloneController extends Controller
 {
@@ -109,9 +110,8 @@ class CloneController extends Controller
 	public function test()
 	{
 		//$this->deleteSoure('suckhoedoisong.vn');
-	
-		$a = rand(0,11);
-		echo $a;
+		$value = Value::findOrFail(1);
+		$a = $value->value;
 		switch($a){
 		    case 0 : $this->xaHoi(); break;
 		    case 1 : $this->theThao(); break;
@@ -126,8 +126,15 @@ class CloneController extends Controller
 		    case 10 : $this->giaiTri(); break;
 		    case 11: $this->nhaDat(); break;
 		}
-		 // 	$this->doiSong();
 
+		if ($a == 11) {
+			$value->value = 0;
+			$value->save();		 
+		} else {
+			$value->value = $a + 1;
+			$value->save();
+		}
+		// 	$this->doiSong();
         /*
 		// xã hội
 		 	$this->xaHoi();
