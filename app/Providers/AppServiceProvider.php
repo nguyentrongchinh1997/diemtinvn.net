@@ -27,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Cache::flush();
         View::composer('*', function($view){
             $newPostsSidebar = Post::latest('date')->limit(10)->get();
             $value = Cache::remember('users', 1440, function() {
