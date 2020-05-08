@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 		Route::post('add', 'Admin\PostController@add')->name('admin.post.add');
 		Route::get('edit/{id}', 'Admin\PostController@editForm')->name('admin.post.edit_form');
 		Route::post('edit/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
+		Route::get('search', 'Admin\PostController@search')->name('admin.post.search');
 	});
 });
 Route::get('slick/h/i', function(){

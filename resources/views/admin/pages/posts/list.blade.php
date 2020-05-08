@@ -32,7 +32,9 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <td colspan="7"></td>
+                            <td colspan="7">
+                                <input type="text" autocomplete="off" id="search" placeholder="Từ khóa tìm kiếm" class="form-control" name="">
+                            </td>
                             <td>
                                 <button class="btn btn-primary">
                                     <a style="color: #fff" href="{{route('admin.post.add_form')}}">Thêm</a>
@@ -106,7 +108,16 @@
                 {{ $posts->links() }}
             </div>
         </div>
-        
+        <script type="text/javascript">
+            $(function(){
+                $('#search').keyup(function(){
+                    key = $('#search').val();
+                    $.get('admin/post/search?key=' + key, function(data){
+                        $('#result-search').html(data);
+                    });
+                })
+            })
+        </script>
 	</div>
 </div>
 <style type="text/css">

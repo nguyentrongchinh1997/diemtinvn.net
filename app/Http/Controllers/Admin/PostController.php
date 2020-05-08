@@ -55,6 +55,18 @@ class PostController extends Controller
     	return back()->with('thongbao', 'Xóa thành công');
     }
 
+    public function search(Request $request)
+    {
+        $key = $request->key;
+        $posts = Post::where('title', 'like', $key . '%')->get();
+        $data = [
+            'posts' => $posts,
+            'stt' => 1,
+        ];
+
+        return view('admin.pages.posts.search', $data);
+    }
+
     public function addForm()
     {
         $data = [
