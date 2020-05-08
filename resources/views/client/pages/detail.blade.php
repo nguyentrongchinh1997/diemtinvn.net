@@ -81,7 +81,7 @@
 										{{ $post->view }} lượt xem
 									</span>
 								</p>
-								<div class="fb-like" data-href="{{ url()->current() }}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
+								<div class="fb-like" data-href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" data-width="" data-layout="button_count" data-action="like" data-size="small" data-share="true"></div>
 								<hr>
 								<p class="detail-summury">
 									{!! html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8') !!}
@@ -114,7 +114,7 @@
 						<!--post header-->
 						<div class="post-head">
 							<h2 class="title"><strong>Bình luận </strong></h2>
-							<div width='100%' class="fb-comments" data-href="{{ url()->current() }}" data-numposts="5"></div>
+							<div width='100%' class="fb-comments" data-href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" data-numposts="5"></div>
 						</div>
 					</div>
 	                <div class="post-head" style="border-bottom: 0px">
