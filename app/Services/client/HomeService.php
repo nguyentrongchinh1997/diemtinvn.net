@@ -6,14 +6,14 @@ use App\Model\Post;
 use Carbon\Carbon;
 use App\Model\SubCategory;
 use App\Model\Video;
-use App\Model\GoldTyGia;
-use App\Model\OilTyGia;
+use App\Model\Gold;
+use App\Model\Oil;
 
 class HomeService
 {
 	protected $post, $subCate, $video, $gold, $oil;
 
-	public function __construct(Post $post, SubCategory $subCate, Video $video, GoldTyGia $gold, OilTyGia $oil)
+	public function __construct(Post $post, SubCategory $subCate, Video $video, Gold $gold, Oil $oil)
 	{
 		$this->post = $post;
 		$this->subCate = $subCate;

@@ -13,6 +13,8 @@ use Nesk\Puphpeteer\Resources\ElementHandle;
 use Sunra\PhpSimple\HtmlDomParser;
 use VIPSoft\Unzip\Unzip;
 use App\Model\Value;
+use App\Model\Gold;
+use App\Model\Oil;
 
 class CloneController extends Controller
 {
@@ -109,6 +111,7 @@ class CloneController extends Controller
 
 	public function test()
 	{
+		$this->priceGoldToday();
 		//$this->deleteSoure('suckhoedoisong.vn');
 		$value = Value::findOrFail(1);
 		$a = $value->value;
@@ -125,9 +128,10 @@ class CloneController extends Controller
 		    case 9 : $this->phapLuat(); break;
 		    case 10 : $this->giaiTri(); break;
 		    case 11: $this->nhaDat(); break;
+		    case 12: $this->priceGoldToday(); $this->oil(); break;
 		}
 
-		if ($a == 11) {
+		if ($a == 12) {
 			$value->value = 0;
 			$value->save();		 
 		} else {
@@ -185,6 +189,63 @@ class CloneController extends Controller
 		//$this->bao24h();
 		//$this->bongDa(); // chưa xử lý 100%
 	}
+
+	public function priceGoldToday()
+	{
+		$html = file_get_html('http://sjc.com.vn/giavang/textContent.php');
+		$stt = 0;
+		Gold::getQuery()->delete();
+		foreach ($html->find('.bx1 table tr') as $tr) {
+			$dem = $stt++;
+			if ($dem > 0 && $dem < 10) {
+				$this->getDataPriceGoldToday($tr);
+			}
+		}
+	}
+
+	public function getDataPriceGoldToday($tr)
+	{
+		foreach ($tr->find('td') as $td)
+		{
+			$list[] = $td->plaintext;
+		}
+
+		return Gold::create([
+			'type' => $list[0],
+			'buy' => $list[1],
+			'sell' => $list[2],
+		]);
+	}
+
+	public function oil()
+    {
+    	try {
+    		$html = file_get_html('https://www.petrolimex.com.vn/');
+	    	$date = date('Y-m-d');
+	    	$check = Oil::where('date', $date)->first();
+
+	    	if (isset($check)) {
+	    		echo "Dữ liệu ngày này đã được thêm";
+	    	} else {
+	    		foreach ($html->find('#vie_p6_PortletContent .list-table>div') as $div) {
+		    		foreach ($div->find('div') as $key => $row) {
+		    			$name = $div->find('div')[0]->plaintext;
+		    			$price1 = $div->find('div')[1]->plaintext;
+		    			$price2 = $div->find('div')[2]->plaintext;
+		    		}
+		    		Oil::create([
+			    		'oil_name' => $name,
+			    		'price_1' => $price1,
+			    		'price_2' => $price2,
+			    		'date' => $date
+			    	]);
+		    	}
+	    	}
+	    	echo "Thêm thành công dầu<br>";
+    	} catch (\Exception $e) {
+    		echo "Thêm thất bại dầu<br>";
+    	}
+    }
 
 	public function xaHoi()
 	{
