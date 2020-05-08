@@ -115,6 +115,15 @@ class CloneController extends Controller
 		//$this->deleteSoure('suckhoedoisong.vn');
 		$value = Value::findOrFail(1);
 		$a = $value->value;
+		if ($a == 11) {
+			$value->value = 0;
+			$value->save();		 
+		} else {
+			$value->value = $a + 1;
+			$value->save();
+		}
+		echo $a;
+	
 		switch($a){
 		    case 0 : $this->xaHoi(); break;
 		    case 1 : $this->theThao(); break;
@@ -131,6 +140,7 @@ class CloneController extends Controller
 		    case 12: $this->priceGoldToday(); $this->oil(); break;
 		}
 
+<<<<<<< Updated upstream
 		if ($a == 12) {
 			$value->value = 0;
 			$value->save();		 
@@ -138,6 +148,9 @@ class CloneController extends Controller
 			$value->value = $a + 1;
 			$value->save();
 		}
+=======
+		
+>>>>>>> Stashed changes
 		// 	$this->doiSong();
         /*
 		// xã hội
