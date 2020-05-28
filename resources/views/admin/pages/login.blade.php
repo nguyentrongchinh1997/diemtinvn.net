@@ -50,7 +50,7 @@
 	</head>
 	<body>
 		<div class="login-wrapper">
-			<form role="form" method="post" action="{{ route('admin.login.post') }}">
+			<form role="form" method="post" action="{{ route('admin.login') }}">
 				@csrf
 				@if (session('error'))
 					<div class="alert alert-danger">
@@ -58,11 +58,11 @@
 					</div>
 				@endif
 				@if (count($errors->all()) > 0)
-					@foreach ($errors->all() as $error)
-				    	<div class="alert alert-danger">
+					<div class="alert alert-danger">
+						@foreach ($errors->all() as $error)
 							{{ $error }}
-						</div>
-				  	@endforeach
+					  	@endforeach
+				  	</div>
 				@endif
 				<div class="popup-header">
 					<a href="#" class="pull-left"><i class="icon-user-plus"></i></a>
