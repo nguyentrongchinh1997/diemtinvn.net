@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Model\Post;
 
 Route::get('admin/login', 'UserController@loginAdminForm')->name('admin.login_admin');
 Route::post('admin/login', 'UserController@loginAdmin')->name('admin.login.post');
@@ -46,7 +47,26 @@ Route::get('ads/json', 'Client\AdsController@ads');
 Route::get('/', 'Client\HomeController@home')->name('client.home');
 
 Route::get('clone', 'Client\CloneController@clone');
-Route::get('test', 'Client\CloneController@test');
+Route::get('move', function(){
+	$posts = Post::all();
+	$arrContextOptions=array(
+	    "ssl"=>array(
+	        "verify_peer"=>false,
+	        "verify_peer_name"=>false,
+	    ),
+	);
+	foreach ($posts as $postItem) {
+		if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
+			$pathTh = 'photos/thumbnails/' . $postItem->image;
+			Storage::disk('s3')->put($pathTh, file_get_contents("upload/thumbnails/$postItem->image", false, stream_context_create($arrContextOptions)), 'public');
+		}
+		if (file_exists(public_path('upload/og_images/' . $postItem->image))) {
+			$pathOg = 'photos/og_images/' . $postItem->image;
+			Storage::disk('s3')->put($pathOg, file_get_contents("upload/og_images/$postItem->image", false, stream_context_create($arrContextOptions)), 'public');
+		}
+	}
+});
+Route::post('test', 'Client\CloneController@test')->name('test');
 Route::get('tim-kiem', 'Client\NewsSoureController@keywordSearch')->name('client.search');
 Route::get('video', 'Client\VideoController@list')->name('client.video');
 Route::get('video/{title}-{id}.html', 'Client\VideoController@detail')->where(array('id' => '[0-9]+', 'title' => '[a-z0-9\-]+', 'nameCategory' => '[a-z0-9\-]+'))->name('client.video.detail');
@@ -55,6 +75,4 @@ Route::get('tin-tuc/{soure}', 'Client\NewsSoureController@newsSoure')->name('cli
 
 Route::get('{category}.html', 'Client\CategoryController@category')->name('client.category');
 Route::get('{category}/{subCategory}.html', 'Client\CategoryController@subCategory')->name('client.sub_cate');
-
-
 

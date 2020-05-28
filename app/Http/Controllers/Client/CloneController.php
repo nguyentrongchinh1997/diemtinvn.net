@@ -44,8 +44,11 @@ class CloneController extends Controller
 
 	protected $nhaDat, $quanLy, $khongGian;
 
+	protected $server;
+
 	public function __construct(Category $category, Post $post)
 	{
+		$this->server = 'https://diembao24h.s3-ap-southeast-1.amazonaws.com/';
 		$this->category = $category;
 		$this->post = $post;
 	/*Chuyên mục xã hội*/
@@ -109,11 +112,11 @@ class CloneController extends Controller
 			$this->khongGian = 27;
 	}
 
-	public function test()
+	public function clone()
 	{
-		//$this->deleteSoure('suckhoedoisong.vn');
 		$value = Value::findOrFail(1);
 		$a = $value->value;
+
 		if ($a == 11) {
 			$value->value = 0;
 			$value->save();		 
@@ -121,7 +124,6 @@ class CloneController extends Controller
 			$value->value = $a + 1;
 			$value->save();
 		}
-		echo $a;
 	
 		switch($a){
 		    case 0 : $this->xaHoi(); break;
@@ -259,15 +261,15 @@ class CloneController extends Controller
 	{
 		// thời sự
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/', $this->thoiSu, $this->xaHoi);
-			$this->cloneVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
-			$this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
-			$this->cloneLaoDong('https://laodong.vn/thoi-su/', $this->thoiSu, $this->xaHoi);
+			// $this->cloneVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
+			// $this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
+			// $this->cloneLaoDong('https://laodong.vn/thoi-su/', $this->thoiSu, $this->xaHoi);
 		// giao thông
-			$this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/giaothong.vnp', $this->giaoThong, $this->xaHoi);
-			$this->cloneVnexpress('https://vnexpress.net/thoi-su/giao-thong', $this->giaoThong, $this->xaHoi);
+			// $this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/giaothong.vnp', $this->giaoThong, $this->xaHoi);
+			// $this->cloneVnexpress('https://vnexpress.net/thoi-su/giao-thong', $this->giaoThong, $this->xaHoi);
 		// môi trường
-			$this->cloneVietNamPlus('https://www.vietnamplus.vn/moitruong.vnp', $this->moiTruong, $this->xaHoi);
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/moi-truong/', $this->moiTruong, $this->xaHoi);
+			// $this->cloneVietNamPlus('https://www.vietnamplus.vn/moitruong.vnp', $this->moiTruong, $this->xaHoi);
+			// $this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/moi-truong/', $this->moiTruong, $this->xaHoi);
 	}
 
 	public function theThao()
@@ -1043,7 +1045,7 @@ class CloneController extends Controller
 							foreach ($html->find('.article-body .wp-caption') as $thumb) {
 								try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = html_entity_decode($thumb->outertext);
 				    				if ($thumb->find('.wp-caption-text')) {
 										$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('.wp-caption-text', 0)->plaintext) . '</p>';
@@ -1153,7 +1155,7 @@ class CloneController extends Controller
 							foreach ($html->find('.sharefullColLeft .viewsDtailContent table.MASTERCMS_TPL_TABLE') as $thumb) {
 								try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = html_entity_decode($thumb->outertext);
 
 				    				if ($thumb->find('td')) {
@@ -1250,7 +1252,7 @@ class CloneController extends Controller
 						foreach ($html->find('.nld-detail .contentbody .VCSortableInPreviewMode[type="Photo"]') as $thumb) {
 							try {
 		    					$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = html_entity_decode($thumb->outertext);
 			    				if ($thumb->find('.PhotoCMS_Caption')) {
 									$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('.PhotoCMS_Caption', 0)->plaintext) . '</p>';
@@ -1347,7 +1349,7 @@ class CloneController extends Controller
 			    			{
 			    				try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = html_entity_decode($thumb->outertext);
 				    				if ($thumb->find('.caption')) {
 										$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('.caption', 0)->plaintext) . '</p>';
@@ -1443,7 +1445,7 @@ class CloneController extends Controller
 			    			{
 			    				try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = html_entity_decode($thumb->outertext);
 				    				if ($thumb->find('figcaption')) {
 										$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('figcaption', 0)->plaintext) . '</p>';
@@ -1547,7 +1549,7 @@ class CloneController extends Controller
 			    			{
 			    				try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = $thumb->outertext;
 				    				if ($thumb->find('figcaption.PhotoCMS_Caption')) {
 										$noteImage = '<p class="note-image">' . $thumb->find('figcaption.PhotoCMS_Caption', 0)->plaintext . '</p>';
@@ -1644,7 +1646,7 @@ class CloneController extends Controller
 			    			{
 			    				try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = $thumb->outertext;
 
 				    				if ($thumb->find('.Image')) {
@@ -1752,7 +1754,7 @@ class CloneController extends Controller
 			    			{
 			    				try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = $thumb->outertext;
 
 				    				if ($thumb->find('figcaption')) {
@@ -1858,7 +1860,7 @@ class CloneController extends Controller
 		    			{
 		    				try {
 		    					$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = $thumb->outertext;
 
 			    				if ($thumb->find('.image-caption')) {
@@ -1959,7 +1961,7 @@ class CloneController extends Controller
 		    			{
 		    				try {
 		    					$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = $thumb->innertext;
 
 			    				if ($thumb->find('.expEdit')) {
@@ -2059,7 +2061,7 @@ class CloneController extends Controller
 		    			{
 		    				try {
 		    					$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server. "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = $thumb->outertext;
 
 			    				if (!empty($html->find('#content_detail_news .chuthichanhSKDS'))) {
@@ -2178,7 +2180,7 @@ class CloneController extends Controller
 			    			{
 			    				try {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = $thumb->innertext;
 
 				    				if (!empty($thumb->find('figcaption.Image'))) {
@@ -2269,7 +2271,7 @@ class CloneController extends Controller
 		    			{
 		    				try {
 		    					$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = $thumb->innertext;
 
 			    				if (!empty($thumb->find('.expEdit'))) {
@@ -2369,7 +2371,7 @@ class CloneController extends Controller
 		    			foreach ($html->find('.post-content .imgEditor') as $thumb) {
 			    			try {
 		    					$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = $thumb->innertext;
 
 			    				if (!empty($thumb->find('.alt_imgEditor'))) {
@@ -2471,7 +2473,7 @@ class CloneController extends Controller
 			    			try {
 			    				if ($thumb->type == 'Photo') {
 			    					$rand = rand();
-				    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+				    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 				    				$thumbItem = $thumb->innertext;
 
 				    				if (!empty($thumb->find('.PhotoCMS_Caption'))) {
@@ -2582,7 +2584,7 @@ class CloneController extends Controller
 		    			foreach ($html->find('.box-widget .post-content .contentimg') as $thumb) {
 			    			try {
 			    				$rand = rand();
-			    				$path = "upload/images/$folder/$nameImage-$rand.jpg";
+			    				$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 			    				$thumbItem = $thumb->innertext;
 
 			    				if (!empty($thumb->find('.note'))) {
@@ -2700,7 +2702,7 @@ class CloneController extends Controller
 							$thumbItem = $thumb->outertext;
 							$rand = rand() . '0';
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 								$img = $thumb->src;
 								list($width, $height) = getimagesize($img);
 
@@ -2804,7 +2806,7 @@ class CloneController extends Controller
 								$thumbItem = $thumb->innertext;
 								$rand = rand() . '0';
 								try {
-									$path = "upload/images/$folder/$nameImage-$rand.jpg";
+									$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 
 									if (!empty($thumb->find('span'))) {
 										$noteImage = '<p class="note-image">' . $thumb->find('span', 0)->plaintext . '</p>';
@@ -2930,7 +2932,7 @@ class CloneController extends Controller
 							$thumbItem = $thumb->innertext;
 							$rand = rand() . '0';
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 
 								if (!empty($thumb->find('.Image'))) {
 									$noteImage = '<p class="note-image">' . $thumb->find('.Image')[0]->plaintext . '</p>';
@@ -2971,7 +2973,7 @@ class CloneController extends Controller
 							$thumbItem = $thumb->innertext;
 							$rand = rand() . '1';
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 								$imgTag = "<p class='image-detail'><img src=$path alt=$nameImage></p>";
 								$img = $thumb->find('img', 0)->src;
 								$noteImage = '<p class="note-image">' . $thumb->find('.Image')[0]->plaintext . '</p>';
@@ -3068,7 +3070,7 @@ class CloneController extends Controller
 							$thumbItem = $thumb->innertext;
 							$rand = rand() . '0';
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 
 								if (!empty($thumb->find('.image-caption'))) {
 									$noteImage = '<p class="note-image">' . $thumb->find('.image-caption', 0)->plaintext . '</p>';
@@ -3181,7 +3183,7 @@ class CloneController extends Controller
 							$thumbItem = $thumb->outertext;
 							$rand = rand() . '0';
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 
 								if (!empty($thumb->find('.FmsArticleBoxStyle-Content'))) {
 									$noteImage = '<p class="note-image">' . html_entity_decode($thumb->find('.FmsArticleBoxStyle-Content', 0)->plaintext, ENT_QUOTES, 'UTF-8') . '</p>';
@@ -3218,7 +3220,7 @@ class CloneController extends Controller
 							$thumbItem = $thumb->outertext;
 							$rand = rand() . '1';
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 								$imgTag = "<p class='image-detail'><img src=$path alt=$nameImage></p>";
 								$img = $thumb->src;
 								$imgSoure = "<p class='image-detail'><img src=$img alt='$nameImage'></p>";
@@ -3241,7 +3243,7 @@ class CloneController extends Controller
 							$rand = rand() . '2';
 
 							try {
-								$path = "upload/images/$folder/$nameImage-$rand.jpg";
+								$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 								$img = $thumb->src;
 								$imgTag = "<p class='image-detail'>
 												<img src=$path alt='$nameImage' title='$title'>
@@ -3267,7 +3269,7 @@ class CloneController extends Controller
 
 							foreach ($thumb->find('img') as $image) {
 								try {
-									$path = "upload/images/$folder/$nameImage-$rand.jpg";
+									$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 									$img = $image->src;
 									$imgTag = "<p class='image-detail'>
 													<img src=$path alt='$nameImage' title='$title'>
@@ -3312,7 +3314,7 @@ class CloneController extends Controller
 				echo "Tin đã thêm <b>Vietnamnet</b><hr>";
 			}
 		} catch (\Exception $e) {
-			echo 'Lỗi hàm <b>getDataVietNamNet</b>:' . ' lỗi dòng' . $e->getLine() . ':' . $link;
+			echo 'Lỗi hàm <b>getDataVietNamNet</b>:' . ', lỗi dòng' . $e->getLine() . ':' . $link . '<hr>';
 		}    	
 	}
 
@@ -3394,7 +3396,7 @@ class CloneController extends Controller
 						$thumbItem = $thumb->innertext;
 						$rand = rand() . '0';
 						try {
-							$path = "upload/images/$folder/$nameImage-$rand.jpg";
+							$path = $this->server . "photos/images/$folder/$nameImage-$rand.jpg";
 							if (!empty($thumb->find('p'))) {
 								if (!empty($thumb->find('img'))) {
 									$noteImage = '<p class="note-image">' . $thumb->find('p', 0)->plaintext . '</p>';
@@ -3502,7 +3504,7 @@ class CloneController extends Controller
     	return count($result);
     }
 
-    public function resizeImage($data, $nameImage){
+    public function resizeImage($data, $nameImage) {
     	$width = $data[0];
         $height = $data[1];
         if ($width > 0) {
@@ -3523,7 +3525,7 @@ class CloneController extends Controller
 
     public function uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder, $post)
 	{
-		try {
+		//try {
 			$width1 = NULL;$dem = 0;
 			$arrContextOptions=array(
 			    "ssl"=>array(
@@ -3535,11 +3537,13 @@ class CloneController extends Controller
 			if (count($listImage) > 0) {
 				foreach ($listImage as $key => $img) {
 					if ($img != '') {
-						//$width = $this->checkImage($img);
 						$img = str_replace(' ', '%20', $img);
-						$put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
-						file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
-						list($width, $height) = getimagesize(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
+						$fullpath = 'photos/images/' . $folder . '/' . $nameImage . '-' . $listRand[$key] . '.jpg';
+						\Storage::disk('s3')->put($fullpath, file_get_contents($img, false, stream_context_create($arrContextOptions)), 'public');
+
+						// $put_img = file_get_contents($img, false, stream_context_create($arrContextOptions));
+						// file_put_contents(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'), $put_img);
+						list($width, $height) = getimagesize($this->server . $fullpath);
 
 						if ($width == NULL || $width == 0) {
 							$dem++;
@@ -3550,33 +3554,52 @@ class CloneController extends Controller
 			$checkUrl = $this->checkUrl($og_image);
 			
 			if ($checkUrl == 1) {
-			    $put_og_image = file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions));
-			    file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
-			    list($width1, $height1) = getimagesize(public_path("upload/og_images/$nameImage.jpg"));
+			    // $put_og_image = file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions));
+			    // file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
+
+			    $pathOgImage = 'photos/og_images/' . $nameImage . '.jpg';
+			    \Storage::disk('s3')->put($pathOgImage, file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions)), 'public');
+			    list($width1, $height1) = getimagesize($this->server . $pathOgImage);
+
+			    // list($width1, $height1) = getimagesize(public_path("upload/og_images/$nameImage.jpg"));
 			    
 			    if ($thumbnail == '') {
-	    			$data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
-	    			$this->resizeImage($data, $nameImage . '.jpg');
+	    			// $data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
+	    			// $this->resizeImage($data, $nameImage . '.jpg');
+			    	$pathThumbnail = 'photos/thumbnails/' . $nameImage . '.jpg';
+	    			\Storage::disk('s3')->put($pathThumbnail, file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions)), 'public');
 	    		} else {
 	    			$thumbnail = str_replace(' ', '%20', $thumbnail);
-	    			$put_thumbnail = file_get_contents($thumbnail, false, stream_context_create($arrContextOptions));
-	    			file_put_contents(public_path("upload/thumbnails/" . $nameImage . '.jpg'), $put_thumbnail);
+	    			$pathThumbnail = 'photos/thumbnails/' . $nameImage . '.jpg';
+	    			// $put_thumbnail = file_get_contents($thumbnail, false, stream_context_create($arrContextOptions));
+	    			// file_put_contents(public_path("upload/thumbnails/" . $nameImage . '.jpg'), $put_thumbnail);
+
+	    			\Storage::disk('s3')->put($pathThumbnail, file_get_contents($thumbnail, false, stream_context_create($arrContextOptions)), 'public');
 	    		}
 			}
 
 			if ($width1 == NULL || $width1 == 0 || $checkUrl == 0) {
 				$postItem = Post::findOrFail($post->id);
 
-				if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
-					unlink(public_path('upload/thumbnails/' . $postItem->image));
-					unlink(public_path('upload/og_images/' . $postItem->image));
+				if (Storage::disk('s3')->exists($this->server . 'photos/thumbnails/' . $image)) {
+					\Storage::disk('s3')->delete($this->server . 'photos/thumbnails/' . $postItem->image);
 				}
+				if (Storage::disk('s3')->exists($this->server . 'photos/og_images/' . $image)) {
+					\Storage::disk('s3')->delete($this->server . 'photos/og_images/' . $postItem->image);
+				}				
+				// if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
+				// 	unlink(public_path('upload/thumbnails/' . $postItem->image));
+				// 	unlink(public_path('upload/og_images/' . $postItem->image));
+				// }
 				
 				foreach ($listImage as $key => $img) {
 					if ($img != '') {
-						if (file_exists(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'))) {
-							unlink(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
+						if (Storage::disk('s3')->exists($this->server . "photos/images/$folder" . $nameImage . '-' . $listRand[$key] . '.jpg')) {
+							\Storage::disk('s3')->delete($this->server . "photos/images/$folder" . $nameImage . '-' . $listRand[$key] . '.jpg');
 						}
+						// if (file_exists(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'))) {
+						// 	unlink(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
+						// }
 					}
 				}
 				$postItem->delete();
@@ -3584,9 +3607,9 @@ class CloneController extends Controller
 			} else {
 				return 'Thêm tin thành công';
 			}
-		} catch (\Exception $e) {
-			return NULL;
-		}
+		//} catch (\Exception $e) {
+			//return NULL;
+		//}
 	}
 
 	public function checkImage($filePath)
@@ -3684,5 +3707,15 @@ class CloneController extends Controller
 			$post->delete();
 			echo 'Đã xóa tin: ' . $post->id . '<hr>';
 		}
+	}
+
+	public function test(Request $request)
+	{
+		$file = $request->file('file');
+		$fileName = $file->getClientOriginalName();
+
+		$uploadDir = 'test/';
+		$fullpath = $uploadDir . $fileName;
+		\Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
 	}
 }
