@@ -1,14 +1,7 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-3 footer-box">
-                        <div class="about-inner">
-                            <img src="{{asset('images/diembao24_logo.png')}}" style="border: 0px" class="img-responsive logo-footer" alt=""/>
-                            <p class="intro-footer">Trang tin tức tổng hợp mới nhất 24h </p>
-                            <br>
-                        </div>
-                    </div>
-                    <div class="col-sm-3 footer-box">
+                    <div class="col-sm-6 footer-box">
                         <div class="twitter-inner">
                             <h3 class="wiget-title">Cơ quản chủ quản</h3>
                             <ul>

@@ -61,7 +61,7 @@
 	</div>
 	<div class="container">
 		<div class="row row-m">
-			<div class="col-sm-8 col-p  main-content">
+			<div class="col-sm-8 col-p  main-content border-right">
 				<div>
 					<div class="post_details_inner">
 						<div class="post_details_block details_block2">
@@ -94,9 +94,13 @@
 								@elseif ($post->status == 0)
 									{!! $post->content_soure !!}
 								@endif
+								<p style="background-color:#EBEBEB">
+								    Cảm ơn các bạn đã đọc tin trên website của chúng tôi, chúng tôi luôn nỗ lực gửi tới cho các bạn tin tức mới nhất cập nhật hàng ngày tình hình
+								    thời sự, chính trị, kinh tế xã hội trong và ngoài nước. Rất mong được sự ủng hộ của quý độc giả. Xin cám ơn
+								</p>
 							</div>
 							<p style="text-align: right;">
-								<b>Nguồn:</b> <a target="_blank" rel="notfollow" href="{{ $post->url_origin }}">{{ $post->web }}</a>
+								<b>Theo:</b> {{ $post->web }}
 							</p>
 						</div>
 					</div>
@@ -163,88 +167,18 @@
 	                            </div>
                             @endforeach
 						</div>
-						<div class="row" style="margin-top: 30px">
-							@foreach ($otherCategory as $category)
-								@if (count(\App\Helper\helper::categoryPost($category->id)) > 0)
-									<div class="col-sm-4 col-md-4 sub-cate-random">
-										<a class="title-popalar" href="{{ route('client.category', ['cate' => $category->slug]) }}">
-											{{ $category->name }}
-										</a>
-										@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
-											<div class="news-list-item articles-list category-other-post" style="border-bottom: 0px">
-												<div class="img-wrapper">
-													<a class="thumb" href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
-														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive">
-													</a>
-												</div>
-												<h4 class="title-top-page-cate">
-													<a href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
-														{{ $categoryOtherPost->title }}
-													</a>
-												</h4>
-											</div>
-											@php break; @endphp
-										@endforeach
-										@php 
-											$dem = 0;
-										@endphp
-										<ul id="most-today">
-											@foreach (\App\Helper\helper::categoryPost($category->id) as $categoryOtherPost)
-												@if ($dem++ > 0)
-													<li style="padding: 5px 0px">
-														<a href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
-															{{ $categoryOtherPost->title }}
-														</a>
-													</li>
-													<hr>
-												@endif
-											@endforeach
-										</ul>
-									</div>
-								@else
-									{{ $category->name }}
-								@endif
-							@endforeach
-						</div>
+					
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-p sidebar">
-				<h3 class="title-sidebar">
-                	Tin mới
-                </h3>
-                <br>
-                <div class="tab-content best-view-sidebar">
-                	<div role="tabpanel" class="tab-pane fade active in" id="home">
-                		<div class="most-viewed post-list-category-sidebar">
-                			<ul id="most-today" class="content tabs-content">
-                				@foreach ($newPost as $post)
-                					<div class="news-list-item articles-list">
-                						<div class="sidebar-img-wrapper img-wrapper">
-                							<a class="thumb" href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
-                								<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
-                						</div>
-                						<h4 title="{{ $post->title }}">
-                							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
-                						</h4>
-                						<div class="hidden-sm hidden-md hidden-lg">
-                							<p class="summury" style="font-size: 13px; max-height: 40px; overflow: hidden;">
-                								{!! $post->summury !!}
-                							</p>
-                							<p>
-                								<a class="sub-category" href="">{{$post->subCategory->name}}</a><span> | </span><a class="soure" href="">{{$post->web}}</a>
-                							</p>
-                							<p class="soure">
-                								{{ getWeekday($post->date) }}, {{ date('d/m/Y H:i', strtotime($post->date)) }} +GMT7
-                							</p>
-                						</div>
-                					</div>
-                				@endforeach
-                			</ul>
-                		</div>
-                	</div>
-                </div>
-				<hr>
+			<div class="col-sm-4 col-p sidebar ">
+			    <div style="padding:20px; background-color:#FAFAFA; margin-bottom:20px">
+			        <center>Độc giả cùng làm báo. Nếu bạn đam mê báo chí và muốn chia sẻ tin tức cập nhật tới mọi người
+			        <br><br>
+			        <a href="mailto:contact@diembao24h.net" class="btn btn-danger">Gửi Bài</a>
+			        </center>
+			    </div>
+			    
 				<h3 class="title-sidebar">
                 	Đọc nhiều nhất
                 </h3>

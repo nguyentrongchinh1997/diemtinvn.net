@@ -17,7 +17,7 @@ class PostService
 
 	public function detail($request)
 	{
-		try {
+// 		try {
 			$postId = $request->p;
 			$post = $this->post->findOrFail($postId);
 			$categoryId = $post->subCategory->category->id;
@@ -31,7 +31,11 @@ class PostService
 			                      ->whereNotIn('id', $this->getId($newPost))
 			                      ->limit(10)
 			                      ->get();
-			$postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(9);
+			if (count($post->subCategory->post) > 9) {
+			    $postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(9);
+			} else {
+			    $postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get();
+			}
 			$otherCategory = $this->category->all()->random(3);
 			$post->increment('view');
 			$idPostRelate = array();
@@ -64,16 +68,16 @@ class PostService
 				$idPostRelate = [];
 			}
 
-			if (count($idPostRelate) < 8) {
-				$limit = 9 - count($idPostRelate);
-				$postRelateRandom = $this->post->whereNotIn('id', $idPostRelate)
-											   ->where('category_id', $categoryId)
-											   ->get()
-											   ->random($limit);
-				foreach ($postRelateRandom as $postRelate) {
-					$idPostRelate[] = $postRelate->id;
-				}
-			}
+// 			if (count($idPostRelate) < 8) {
+// 				$limit = 9 - count($idPostRelate);
+// 				$postRelateRandom = $this->post->whereNotIn('id', $idPostRelate)
+// 											   ->where('category_id', $categoryId)
+// 											   ->get()
+// 											   ->random($limit);
+// 				foreach ($postRelateRandom as $postRelate) {
+// 					$idPostRelate[] = $postRelate->id;
+// 				}
+// 			}
 
 	    	$data = [
 	    	    'bestViewPost' => $bestViewPost,
@@ -87,9 +91,9 @@ class PostService
 	    	];
 
 	    	return $data;
-		} catch (\Exception $e) {
-			return NULL;
-		}
+// 		} catch (\Exception $e) {
+// 			return NULL;
+// 		}
 	}
 	
 	public function getId($posts)

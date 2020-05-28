@@ -41,9 +41,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 		Route::get('search', 'Admin\PostController@search')->name('admin.post.search');
 	});
 });
-Route::get('slick/h/i', function(){
-	return view('client.pages.slick');
+
+Route::get('test/hi/hi', function(){
+    $html = file_get_html('http://khoahoc.tv/mang-kim-loai-long-dau-tien-duoc-che-tao-thanh-cong-tuong-lai-ke-huy-diet-t-1000-khong-con-xa-106001');
+    dd($html->find('h1', 0)->plaintext);
+    //echo shell_exec('ls /var/www/diembao24h.net/public/css');
 });
+
 Route::get('ads/json', 'Client\AdsController@ads');
 Route::get('/', 'Client\HomeController@home')->name('client.home');
 

@@ -228,6 +228,13 @@
             <!-- END OF /. MAIN CONTENT -->
             <!-- START SIDE CONTENT -->
             <div class="col-sm-4 col-p rightSidebar hidden-xs">
+                  <div style="padding:20px; background-color:#FAFAFA; margin-bottom:20px">
+			        <center>Độc giả cùng làm báo. Nếu bạn đam mê báo chí và muốn chia sẻ tin tức cập nhật tới mọi người
+			        <br><br>
+			        <a href="mailto:contact@diembao24h.net" class="btn btn-danger">Gửi Bài</a>
+			        </center>
+			    </div>
+			    
                 <div class="theiaStickySidebar">
                     @include('client.includes.weather')
                     <div class="social-media-inner">

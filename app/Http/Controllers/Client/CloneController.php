@@ -3464,7 +3464,7 @@ class CloneController extends Controller
     	try {
 	    	return Post::create(
 	    		[
-	    			'title' => $title,
+	    			'title' => html_entity_decode($title),
 	    			'slug' => $slug,
 	    			'summury' => $summury,
 	    			'content' => $content,

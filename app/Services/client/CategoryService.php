@@ -31,30 +31,33 @@ class CategoryService
 				$limit = 1;
 			}
 			$subCate = $this->subCategory->where('category_id', $categoryId)->get()->random($limit);
-			$postSlide = $this->post->where('category_id', $categoryId)
-									->latest('date')
-									->first();
-			$postTop = $this->post->where('category_id', $categoryId)
-								  ->latest('date')
-								  ->offset(1)
-								  ->limit(6)
-								  ->get();
+// 			$postSlide = $this->post->where('category_id', $categoryId)
+// 									->latest('date')
+// 									->first();
+// 			$postTop = $this->post->where('category_id', $categoryId)
+// 								  ->latest('date')
+// 								  ->offset(1)
+// 								  ->limit(6)
+// 								  ->get();
 
-			if (isset($postTop) && count($postTop) > 3) {
-				$postList = $this->post->where('category_id', $categoryId)
+// 			if (isset($postTop) && count($postTop) > 3) {
+				// $postList = $this->post->where('category_id', $categoryId)
+				// 				   ->latest('date')
+				// 				   ->where('date', '<', $postTop[5]->date)
+				// 				   ->paginate(27);
+			    $postList = $this->post->where('category_id', $categoryId)
 								   ->latest('date')
-								   ->where('date', '<', $postTop[5]->date)
 								   ->paginate(27);
-			} else {
-				$postList = array();
-			}
-			$listId = $this->getId($postSlide, $postTop, $postList);
+// 			} else {
+// 				$postList = array();
+// 			}
+// 			$listId = $this->getId($postSlide, $postTop, $postList);
 
 			return [
 				'subCate' => $subCate,
 				'postList' => $postList,
-				'postTop' => $postTop,
-				'postSlide' => $postSlide,
+				// 'postTop' => $postTop,
+				// 'postSlide' => $postSlide,
 				'category' => $category,
 				'listId' => $listId,
 			];
@@ -97,31 +100,34 @@ class CategoryService
 			$cateChild = $this->subCategory->where('category_id', $subCategory->category->id)
 										 ->where('id', '!=', $subCategoryId)
 										 ->get()->random($limit);
-			$postSlide = $this->post->where('sub_category_id', $subCategoryId)
-									->latest('date')
-									->first();
-			$postTop = $this->post->where('sub_category_id', $subCategoryId)
-								  ->latest('date')
-								  ->offset(1)
-								  ->limit(6)
-								  ->get();
-			if (isset($postTop) && count($postTop) > 3) {
+// 			$postSlide = $this->post->where('sub_category_id', $subCategoryId)
+// 									->latest('date')
+// 									->first();
+// 			$postTop = $this->post->where('sub_category_id', $subCategoryId)
+// 								  ->latest('date')
+// 								  ->offset(1)
+// 								  ->limit(6)
+// 								  ->get();
+// 			if (isset($postTop) && count($postTop) > 3) {
+// 				$postList = $this->post->where('sub_category_id', $subCategoryId)
+// 								   ->latest('date')
+// 								   ->where('date', '<', $postTop[5]->date)
+// 								   ->paginate(27);
 				$postList = $this->post->where('sub_category_id', $subCategoryId)
 								   ->latest('date')
-								   ->where('date', '<', $postTop[5]->date)
 								   ->paginate(27);
-			} else {
-				$postList = array();
-			}
+// 			} else {
+// 				$postList = array();
+// 			}
 
-			$listId = $this->getId($postSlide, $postTop, $postList);
+// 			$listId = $this->getId($postSlide, $postTop, $postList);
 
 			return [
 				'cateChild' => $cateChild,
 				'listId' => $listId,
 				'postList' => $postList,
-				'postTop' => $postTop,
-				'postSlide' => $postSlide,
+				// 'postTop' => $postTop,
+				// 'postSlide' => $postSlide,
 				'subCategory' => $subCategory,
 			];
 		} else {

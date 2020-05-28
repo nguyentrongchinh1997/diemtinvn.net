@@ -85,22 +85,14 @@
                     </div>
                 </div>
             </div>
-            <div class="header-mid hidden-xs">
+            <div class="header-mid hidden-xs" style='background-color:#FAFAFA'>
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-4">
-                            <div class="logo">
-                                <a href="{{asset('')}}"><img style="border: 0px; width: 50%" src="{{asset('images/diembao24_logo.png')}}" class="img-responsive" alt=""></a>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <a href="#"><img src="https://docbaothayban.com/wp-content/themes/thaytoidocbao/image/banner1.png" class="img-responsive" alt=""></a>
-                        </div>
+                        <center><h1>Tin Tức Tổng Hợp 24h</h1></cennter>
                     </div>
                 </div>
             </div>
-            <nav class="navbar navbar-default navbar-sticky navbar-mobile bootsnav">
+            <nav class="navbar navbar-default navbar-sticky navbar-mobile bootsnav" style='background-color:#FAFAFA'>
                 <div class="top-search">
                     <div class="container">
                         <form method="GET" action="{{route('client.search')}}">
@@ -120,7 +112,7 @@
                     </div>
                     <div class="navbar-header">
                             <i class="ti-align-justify open-menu-mobile"></i>
-                        <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><img src="{{asset('images/diembao24_logo.png')}}" class="logo" alt=""></a>
+                        <a class="navbar-brand hidden-sm hidden-md hidden-lg" href="#brand"><h3>Tin tức 24h</h3></a>
                     </div>
                     
                     <div class="collapse navbar-collapse" id="navbar-menu">
@@ -178,7 +170,7 @@
                 <ul>
                     <i class="ti-close close-menu"></i>
                     <li style="padding-left: 0px">
-                        <img style="border: 0px" src="{{asset('images/diembao24_logo.png')}}" class="img-responsive">
+                        <h3>Tin tức24h</h3>
                     </li>
                     <li>
                         <a href=""><i class="ti-home"></i> Trang chủ</a>
