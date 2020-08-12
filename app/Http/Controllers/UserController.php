@@ -41,6 +41,6 @@ class UserController extends Controller
     {
     	auth()->logout();
 
-    	return redirect()->route('admin.login_admin');
+    	return redirect()->route('admin.login');
     }
 }

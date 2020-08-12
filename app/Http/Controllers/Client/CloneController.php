@@ -115,40 +115,41 @@ class CloneController extends Controller
 
 	public function clone()
 	{
-		$value = Value::findOrFail(1);
-		$a = $value->value;
+		$this->xaHoi();
+		// $value = Value::findOrFail(1);
+		// $a = $value->value;
 
-		if ($a == 11) {
-			$value->value = 0;
-			$value->save();		 
-		} else {
-			$value->value = $a + 1;
-			$value->save();
-		}
+		// if ($a == 11) {
+		// 	$value->value = 0;
+		// 	$value->save();		 
+		// } else {
+		// 	$value->value = $a + 1;
+		// 	$value->save();
+		// }
 	
-		switch($a){
-		    case 0 : $this->xaHoi(); break;
-		    case 1 : $this->theThao(); break;
-		    case 2 : $this->doiSong(); break;
-		    case 3 : $this->theGioi(); break;
-		    case 4 : $this->vanHoa(); break;
-		    case 5 : $this->kinhTe(); break;
-		    case 6 : $this->giaoDuc(); break;
-		    case 7 : $this->khoaHoc(); break;
-		    case 8 : $this->congNghe(); break;
-		    case 9 : $this->phapLuat(); break;
-		    case 10 : $this->giaiTri(); break;
-		    case 11: $this->nhaDat(); break;
-		    case 12: $this->priceGoldToday(); $this->oil(); break;
-		}
+		// switch($a){
+		//     case 0 : $this->xaHoi(); break;
+		//     case 1 : $this->theThao(); break;
+		//     case 2 : $this->doiSong(); break;
+		//     case 3 : $this->theGioi(); break;
+		//     case 4 : $this->vanHoa(); break;
+		//     case 5 : $this->kinhTe(); break;
+		//     case 6 : $this->giaoDuc(); break;
+		//     case 7 : $this->khoaHoc(); break;
+		//     case 8 : $this->congNghe(); break;
+		//     case 9 : $this->phapLuat(); break;
+		//     case 10 : $this->giaiTri(); break;
+		//     case 11: $this->nhaDat(); break;
+		//     case 12: $this->priceGoldToday(); $this->oil(); break;
+		// }
 
-		if ($a == 12) {
-			$value->value = 0;
-			$value->save();		 
-		} else {
-			$value->value = $a + 1;
-			$value->save();
-		}
+		// if ($a == 12) {
+		// 	$value->value = 0;
+		// 	$value->save();		 
+		// } else {
+		// 	$value->value = $a + 1;
+		// 	$value->save();
+		// }
 		// 	$this->doiSong();
         /*
 		// xã hội
@@ -266,12 +267,10 @@ class CloneController extends Controller
 			$this->cloneVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
 		//	$this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
 		//	$this->cloneLaoDong('https://laodong.vn/thoi-su/', $this->thoiSu, $this->xaHoi);
-		// giao thông
-		//	$this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/giaothong.vnp', $this->giaoThong, $this->xaHoi);
-		//	$this->cloneVnexpress('https://vnexpress.net/thoi-su/giao-thong', $this->giaoThong, $this->xaHoi);
-		// môi trường
-			$this->cloneVietNamPlus('https://www.vietnamplus.vn/moitruong.vnp', $this->moiTruong, $this->xaHoi);
-		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/moi-truong/', $this->moiTruong, $this->xaHoi);
+			//$this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/', $this->thoiSu, $this->xaHoi);
+			// $this->cloneVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
+			 $this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
+			// $this->cloneLaoDong('https://laodong.vn/thoi-su/', $this->thoiSu, $this->xaHoi);
 	}
 
 	public function theThao()

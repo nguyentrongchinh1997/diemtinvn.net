@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('test', function(){
+	$html = file_get_html("https://haymora.com/tim-cong-ty/1,3,7,8,9,10,12,13,14,15,16,17,18,19,20,21,22,23,24/all");
+
+	foreach ($html->find('.company_title .infor__compnay h2') as $k) {
+		echo $k->plaintext . '<hr>';
+	}
+});
+
 Route::get('admin/login', 'UserController@loginAdminForm')->name('admin.login_admin');
 Route::post('admin/login', 'UserController@loginAdmin')->name('admin.login.post');
 Route::get('admin/logout', 'UserController@logout')->name('admin.logout');
