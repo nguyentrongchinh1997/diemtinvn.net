@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Cache::flush();
         View::composer('*', function($view){
             $newPostsSidebar = Post::latest('date')->limit(10)->get();
             $value = Cache::remember('users', 1440, function() {
@@ -41,6 +40,7 @@ class AppServiceProvider extends ServiceProvider
                     'categoryShare' => $categoryShare,
                     'bestViewSidebar' => $bestViewSidebar,
                     'weather' => $weather['data'],
+                    'server' => 'https://diembao24h.s3-ap-southeast-1.amazonaws.com/photos',
                 ];
 
                 return $data;

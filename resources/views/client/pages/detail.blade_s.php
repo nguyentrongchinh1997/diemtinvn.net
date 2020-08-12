@@ -3,7 +3,7 @@
 @section('title', $post->title)
 @section('description', html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8'))
 @section('keywords', html_entity_decode($post->keyword, ENT_QUOTES, 'UTF-8'))
-@section('image', asset('upload/og_images/' . $post->image))
+@section('image', asset($server . '/og_images/' . $post->image))
 @section('json')
     <meta property="og:url"                content="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' =>$post->subCategory->slug, 'p' => $post->id]) }}" />
     <meta property="og:type"               content="article" />
@@ -129,7 +129,7 @@
 	                    	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
 		                    <div class="news-slide">
 		                        <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
-		                            <img title="{{$postRealte->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
+		                            <img title="{{$postRealte->title}}" src='{{asset("$server/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
 		                        </a>
 		                        <h4>
 		                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
@@ -157,7 +157,7 @@
 	                                <article>
 	                                    <figure class="post-list-category">
 	                                        <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug,'title' => $post->slug, 'p' => $post->id]) }}">
-	                                            <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
+	                                            <img data-src="{{ asset("$server/thumbnails/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
 	                                        </a>
 	                                    </figure>
 	                                    <div class="post-info">
@@ -195,7 +195,7 @@
                 						</div>
                 						<div class="img-wrapper">
                 							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                								<img src='{{ asset("upload/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
+                								<img src='{{ asset("$server/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 					</div>
                 				@endforeach
@@ -236,7 +236,7 @@
 			var numItems = $('.bk-content img').length;
 			for (i = 0; i < numItems; i++) {
 				k = $('.bk-content img:eq(' + i + ')').attr('src');
-				$('.bk-content img:eq(' + i + ')').attr('src', '{{asset("upload/images/$month")}}' + '/' + title + '-' + k + '.jpg');
+				$('.bk-content img:eq(' + i + ')').attr('src', '{{asset("$server/images/$month")}}' + '/' + title + '-' + k + '.jpg');
 			}
 		}
 	</script> --}}

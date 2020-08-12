@@ -60,7 +60,7 @@
                                     {{ ++$stt }}
                                 </td>
                                 <td>
-                                    <img src='{{asset("upload/thumbnails/$post->image")}}' width="100px">
+                                    <img src="https://diembao24h.s3-ap-southeast-1.amazonaws.com/photos/thumbnails/{{$post->image}}" width="100px">
                                 </td>
                                 <td>
                                     <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id])}}">

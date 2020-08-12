@@ -50,7 +50,7 @@
 	</head>
 	<body>
 		<div class="login-wrapper">
-			<form role="form" method="post" action="{{ route('admin.login') }}">
+			<form role="form" method="post" action="{{ route('admin.login.post') }}">
 				@csrf
 				@if (session('error'))
 					<div class="alert alert-danger">

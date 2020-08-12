@@ -92,7 +92,7 @@ class PostController extends Controller
     public function add(Request $request)
     {
         $inputs = $request->all();
-
+        
         Post::create([
             'title' => $inputs['title'],
             'slug' => str_slug($inputs['title']),
@@ -158,22 +158,29 @@ class PostController extends Controller
 
     public function image($image, $title)
     {
-        $name = str_slug($title) . '-' . rand() . '.jpg';
-        $data = getimagesize($image->getRealPath());
+        $format = $image->getClientOriginalExtension();
+		$nameFile = str_slug($title) . '-' . rand() . '.jpg';
+		$data = getimagesize($image->getRealPath());
         $width = $data[0];
         $height = $data[1];
-        $widthThumb = 360;
-        $heightThumb = ($height * $widthThumb) / $width;
-        $imageThumb = Image::make($image->getRealPath());              
-        $imageThumb->resize($widthThumb, $heightThumb);
-        $imageThumb->save(public_path('upload/thumbnails/' . $name));
+        $widthThumbnailResize = 360;
+        $widthOgImageResize = 460;
+        $heightThumbnailResize = ($height * $widthThumbnailResize) / $width;
+        $heightOgImageResize = ($height * $widthOgImageResize) / $width;
+    //resize thumbnail
+	    $thumbnail_resize = Image::make($image);              
+	    $img = $thumbnail_resize->resize($widthThumbnailResize, $heightThumbnailResize)->encode('jpg');
+	    $fullpath = 'photos/thumbnails/' . $nameFile;
+	    \Storage::disk('s3')->put($fullpath, (string)$img, 'public');
+	    //$img = $thumbnail_resize->resize($widthThumbnailResize, $heightThumbnailResize)->encode('jpg');
+	    //$thumbnail_resize->save(public_path('upload/thumbnails/' . $nameFile));
+	// resize og:image
+	    $og_image_resize = Image::make($image);              
+	    $img1 = $og_image_resize->resize($widthOgImageResize, $heightOgImageResize)->encode('jpg');
+	    $fullpath = 'photos/og_images/' . $nameFile;
+	    \Storage::disk('s3')->put($fullpath, (string)$img1, 'public');
+	    //$og_image_resize->save(public_path('upload/og_images/' . $nameFile));
 
-        $widthOgImage = 460;
-        $heightOgImage = ($height * $widthOgImage) / $width;
-        $imageOgImage = Image::make($image->getRealPath());              
-        $imageOgImage->resize($widthOgImage, $heightOgImage);
-        $imageOgImage->save(public_path('upload/og_images/' . $name));
-
-        return $name;
+	    return $nameFile;
     }
 }

@@ -106,6 +106,7 @@ class CloneController extends Controller
 			$this->amNhac = 10;
 			$this->thoiTrang = 11;
 			$this->dienAnh = 12;
+			$this->sao = 38;
 	// chuyên mục nhà đất
 		$this->nhaDat = 12;
 			$this->quanLy = 26;
@@ -260,27 +261,28 @@ class CloneController extends Controller
 	public function xaHoi()
 	{
 		// thời sự
+		    $this->cloneTiin('http://tiin.vn/24.html', $this->thoiSu, $this->xaHoi);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/', $this->thoiSu, $this->xaHoi);
-			// $this->cloneVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
-			// $this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
-			// $this->cloneLaoDong('https://laodong.vn/thoi-su/', $this->thoiSu, $this->xaHoi);
+			$this->cloneVnexpress('https://vnexpress.net/thoi-su', $this->thoiSu, $this->xaHoi);
+		//	$this->cloneBaoTinTuc('https://baotintuc.vn/thoi-su-472ct0.htm', $this->thoiSu, $this->xaHoi);
+		//	$this->cloneLaoDong('https://laodong.vn/thoi-su/', $this->thoiSu, $this->xaHoi);
 		// giao thông
-			// $this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/giaothong.vnp', $this->giaoThong, $this->xaHoi);
-			// $this->cloneVnexpress('https://vnexpress.net/thoi-su/giao-thong', $this->giaoThong, $this->xaHoi);
+		//	$this->cloneVietNamPlus('https://www.vietnamplus.vn/xahoi/giaothong.vnp', $this->giaoThong, $this->xaHoi);
+		//	$this->cloneVnexpress('https://vnexpress.net/thoi-su/giao-thong', $this->giaoThong, $this->xaHoi);
 		// môi trường
-			// $this->cloneVietNamPlus('https://www.vietnamplus.vn/moitruong.vnp', $this->moiTruong, $this->xaHoi);
-			// $this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/moi-truong/', $this->moiTruong, $this->xaHoi);
+			$this->cloneVietNamPlus('https://www.vietnamplus.vn/moitruong.vnp', $this->moiTruong, $this->xaHoi);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/thoi-su/moi-truong/', $this->moiTruong, $this->xaHoi);
 	}
 
 	public function theThao()
 	{
 		// bóng đá
-			$this->cloneVnexpress('https://vnexpress.net/bong-da', $this->bongDa, $this->theThao);
+		//	$this->cloneVnexpress('https://vnexpress.net/bong-da', $this->bongDa, $this->theThao);
 			$this->cloneLaoDong('https://laodong.vn/bong-da-quoc-te/', $this->bongDa, $this->theThao);
 			$this->cloneLaoDong('https://laodong.vn/bong-da/', $this->bongDa, $this->theThao);
 		// quần vợt
 			$this->cloneDanTri('https://dantri.com.vn/the-thao/tennis.htm', $this->quanVot, $this->theThao);
-			$this->cloneVietNamPlus('https://www.vietnamplus.vn/thethao/quanvot.vnp', $this->quanVot, $this->theThao);
+		//	$this->cloneVietNamPlus('https://www.vietnamplus.vn/thethao/quanvot.vnp', $this->quanVot, $this->theThao);
 		// các môn khác
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/the-thao/cac-mon-khac/', $this->monKhac, $this->theThao);
 			$this->cloneVnexpress('https://vnexpress.net/the-thao/cac-mon-khac', $this->monKhac, $this->theThao);
@@ -290,10 +292,11 @@ class CloneController extends Controller
 	{
 		// dinh dưỡng làm đẹp
 			$this->cloneVnexpress('https://vnexpress.net/suc-khoe/dinh-duong', $this->dinhDuong, $this->doiSong);
-			$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe/thuoc-dinh-duong.htm', $this->dinhDuong, $this->doiSong);
+		//	$this->cloneNguoiLaoDong('https://nld.com.vn/suc-khoe/thuoc-dinh-duong.htm', $this->dinhDuong, $this->doiSong);
 			$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/dinh-duong-phong-chong-ung-thu-c100/', $this->dinhDuong, $this->doiSong);
 			$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/tham-my-c62/', $this->dinhDuong, $this->doiSong);
 		// tình yêu hôn nhân
+		    $this->cloneTiin('http://tiin.vn/yeu.html', $this->tinhYeu, $this->doiSong);
 			$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/doi-song/gia-dinh-tinh-yeu/', $this->tinhYeu, $this->doiSong);
 			$this->cloneVnexpress('https://vnexpress.net/tag/tinh-yeu-hon-nhan-gia-dinh-99724', $this->tinhYeu, $this->doiSong);
 			$this->cloneDanTri('https://dantri.com.vn/tinh-yeu-gioi-tinh.htm', $this->tinhYeu, $this->doiSong);
@@ -308,13 +311,13 @@ class CloneController extends Controller
 	{
 		// quân sự
 			$this->cloneQdnd('https://www.qdnd.vn/quan-su-the-gioi', $this->quanSu, $this->theGioi);
-			$this->cloneCongAnNhanDan('http://cand.com.vn/vu-khi-chien-tranh/', $this->quanSu, $this->theGioi);
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/the-gioi/quan-su/', $this->quanSu, $this->theGioi);
+		//	$this->cloneCongAnNhanDan('http://cand.com.vn/vu-khi-chien-tranh/', $this->quanSu, $this->theGioi);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/the-gioi/quan-su/', $this->quanSu, $this->theGioi);
 		// tư liệu
 			$this->cloneBaoTinTuc('https://baotintuc.vn/ho-so-tu-lieu-133ct0.htm', $this->tuLieu, $this->theGioi);
-			$this->cloneVnexpress('https://vnexpress.net/the-gioi/tu-lieu', $this->tuLieu, $this->theGioi);
+		//	$this->cloneVnexpress('https://vnexpress.net/the-gioi/tu-lieu', $this->tuLieu, $this->theGioi);
 		// phân tích
-			$this->cloneVnexpress('https://vnexpress.net/the-gioi/phan-tich', $this->phanTich, $this->theGioi);
+		//	$this->cloneVnexpress('https://vnexpress.net/the-gioi/phan-tich', $this->phanTich, $this->theGioi);
 
 	}
 
@@ -322,48 +325,49 @@ class CloneController extends Controller
 	{
 		// nghệ thuật
 			$this->cloneNguoiLaoDong('https://nld.com.vn/nghe-thuat.html', $this->ngheThuat, $this->vanHoa);
-			$this->cloneNguoiLaoDong('https://nld.com.vn/nghe-thuat.html', $this->ngheThuat, $this->vanHoa);
 		// ẩm thực
-			$this->cloneNongNghiep('https://nongnghiep.vn/am-thuc-truyen-thong/', $this->amThuc, $this->vanHoa);
+		//	$this->cloneNongNghiep('https://nongnghiep.vn/am-thuc-truyen-thong/', $this->amThuc, $this->vanHoa);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/doi-song/am-thuc/', $this->amThuc, $this->vanHoa);
 		// du lịch
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/doi-song/du-lich/', $this->duLich, $this->vanHoa);
-			$this->cloneVnexpress('https://vnexpress.net/du-lich', $this->duLich, $this->vanHoa);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/doi-song/du-lich/', $this->duLich, $this->vanHoa);
+		//	$this->cloneVnexpress('https://vnexpress.net/du-lich', $this->duLich, $this->vanHoa);
 			$this->cloneVietNamPlus('https://www.vietnamplus.vn/dulich.vnp', $this->duLich, $this->vanHoa);
-			$this->cloneBaoQuocTe('https://baoquocte.vn/van-hoa/du-lich', $this->duLich, $this->vanHoa);
+		//	$this->cloneBaoQuocTe('https://baoquocte.vn/van-hoa/du-lich', $this->duLich, $this->vanHoa);
 	}
 
 	public function kinhTe()
 	{
 		//lao động việc làm
-			$this->cloneTuoiTre('https://tuoitre.vn/viec-lam.html', $this->laoDong, $this->kinhTe);
+		//	$this->cloneTuoiTre('https://tuoitre.vn/viec-lam.html', $this->laoDong, $this->kinhTe);
 			$this->cloneNguoiLaoDong('https://nld.com.vn/cong-doan/viec-lam.htm', $this->laoDong, $this->kinhTe);
 		//tài chính
-			$this->cloneNguoiDuaTin('https://www.nguoiduatin.vn/c/tai-chinh-ngan-hang', $this->taiChinh, $this->kinhTe);
+		//	$this->cloneNguoiDuaTin('https://www.nguoiduatin.vn/c/tai-chinh-ngan-hang', $this->taiChinh, $this->kinhTe);
 			$this->cloneDatViet('https://baodatviet.vn/kinh-te/tai-chinh/', $this->taiChinh, $this->kinhTe);
-			$this->cloneVietNamPlus('https://www.vietnamplus.vn/kinhte/taichinh.vnp', $this->taiChinh, $this->kinhTe);
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/tai-chinh/', $this->taiChinh, $this->kinhTe);
+		//	$this->cloneVietNamPlus('https://www.vietnamplus.vn/kinhte/taichinh.vnp', $this->taiChinh, $this->kinhTe);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/tai-chinh/', $this->taiChinh, $this->kinhTe);
 		//chứng khoán
 			$this->cloneVietNamPlus('https://www.vietnamplus.vn/kinhte/chungkhoan.vnp', $this->chungKhoan, $this->kinhTe);
-			$this->cloneVnexpress('https://vnexpress.net/kinh-doanh/chung-khoan', $this->chungKhoan, $this->kinhTe);
+		//	$this->cloneVnexpress('https://vnexpress.net/kinh-doanh/chung-khoan', $this->chungKhoan, $this->kinhTe);
 		//kinh doanh
 			$this->cloneCafeBiz('https://cafebiz.vn/cau-chuyen-kinh-doanh.chn', $this->kinhDoanh, $this->kinhTe);
-			$this->cloneVnexpress('https://vnexpress.net/kinh-doanh', $this->kinhDoanh, $this->kinhTe);
-			$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/kinh-doanh/', $this->kinhDoanh, $this->kinhTe);
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/', $this->kinhDoanh, $this->kinhTe);
+		//	$this->cloneVnexpress('https://vnexpress.net/kinh-doanh', $this->kinhDoanh, $this->kinhTe);
+		//	$this->cloneDoiSongPhapLuat('https://www.doisongphapluat.com/kinh-doanh/', $this->kinhDoanh, $this->kinhTe);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/kinh-doanh/', $this->kinhDoanh, $this->kinhTe);
 	}
 
 	public function giaoDuc()
 	{
 		// học bổng du học
-			$this->cloneTuoiTre('https://tuoitre.vn/giao-duc/du-hoc.htm', $this->duHoc, $this->giaoDuc);
-			$this->cloneVnexpress('https://vnexpress.net/giao-duc/du-hoc', $this->duHoc, $this->giaoDuc);
+		//	$this->cloneTuoiTre('https://tuoitre.vn/giao-duc/du-hoc.htm', $this->duHoc, $this->giaoDuc);
+		//	$this->cloneVnexpress('https://vnexpress.net/giao-duc/du-hoc', $this->duHoc, $this->giaoDuc);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/giao-duc/du-hoc/', $this->duHoc, $this->giaoDuc);
 
 		// đào tạo thi cử
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/giao-duc/tuyen-sinh/', $this->thiCu, $this->giaoDuc);
-			$this->cloneVnexpress('https://vnexpress.net/giao-duc/tuyen-sinh', $this->thiCu, $this->giaoDuc);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/giao-duc/tuyen-sinh/', $this->thiCu, $this->giaoDuc);
+		//	$this->cloneVnexpress('https://vnexpress.net/giao-duc/tuyen-sinh', $this->thiCu, $this->giaoDuc);
 			$this->cloneTuoiTre('https://tuoitre.vn/giao-duc/tuyen-sinh.htm', $this->thiCu, $this->giaoDuc);
+			$this->cloneTiin('http://tiin.vn/hoc.html', $this->thiCu, $this->giaoDuc);
+			
 	}
 
 	public function khoaHoc()
@@ -371,7 +375,7 @@ class CloneController extends Controller
 		// trong nước
 			$this->cloneVnexpress('https://vnexpress.net/khoa-hoc/trong-nuoc', $this->trongNuoc, $this->khoaHoc);
 		// thường thức
-			$this->cloneTuoiTre('https://tuoitre.vn/khoa-hoc/thuong-thuc.htm', $this->thuongThuc, $this->khoaHoc);
+		//	$this->cloneTuoiTre('https://tuoitre.vn/khoa-hoc/thuong-thuc.htm', $this->thuongThuc, $this->khoaHoc);
 			$this->cloneVnexpress('https://vnexpress.net/khoa-hoc/thuong-thuc', $this->thuongThuc, $this->khoaHoc);
 		// chuyện lạ
 			$this->cloneDatViet('https://baodatviet.vn/the-gioi/chuyen-la/', $this->chuyenLa, $this->khoaHoc);
@@ -389,7 +393,7 @@ class CloneController extends Controller
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/tin-cong-nghe/', $this->cntt, $this->congNghe);
 			$this->cloneBaoTinTuc('https://baotintuc.vn/dien-tu-vien-thong-492ct131.htm', $this->cntt, $this->congNghe);
 		// sản phẩm
-			$this->cloneNguoiDuaTin('https://www.nguoiduatin.vn/c/san-pham', $this->sanPham, $this->congNghe);
+		//	$this->cloneNguoiDuaTin('https://www.nguoiduatin.vn/c/san-pham', $this->sanPham, $this->congNghe);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/cong-nghe/san-pham/', $this->sanPham, $this->congNghe);
 			$this->cloneVietNamPlus('https://www.vietnamplus.vn/congnghe/sanphammoi.vnp', $this->sanPham, $this->congNghe);
 			$this->cloneVnexpress('https://vnexpress.net/so-hoa/san-pham', $this->sanPham, $this->congNghe);
@@ -410,6 +414,7 @@ class CloneController extends Controller
 	public function giaiTri()
 	{
 		// âm nhạc
+		    $this->cloneTiin('http://tiin.vn/nhac.html', $this->amNhac, $this->giaiTri);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/giai-tri/nhac/', $this->amNhac, $this->giaiTri);
 			$this->cloneSaoStar('https://saostar.vn/am-nhac/', $this->amNhac, $this->giaiTri);
 			$this->cloneSaoStar('https://saostar.vn/am-nhac/v-pop/', $this->amNhac, $this->giaiTri);
@@ -418,16 +423,19 @@ class CloneController extends Controller
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/giai-tri/thoi-trang/', $this->thoiTrang, $this->giaiTri);
 			$this->cloneSucKhoeDoiSong('https://suckhoedoisong.vn/thoi-trang-c63/', $this->thoiTrang, $this->giaiTri);
 		// điện ảnh
+		    $this->cloneTiin('http://tiin.vn/phim.html', $this->dienAnh, $this->giaiTri);
 			$this->cloneSaoStar('https://saostar.vn/dien-anh/phim-truyen-hinh/', $this->dienAnh, $this->giaiTri);
 			$this->cloneSaoStar('https://saostar.vn/dien-anh/phim-chieu-rap/', $this->dienAnh, $this->giaiTri);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/giai-tri/truyen-hinh/', $this->dienAnh, $this->giaiTri);
 			$this->cloneVnexpress('https://vnexpress.net/giai-tri/phim', $this->dienAnh, $this->giaiTri);
+		// Sao
+		    $this->cloneTiin('http://tiin.vn/sao.html', $this->sao, $this->giaiTri);
 	}
 
 	public function nhaDat()
 	{
 		// quản lý quy hoạch
-			$this->cloneVietNamNet('https://vietnamnet.vn/vn/bat-dong-san/du-an/', $this->quanLy, $this->nhaDat);
+		//	$this->cloneVietNamNet('https://vietnamnet.vn/vn/bat-dong-san/du-an/', $this->quanLy, $this->nhaDat);
 			$this->cloneCafeBiz('https://cafebiz.vn/quy-hoach-do-thi.html', $this->quanLy, $this->nhaDat);
 			$this->cloneVietNamNet('https://vietnamnet.vn/vn/bat-dong-san/du-an/', $this->quanLy, $this->nhaDat);
 		// không gian kiến trúc
@@ -851,6 +859,23 @@ class CloneController extends Controller
 			}
 		}		
 	}
+	
+	public function cloneTiin($link, $subCategoryId, $categoryId)
+	{
+	    $html = file_get_html($link);
+	    
+	    if (!empty($html->find('.right-cat-news-container'))) {
+	        foreach ($html->find('.right-cat-news-container .blast-list-row') as $link) {
+	            $this->getDataTiin($link->find('a', 0)->href, $subCategoryId, $categoryId, $link->find('img', 0)->src);
+	        }
+	    }
+	    
+	    if (!empty($html->find('.container-docnhieu'))) {
+	        foreach ($html->find('.container-docnhieu .dl-row') as $link) {
+	            $this->getDataTiin($link->find('a', 0)->href, $subCategoryId, $categoryId, NULL);
+	        }
+	    }
+	}
 
 	public function cloneSucKhoeDoiSong($link, $subCategoryId, $categoryId)
 	{
@@ -932,25 +957,17 @@ class CloneController extends Controller
 		
 		foreach ($html->find('#plhMain_ctl00_divFocus .box11') as $link) {
 			$linkFull = $domain . $link->find('a', 0)->href;
-			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, '');
+			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId);
 		}
 
 		foreach ($html->find('#plhMain_ctl00_divFocus .box13 li') as $link) {
 			$linkFull = $domain . $link->find('a', 0)->href;
-			$thumbnail = $link->find('img', 0)->src;
-
-			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
-				$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, $thumbnail);
-			}
+			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId);
 		}
 
 		foreach ($html->find('.listspecial>ul>li') as $link) {
 			$linkFull = $domain . $link->find('a', 0)->href;
-			$thumbnail = $link->find('img', 0)->src;
-
-			if ($this->checkImage($thumbnail) != NULL && $this->checkImage($thumbnail) > 0) {
-				$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId, $thumbnail);
-			}
+			$this->getDataBaoTinTuc($linkFull, $subCategoryId, $categoryId);
 		}
 	}
 
@@ -1000,6 +1017,91 @@ class CloneController extends Controller
 				$this->getDataBaoQuocTe($linkFull, $subCategoryId, $categoryId, $thumbnail);
 			}
 		}
+	}
+	
+	public function getDataTiin($link, $subCategoryId, $categoryId, $thumbnail)
+	{
+	    try {
+	        $arrContextOptions = array(
+			    "ssl"=>array(
+			        "verify_peer"=>false,
+			        "verify_peer_name"=>false,
+			    ),
+			);
+	        $web = 'tiin.vn';
+	        $web_name = 'Tiin';
+	        $urlMd5 = md5($link);
+	        $check = $this->check($urlMd5, $categoryId);
+			$listRand = $listImgAndContent = $listImage = $listImgSoure  = array();
+			
+			if ($check == 0) {
+			    $html = file_get_html($link);
+			    $title = trim(html_entity_decode($html->find('#title-container', 0)->plaintext));
+			    $slug = $nameImage = str_slug($title);
+				$checkTitle = $this->checkTitle($slug);
+				
+				if ($checkTitle == 0) {
+    			    if (!empty($html->find('#left-content-container #time'))) {
+    			        $date = $html->find('#left-content-container #time', 0)->plaintext;
+    			        $date = str_replace('/', '-', $date);
+    			        $date = date('Y-m-d H:i:s', strtotime($date));
+    			    } else {
+    			        $date = date('Y-m-d H:i:s');
+    			    }
+    			    $folder = date('Y-m', strtotime($date));
+    				$this->createFolder($folder);
+    				
+    				if (!empty($html->find('#body-content'))) {
+    				    $summury = html_entity_decode($html->find('#content-header', 0)->plaintext);
+    				    $content = html_entity_decode($html->find('#body-content', 0)->innertext);
+						$og_image = $html->find("meta[property='og:image']", 0)->content;
+						$keyword = html_entity_decode($html->find("meta[name='news_keywords']", 0)->content);
+                        $replace = array($summury, $title);
+                        
+                        if (!empty($html->find('.more-detail'))) {
+                            $content = str_replace(html_entity_decode($html->find('.more-detail', 0)->outertext), '', $content);
+                        }
+                        
+						if (!empty($html->find('#body-content .tiin-news-relate'))) {
+						    $content = str_replace(html_entity_decode($html->find('#body-content .tiin-news-relate', 0)->outertext), '', $content);
+						}
+						$content = str_replace($replace, '', $content);
+						if (!empty($html->find('#body-content div[style="width: 600px;"]'))) {
+						    $content = str_replace($html->find('#body-content div[style="width: 600px;"]', 0)->outertext, '', $content);
+						}
+						$pathThumbnail = 'photos/thumbnails/' . $nameImage . '.jpg';
+						$pathOg = 'photos/og_images/' . $nameImage . '.jpg';
+						\Storage::disk('s3')->put($pathOg, file_get_contents($og_image, false, stream_context_create($arrContextOptions)), 'public');
+						
+						if ($thumbnail == NULL) {
+						    $data = getimagesize($og_image);
+            		        $width = $data[0];
+            		        $height = $data[1];
+            				$widthThumbnailResize = 400;
+            				$heightThumbnailResize = ($height * $widthThumbnailResize) / $width;
+            				$thumbnail_resize = Image::make($og_image);
+            			    $img = $thumbnail_resize->resize($widthThumbnailResize, $heightThumbnailResize)->encode('jpg');
+            			    $fullpath = 'photos/thumbnails/' . $nameImage . '.jpg';
+            				\Storage::disk('s3')->put($fullpath, (string)$img, 'public');
+            				$filePathOgImage = 'photos/og_images/' . $nameImage . '.jpg';
+            				\Storage::disk('s3')->put($filePathOgImage, file_get_contents($og_image, false, stream_context_create($arrContextOptions)), 'public');
+						} else {
+						    \Storage::disk('s3')->put($pathThumbnail, file_get_contents($thumbnail, false, stream_context_create($arrContextOptions)), 'public');
+						}
+						$result = $this->insertPost($title, $slug, $summury, $content, $nameImage . '.jpg', $keyword, $subCategoryId, $urlMd5, $link, $web, $date, $og_image, $categoryId, $thumbnail, $web_name, $content);
+    				    
+    				    echo "Thêm thành công" . '<br>' . $link . '<hr>';
+    				}
+				} else {
+				    echo 'Tin này đã thêm <b>tiin.vn</b><hr>';
+				}
+			}
+	    } catch (\Exception $e) {
+	        echo 'Lỗi ' . $e->getMessage() . '<br>';
+	        echo 'Lỗi dòng' . $e->getLine() . '<br>';
+	        echo 'Lỗi link ' . $link . '<br>';
+	        echo '<hr>';
+	    }
 	}
 
 	public function getDataSaoStar($link, $subCategoryId, $categoryId, $thumbnail)
@@ -1073,7 +1175,6 @@ class CloneController extends Controller
 								$content = str_replace($thumbItem, '<p>' . $rand . '</p>', $content);
 							}
 
-							
 							$htmlTagExeption = array('article', 'figure', 'html', 'head', 'meta', 'body', 'strong', 'em', 'a', 'span', 'i', 'div', 'font', 'b', 'table', 'tr', 'td', 'tbody', 'ul', 'script', 'ins', 'u');
 							$contentInsert = $this->getContentInsert($content, $htmlTagExeption, $listRand, $listImgAndContent, $listImage);
 							session()->flush();
@@ -1407,8 +1508,9 @@ class CloneController extends Controller
 		}
 	}
 
-	public function getDataBaoTinTuc($link, $subCategoryId, $categoryId, $thumbnail) {
+	public function getDataBaoTinTuc($link, $subCategoryId, $categoryId) {
 		try {
+		    $thumbnail = '';
 			$web = 'baotintuc.vn';
 			$web_name = 'Tin Tức';
 			$urlMd5 = md5($link);
@@ -1417,7 +1519,7 @@ class CloneController extends Controller
 
 			if ($check == 0) {
 				$html = file_get_html($link);
-				
+
 				if (!empty($html->find('.newsdetail'))) {
 					if (!empty($html->find('.newsdetail .sharing .time'))) {
 						$date = $html->find('.newsdetail .sharing .time', 0)->plaintext;
@@ -3525,8 +3627,9 @@ class CloneController extends Controller
 
     public function uploadThumbnail($og_image, $listImage, $listRand, $nameImage, $thumbnail, $folder, $post)
 	{
-		//try {
-			$width1 = NULL;$dem = 0;
+		try {
+			$width1 = NULL;
+			$dem = 0;
 			$arrContextOptions=array(
 			    "ssl"=>array(
 			        "verify_peer"=>false,
@@ -3551,9 +3654,8 @@ class CloneController extends Controller
 					}
 				}
 			}
-			$checkUrl = $this->checkUrl($og_image);
-			
-			if ($checkUrl == 1) {
+
+			//if ($checkUrl == 1) {
 			    // $put_og_image = file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions));
 			    // file_put_contents(public_path("upload/og_images/" . $nameImage . '.jpg'), $put_og_image);
 
@@ -3564,9 +3666,9 @@ class CloneController extends Controller
 			    // list($width1, $height1) = getimagesize(public_path("upload/og_images/$nameImage.jpg"));
 			    
 			    if ($thumbnail == '') {
+			        $pathThumbnail = 'photos/thumbnails/' . $nameImage . '.jpg';
 	    			// $data = getimagesize(public_path("upload/og_images/" . $nameImage . '.jpg'));
 	    			// $this->resizeImage($data, $nameImage . '.jpg');
-			    	$pathThumbnail = 'photos/thumbnails/' . $nameImage . '.jpg';
 	    			\Storage::disk('s3')->put($pathThumbnail, file_get_contents(str_replace(' ', '%20', $og_image), false, stream_context_create($arrContextOptions)), 'public');
 	    		} else {
 	    			$thumbnail = str_replace(' ', '%20', $thumbnail);
@@ -3576,16 +3678,16 @@ class CloneController extends Controller
 
 	    			\Storage::disk('s3')->put($pathThumbnail, file_get_contents($thumbnail, false, stream_context_create($arrContextOptions)), 'public');
 	    		}
-			}
-
-			if ($width1 == NULL || $width1 == 0 || $checkUrl == 0) {
+			//}
+            
+			if ($width1 == 0 || $dem > 0) {
 				$postItem = Post::findOrFail($post->id);
 
-				if (Storage::disk('s3')->exists($this->server . 'photos/thumbnails/' . $image)) {
-					\Storage::disk('s3')->delete($this->server . 'photos/thumbnails/' . $postItem->image);
+				if (\Storage::disk('s3')->exists('photos/thumbnails/' . $postItem->image)) {
+					\Storage::disk('s3')->delete('photos/thumbnails/' . $postItem->image);
 				}
-				if (Storage::disk('s3')->exists($this->server . 'photos/og_images/' . $image)) {
-					\Storage::disk('s3')->delete($this->server . 'photos/og_images/' . $postItem->image);
+				if (\Storage::disk('s3')->exists('photos/og_images/' . $postItem->image)) {
+					\Storage::disk('s3')->delete('photos/og_images/' . $postItem->image);
 				}				
 				// if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
 				// 	unlink(public_path('upload/thumbnails/' . $postItem->image));
@@ -3594,8 +3696,8 @@ class CloneController extends Controller
 				
 				foreach ($listImage as $key => $img) {
 					if ($img != '') {
-						if (Storage::disk('s3')->exists($this->server . "photos/images/$folder" . $nameImage . '-' . $listRand[$key] . '.jpg')) {
-							\Storage::disk('s3')->delete($this->server . "photos/images/$folder" . $nameImage . '-' . $listRand[$key] . '.jpg');
+						if (\Storage::disk('s3')->exists("photos/images/$folder" . $nameImage . '-' . $listRand[$key] . '.jpg')) {
+							\Storage::disk('s3')->delete("photos/images/$folder" . $nameImage . '-' . $listRand[$key] . '.jpg');
 						}
 						// if (file_exists(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'))) {
 						// 	unlink(public_path("upload/images/$folder/" . $nameImage . '-' . $listRand[$key] . '.jpg'));
@@ -3603,13 +3705,14 @@ class CloneController extends Controller
 					}
 				}
 				$postItem->delete();
+				
 				return 'Tin này ảnh lỗi nên không thêm';
 			} else {
 				return 'Thêm tin thành công';
 			}
-		//} catch (\Exception $e) {
-			//return NULL;
-		//}
+		} catch (\Exception $e) {
+			return NULL;
+		}
 	}
 
 	public function checkImage($filePath)
@@ -3648,12 +3751,13 @@ class CloneController extends Controller
 	{
 		$post = Post::findOrFail($postId);
 		$image = $post->image;
-
-		if (file_exists(public_path('upload/thumbnails/' . $image))) {
-			unlink(public_path('upload/thumbnails/' . $image));
+		$folder = date('Y-m', strtotime($post->date));
+        
+        if (\Storage::disk('s3')->exists("photos/thumbnails/$image")) {
+			\Storage::disk('s3')->delete("photos/thumbnails/$image");
 		}
-		if (file_exists(public_path('upload/og_images/' . $image))) {
-			unlink(public_path('upload/og_images/' . $image));
+		if (\Storage::disk('s3')->exists("photos/og_images/$image")) {
+			\Storage::disk('s3')->delete("photos/og_images/$image");
 		}
 		$link = route('client.detail', [
 											'cate' => $post->category->slug, 
@@ -3665,13 +3769,15 @@ class CloneController extends Controller
 
 		if (!empty($html->find('.bk-content .image-detail img'))) {
 			foreach ($html->find('.bk-content .image-detail img') as $image) {
-				$img = $image->src;
-
-				if (file_exists(public_path($img))) {
-					unlink(public_path($img));
-				}
+				$img = str_replace('https://diembao24h.s3-ap-southeast-1.amazonaws.com/', '', $image->src);
+                
+                if (\Storage::disk('s3')->exists($img)) {
+        			\Storage::disk('s3')->delete($img);
+        		}
 			}
 		}
+		
+		return $post->delete();
 	}
 
 	public function deleteSoure($web)
@@ -3717,5 +3823,34 @@ class CloneController extends Controller
 		$uploadDir = 'test/';
 		$fullpath = $uploadDir . $fileName;
 		\Storage::disk('s3')->put($fullpath, file_get_contents($file), 'public');
+	}
+	
+	public function checkImageInNews()
+	{
+	    $date = date('Y-m-d');
+	    $posts = Post::where('created_at', 'like', $date . '%')->get();
+
+	    foreach ($posts as $post) {
+	        $checkOgImage = \Storage::disk('s3')->exists('photos/og_images/' . $post->image);
+	        $checkThumbnail = \Storage::disk('s3')->exists('photos/thumbnails/' . $post->image);
+	        
+	        if ($checkOgImage == false || $checkThumbnail == false) {
+	            $link = route('client.detail', [
+											'cate' => $post->category->slug, 
+											'sub' => $post->subCategory->slug, 
+											'title' => $post->slug, 
+											'p' => $post->id
+										]);
+    	        $html = file_get_html($link);
+    	        
+    	        foreach ($html->find('.bk-content img') as $img) {
+    	            $img = str_replace('https://diembao24h.s3-ap-southeast-1.amazonaws.com/', '', $img->src);
+    	            \Storage::disk('s3')->delete($img);
+    	        }
+    	        \Storage::disk('s3')->delete($checkOgImage);
+    	        \Storage::disk('s3')->delete($checkThumbnail);
+    	        $post->delete();
+	        }
+	    }
 	}
 }

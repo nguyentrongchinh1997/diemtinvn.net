@@ -12,7 +12,7 @@
                 <div class="row" style="margin-bottom: 20px">
                     <div class="col-md-7">
                         <a href="{{ route('client.detail', ['cate' => $postSlideHome->category->slug, 'sub-cate' => $postSlideHome->subCategory->slug, 'title' => $postSlideHome->slug, 'p' => $postSlideHome->id]) }}">
-                            <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("upload/og_images/$postSlideHome->image")}}'>
+                            <img width="100%" alt="{{$postSlideHome->title}}" src='{{asset("$server/og_images/$postSlideHome->image")}}'>
                         </a>
                     </div>
                     <div class="col-md-5">
@@ -39,7 +39,7 @@
                                 <div class="item">
                                     <div class="featured-post">
                                         <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="news-image">
-                                            <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
+                                            <img title="{{$post->title}}" src='{{asset("$server/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
                                         </a>
                                         <h4>
                                             <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
@@ -62,7 +62,7 @@
                     @foreach ($postRightSlide as $post)
                     <div class="news-slide">
                         <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
-                            <img title="{{$post->title}}" src='{{asset("upload/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
+                            <img title="{{$post->title}}" src='{{asset("$server/og_images/$post->image")}}' alt="{{$post->title}}" class="img-responsive">
                         </a>
                         <h4>
                             <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
@@ -99,7 +99,7 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['cate' => $firstPostXaHoi->category->slug, 'sub-cate' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}"><img src='{{ asset("upload/thumbnails/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['cate' => $firstPostXaHoi->category->slug, 'sub-cate' => $firstPostXaHoi->subCategory->slug, 'title' => $firstPostXaHoi->slug, 'p' => $firstPostXaHoi->id]) }}"><img src='{{ asset("$server/thumbnails/$firstPostXaHoi->image") }}' alt="{{ $firstPostXaHoi->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $firstPostXaHoi->title }}">
@@ -122,7 +122,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("$server/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -171,7 +171,7 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['cate' => $firstPostDoiSong->category->slug, 'sub-cate' => $firstPostDoiSong->subCategory->slug, 'title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}"><img src='{{ asset("upload/og_images/$firstPostDoiSong->image") }}' alt="{{ $firstPostDoiSong->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['cate' => $firstPostDoiSong->category->slug, 'sub-cate' => $firstPostDoiSong->subCategory->slug, 'title' => $firstPostDoiSong->slug, 'p' => $firstPostDoiSong->id]) }}"><img src='{{ asset("$server/og_images/$firstPostDoiSong->image") }}' alt="{{ $firstPostDoiSong->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $firstPostDoiSong->title }}">
@@ -194,7 +194,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("$server/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -367,7 +367,7 @@
                                             <article>
                                                 <figure>
                                                     <a href="{{ route('client.detail', ['cate' => $fistPostKinhTe->category->slug, 'sub-cate' => $fistPostKinhTe->subCategory->slug, 'title' => $fistPostKinhTe->slug, 'p' => $fistPostKinhTe->id]) }}">
-                                                        <img src='{{ asset("upload/og_images/$fistPostKinhTe->image") }}' alt="{{ $fistPostKinhTe->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                        <img src='{{ asset("$server/og_images/$fistPostKinhTe->image") }}' alt="{{ $fistPostKinhTe->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $fistPostKinhTe->title }}">
@@ -389,7 +389,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("$server/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -439,7 +439,7 @@
                                         <div class="col-sm-6 main-post-inner">
                                             <article>
                                                 <figure>
-                                                    <a href="{{ route('client.detail', ['cate' => $firstPostGiaoDuc->category->slug, 'sub-cate' => $firstPostGiaoDuc->subCategory->slug, 'title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}"><img src='{{ asset("upload/og_images/$firstPostGiaoDuc->image") }}' alt="{{ $firstPostGiaoDuc->title }}' height="242" width="345" alt="" class="img-responsive"></a>
+                                                    <a href="{{ route('client.detail', ['cate' => $firstPostGiaoDuc->category->slug, 'sub-cate' => $firstPostGiaoDuc->subCategory->slug, 'title' => $firstPostGiaoDuc->slug, 'p' => $firstPostGiaoDuc->id]) }}"><img src='{{ asset("$server/og_images/$firstPostGiaoDuc->image") }}' alt="{{ $firstPostGiaoDuc->title }}' height="242" width="345" alt="" class="img-responsive"></a>
                                                 </figure>
                                                 <div class="post-info">
                                                     <h3 class="title-top-page-cate" title="{{ $firstPostGiaoDuc->title }}">
@@ -462,7 +462,7 @@
                                                     <div class="news-list-item">
                                                         <div class="img-wrapper">
                                                             <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                                                                <img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
+                                                                <img src='{{ asset("$server/thumbnails/$post->image") }}' alt="{{ $post->title }}' alt="{{ $post->title }}" class="img-responsive">
                                                             </a>
                                                         </div>
                                                         <div class="post-info-2">
@@ -519,7 +519,7 @@
                                         <div class="row" style="margin: 0px">
                                             <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 news-list-item-left">
                                                 <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                                                    <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
+                                                    <img data-src="{{ asset("$server/thumbnails/$post->image") }}" alt="{{ $post->title }}" class="lazy img-responsive">
                                                 </a>
                                             </div>
                                             <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 news-list-item-right">

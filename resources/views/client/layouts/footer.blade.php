@@ -37,7 +37,7 @@
                                     <div class="news-list-item">
                                         <div class="img-wrapper">
                                             <a href="{{ route('client.detail', ['cate' => $postFooter->category->slug, 'sub' => $postFooter->subCategory->slug, 'title' => $postFooter->slug, 'p' => $postFooter->id]) }}" class="thumb">
-                                                <img src='{{asset("upload/thumbnails/$postFooter->image")}}' alt="{{ $postFooter->title }}" class="img-responsive">
+                                                <img src='{{asset("$server/thumbnails/$postFooter->image")}}' alt="{{ $postFooter->title }}" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="post-info-2">

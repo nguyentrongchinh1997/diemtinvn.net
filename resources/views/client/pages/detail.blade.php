@@ -3,7 +3,7 @@
 @section('title', $post->title)
 @section('description', html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8'))
 @section('keywords', html_entity_decode($post->keyword, ENT_QUOTES, 'UTF-8'))
-@section('image', asset('upload/og_images/' . $post->image))
+@section('image', asset($server . '/og_images/' . $post->image))
 @section('json')
     <meta property="og:url"                content="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' =>$post->subCategory->slug, 'p' => $post->id]) }}" />
     <meta property="og:type"               content="article" />
@@ -88,6 +88,13 @@
 								</p>
 							</div> 
 							
+							<style>#M602394ScriptRootC942827 {min-height: 300px;}</style>
+                            <!-- Composite Start -->
+                            <div id="M602394ScriptRootC942827">
+                            </div>
+                            <script src="https://jsc.mgid.com/d/i/diembao24h.net.942827.js" async></script>
+                            <!-- Composite End -->
+							
 							<div class="bk-content">
 								@if ($post->status == 1)
 									{!! $post->content !!}
@@ -100,6 +107,12 @@
 							</p>
 						</div>
 					</div>
+					<!-- Composite Start -->
+                    <div id="M602394ScriptRootC942828">
+                    </div>
+                    <script src="https://jsc.mgid.com/d/i/diembao24h.net.942828.js" async></script>
+                    <!-- Composite End -->
+                    
 					@if (count($keywords) > 0)
 						<div>
 							<p><b>Từ khóa</b></p>
@@ -117,6 +130,9 @@
 							<div width='100%' class="fb-comments" data-href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" data-numposts="5"></div>
 						</div>
 					</div>
+					
+				
+
 	                <div class="post-head" style="border-bottom: 0px">
 						<h2 class="title"><strong>Tin liên quan </strong></h2>
 					</div>
@@ -125,7 +141,7 @@
 	                    	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
 		                    <div class="news-slide">
 		                        <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
-		                            <img title="{{$postRealte->title}}" src='{{asset("upload/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
+		                            <img title="{{$postRealte->title}}" src='{{asset("$server/og_images/$postRealte->image")}}' alt="{{$postRealte->title}}" class="img-responsive">
 		                        </a>
 		                        <h4>
 		                            <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}">
@@ -153,7 +169,7 @@
 	                                <article>
 	                                    <figure class="post-list-category">
 	                                        <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug,'title' => $post->slug, 'p' => $post->id]) }}">
-	                                            <img data-src="{{ asset("upload/thumbnails/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
+	                                            <img data-src="{{ asset("$server/thumbnails/$post->image") }}" alt="{{ $post->title }}" title="{{ $post->title }}" class="lazy img-responsive">
 	                                        </a>
 	                                    </figure>
 	                                    <div class="post-info">
@@ -174,7 +190,7 @@
 											<div class="news-list-item articles-list category-other-post" style="border-bottom: 0px">
 												<div class="img-wrapper">
 													<a class="thumb" href="{{ route('client.detail', ['cate' => $categoryOtherPost->category->slug, 'sub-cate' => $categoryOtherPost->subCategory->slug, 'title' => $categoryOtherPost->slug, 'p' => $categoryOtherPost->id]) }}">
-														<img data-src='{{ asset("upload/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive">
+														<img data-src='{{ asset("$server/thumbnails/$categoryOtherPost->image") }}' alt="{{ $categoryOtherPost->title }}" class="lazy img-responsive">
 													</a>
 												</div>
 												<h4 class="title-top-page-cate">
@@ -222,7 +238,7 @@
                 					<div class="news-list-item articles-list">
                 						<div class="sidebar-img-wrapper img-wrapper">
                 							<a class="thumb" href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
-                								<img src='{{ asset("upload/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
+                								<img src='{{ asset("$server/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 						<h4 title="{{ $post->title }}">
                 							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
@@ -261,7 +277,7 @@
                 						</div>
                 						<div class="img-wrapper">
                 							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                								<img src='{{ asset("upload/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
+                								<img src='{{ asset("$server/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 					</div>
                 				@endforeach
@@ -302,7 +318,7 @@
 			var numItems = $('.bk-content img').length;
 			for (i = 0; i < numItems; i++) {
 				k = $('.bk-content img:eq(' + i + ')').attr('src');
-				$('.bk-content img:eq(' + i + ')').attr('src', '{{asset("upload/images/$month")}}' + '/' + title + '-' + k + '.jpg');
+				$('.bk-content img:eq(' + i + ')').attr('src', '{{asset("$server/images/$month")}}' + '/' + title + '-' + k + '.jpg');
 			}
 		}
 	</script> --}}
@@ -311,12 +327,12 @@
 		// 	number_tag_p = $('.bk-content p').length - 1;
 		// 	$('.bk-content p:eq(' + number_tag_p + ')').css({'text-align':'right'});
 		// }
-		if ($('.bk-content a').length) {
-			var numItems = $('.bk-content a').length;
-			for (i = 0; i < numItems; i++) {
-				$('.bk-content a:eq(' + i + ')').attr('href', '#');
-			}
-		}
+// 		if ($('.bk-content a').length) {
+// 			var numItems = $('.bk-content a').length;
+// 			for (i = 0; i < numItems; i++) {
+// 				$('.bk-content a:eq(' + i + ')').attr('href', '#');
+// 			}
+// 		}
 	</script>
 	<script type="text/javascript">
 		$('.bk-content img').click(function(){

@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Model\Post;
 
 Route::get('admin/login', 'UserController@loginAdminForm')->name('admin.login_admin');
 Route::post('admin/login', 'UserController@loginAdmin')->name('admin.login.post');
@@ -47,25 +46,8 @@ Route::get('ads/json', 'Client\AdsController@ads');
 Route::get('/', 'Client\HomeController@home')->name('client.home');
 
 Route::get('clone', 'Client\CloneController@clone');
-Route::get('move', function(){
-	$posts = Post::all();
-	$arrContextOptions=array(
-	    "ssl"=>array(
-	        "verify_peer"=>false,
-	        "verify_peer_name"=>false,
-	    ),
-	);
-	foreach ($posts as $postItem) {
-		if (file_exists(public_path('upload/thumbnails/' . $postItem->image))) {
-			$pathTh = 'photos/thumbnails/' . $postItem->image;
-			Storage::disk('s3')->put($pathTh, file_get_contents("upload/thumbnails/$postItem->image", false, stream_context_create($arrContextOptions)), 'public');
-		}
-		if (file_exists(public_path('upload/og_images/' . $postItem->image))) {
-			$pathOg = 'photos/og_images/' . $postItem->image;
-			Storage::disk('s3')->put($pathOg, file_get_contents("upload/og_images/$postItem->image", false, stream_context_create($arrContextOptions)), 'public');
-		}
-	}
-});
+Route::get('clone/tiin', 'Client\CloneController@tiin');
+Route::get('check-image', 'Client\CloneController@checkImageInNews');
 Route::post('test', 'Client\CloneController@test')->name('test');
 Route::get('tim-kiem', 'Client\NewsSoureController@keywordSearch')->name('client.search');
 Route::get('video', 'Client\VideoController@list')->name('client.video');
