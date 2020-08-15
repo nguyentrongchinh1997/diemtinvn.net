@@ -33,4 +33,19 @@ class CategoryController extends Controller
 
     	return view('client.pages.sub_category', $subCategory);
     }
+
+    public function newsToday()
+    {
+        return view('client.pages.news_today', $this->categoryService->newsToday());
+    }
+
+    public function news()
+    {
+        return view('client.pages.news', $this->categoryService->news());
+    }
+
+    public function newsDay($date)
+    {
+        return view('client.pages.news_day', $this->categoryService->newsDay($date));
+    }
 }

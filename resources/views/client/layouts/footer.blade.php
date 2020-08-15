@@ -37,7 +37,7 @@
                                     <div class="news-list-item">
                                         <div class="img-wrapper">
                                             <a href="{{ route('client.detail', ['cate' => $postFooter->category->slug, 'sub' => $postFooter->subCategory->slug, 'title' => $postFooter->slug, 'p' => $postFooter->id]) }}" class="thumb">
-                                                <img src='{{asset("$server/thumbnails/$postFooter->image")}}' alt="{{ $postFooter->title }}" class="img-responsive">
+                                                <img src='{{$postFooter->image}}' alt="{{ $postFooter->title }}" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="post-info-2">
@@ -135,7 +135,6 @@
                 });
             });
         </script>
+        @yield('js')
     </body>
-
-<!-- Mirrored from inews.themepk.com/news/inews_v1.0/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 22 Mar 2020 23:49:57 GMT -->
 </html>

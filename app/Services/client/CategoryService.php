@@ -5,16 +5,18 @@ namespace app\Services\client;
 use App\Model\Category;
 use App\Model\Post;
 use App\Model\SubCategory;
+use App\Model\NewsDay;
 
 class CategoryService
 {
-	protected $category, $post, $subCategory;
+	protected $category, $post, $subCategory, $newsDay;
 
-	public function __construct(Category $category, Post $post, SubCategory $subCategory)
+	public function __construct(Category $category, Post $post, SubCategory $subCategory, NewsDay $newsDay)
 	{
 		$this->category = $category;
 		$this->post = $post;
 		$this->subCategory = $subCategory;
+		$this->newsDay = $newsDay;
 	}
 
 	public function category($slug)
@@ -64,6 +66,37 @@ class CategoryService
 		} else {
 			return NULL;
 		}
+	}
+
+	public function newsToday()
+	{
+		$date = date('Y-m-d');
+		$post = $this->newsDay->where('date', $date)->first();
+
+		return [
+			'post' => $post,
+			'date' => $date,
+		];
+	}
+
+	public function newsDay($date)
+	{
+		$post = $this->newsDay->where('date', $date)->first();
+
+		return [
+			'post' => $post,
+			'dateFormat' => date('d/m/Y', strtotime($date)),
+			'date' => $date,
+		];
+	}
+
+	public function news()
+	{
+		$posts = $this->newsDay->latest('date')->paginate(5);
+
+		return [
+			'posts' => $posts
+		];
 	}
 
 	public function getId($postSlide, $postTop, $postList)

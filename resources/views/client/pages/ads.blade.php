@@ -55,7 +55,7 @@
                 @foreach ($postList as $post)
                     <div class="ads-post-item col-xs-3 col-sm-3 col-md-3 col-lg-3">
                         <a target="_blank" href="{{route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id, 'soure' => 'ads'])}}">
-                            <img src='{{ asset("$server/thumbnails/$post->image") }}' style="height: 100px; width: 100%; object-fit: cover;">
+                            <img src='{{$post->image}}' style="height: 100px; width: 100%; object-fit: cover;">
                             <p class="title">
                                 {{$post->title}}
                             </p>

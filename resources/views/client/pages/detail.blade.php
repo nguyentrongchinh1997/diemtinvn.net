@@ -61,10 +61,97 @@
 	</div>
 	<div class="container">
 		<div class="row row-m">
-			<div class="col-sm-8 col-p  main-content">
+			<div class="col-sm-8 col-p main-content">
+				<div class="row post-detail-top">
+                    <div class="col-md-7">
+                        <a rel="notfollow" href="{{$post->url_origin}}" target="_blank">
+                            <img width="100%" alt="{{$post->title}}" src='{{$post->image}}'>
+                        </a>
+                    </div>
+                    <div class="col-md-5">
+                        <h1 class="title-top-page">
+                            <a rel="notfollow" href="{{$post->url_origin}}" target="_blank" style="color: #c90000; font-size: 20px">
+                                {{ $post->title }}
+                            </a>
+                        </h1>
+                        <p style="color: #777">
+                            {{ $post->summury }} 
+                        </p>
+                        <p class="date">
+                            {{ date('d/m/Y H:i', strtotime($post->date)) }} GMT+7 <span>|</span>
+									<span>
+										{{ $post->view }} lượt xem
+									</span>
+                        </p>
+                        <p style="margin-bottom: 0px">
+                            <a class="sub-category" href="{{ route('client.sub_cate', ['cate' => $post->category->slug, 'sub_cate' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> | <a href="{{ route('client.news_soure', ['web' => $post->web]) }}" style="color: #777">{{ $post->web }}</a>
+                        </p>
+                    </div>
+                </div>
+                @if (count($keywords) > 0)
+					<div>
+						<p><b>Từ khóa</b></p>
+						<ul class="td-category">
+							@foreach ($keywords as $keyword)
+							<li><a class="post-category" href="{{ route('client.search', ['key' => $keyword]) }}">#{{trim($keyword)}}</a></li>
+							@endforeach
+						</ul>
+					</div>
+				@endif
+				<br>
+                <div>
+
+                    @foreach ($idPostRelate as $newsId)
+                    	@php $postRealte = \App\Helper\helper::getNews($newsId) @endphp
+	                    <div class="news-list-item articles-list">
+							<div class="row" style="margin: 0px">
+                                <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 news-list-item-left">
+                                    <a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="thumb">
+                                    	<img data-src="{{$postRealte->image}}" alt="{{ $postRealte->title }}" class="lazy img-responsive"></a>
+                                </div>
+                                <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 news-list-item-right">
+                                    <h4 title="{{ $postRealte->title }}">
+                                    	<a href="{{ route('client.detail', ['cate' => $postRealte->category->slug, 'sub-cate' => $postRealte->subCategory->slug, 'title' => $postRealte->slug, 'p' => $postRealte->id]) }}" class="title">{{ $postRealte->title }}</a>
+                                    </h4>
+                                    <ul class="authar-info">
+                                        <li><i class="ti-timer"></i> {{ getWeekday($postRealte->date) }}, {{ date('H:i d/m/Y', strtotime($postRealte->date)) }}</li>
+                                    </ul>
+                                    <p class="hidden-xs hidden-sm description" style="margin-bottom: 10px">{{ trim($postRealte->summury) }}</p>
+                                    <p style="margin-bottom: 0px;">
+										<a class="sub-category" href="{{ route('client.sub_cate', ['category' => $postRealte->subCategory->category->slug, 'sub' => $postRealte->subCategory->slug]) }}">{{ $postRealte->subCategory->name }}</a> <span style="color: #adb5bd">|</span> <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($postRealte->web)]) }}">{{ $postRealte->web }}</a>
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    @foreach ($postSameCategory as $post)
+						<div class="news-list-item articles-list">
+							<div class="row" style="margin: 0px">
+                                <div class="col-xs-5 col-sm-4 col-md-4 col-lg-4 news-list-item-left">
+                                    <a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
+                                    	<img data-src="{{$post->image}}" alt="{{ $post->title }}" class="lazy img-responsive"></a>
+                                </div>
+                                <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 news-list-item-right">
+                                    <h4 title="{{ $post->title }}">
+                                    	<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
+                                    </h4>
+                                    <ul class="authar-info">
+                                        <li><i class="ti-timer"></i> {{ getWeekday($post->date) }}, {{ date('H:i d/m/Y', strtotime($post->date)) }}</li>
+                                    </ul>
+                                    <p class="hidden-xs hidden-sm description" style="margin-bottom: 10px">{{ trim($post->summury) }}</p>
+                                    <p style="margin-bottom: 0px;">
+										<a class="sub-category" href="{{ route('client.sub_cate', ['category' => $post->subCategory->category->slug, 'sub' => $post->subCategory->slug]) }}">{{ $post->subCategory->name }}</a> <span style="color: #adb5bd">|</span> <a class="soure" href="{{ route('client.news_soure', ['web' => urlencode($post->web)]) }}">{{ $post->web }}</a>
+									</p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
 				<div>
+					{{--
 					<div class="post_details_inner">
 						<div class="post_details_block details_block2">
+							
 							<div class="post-header">
 								<h2 title="{{ $post->title }}" style="font-weight: bold;">{{ html_entity_decode($post->title) }}</h2>
 								<p style="font-size: 14px; color: #777">
@@ -86,7 +173,8 @@
 								<p class="detail-summury">
 									{!! html_entity_decode($post->summury, ENT_QUOTES, 'UTF-8') !!}
 								</p>
-							</div> 
+							</div>
+							
 							
 							<style>#M602394ScriptRootC942827 {min-height: 300px;}</style>
                             <!-- Composite Start -->
@@ -94,7 +182,6 @@
                             </div>
                             <script src="https://jsc.mgid.com/d/i/diembao24h.net.942827.js" async></script>
                             <!-- Composite End -->
-							
 							<div class="bk-content">
 								@if ($post->status == 1)
 									{!! $post->content !!}
@@ -105,14 +192,15 @@
 							<p style="text-align: right;">
 								<b>Nguồn:</b> <a target="_blank" rel="notfollow" href="{{ $post->url_origin }}">{{ $post->web }}</a>
 							</p>
-						</div>
+													</div>
 					</div>
+					--}}
 					<!-- Composite Start -->
                     <div id="M602394ScriptRootC942828">
                     </div>
                     <script src="https://jsc.mgid.com/d/i/diembao24h.net.942828.js" async></script>
                     <!-- Composite End -->
-                    
+                {{--
 					@if (count($keywords) > 0)
 						<div>
 							<p><b>Từ khóa</b></p>
@@ -124,15 +212,11 @@
 						</div>
 					@endif
 					<div class="post-inner post-inner-2">
-						<!--post header-->
 						<div class="post-head">
 							<h2 class="title"><strong>Bình luận </strong></h2>
 							<div width='100%' class="fb-comments" data-href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" data-numposts="5"></div>
 						</div>
 					</div>
-					
-				
-
 	                <div class="post-head" style="border-bottom: 0px">
 						<h2 class="title"><strong>Tin liên quan </strong></h2>
 					</div>
@@ -223,9 +307,10 @@
 							@endforeach
 						</div>
 					</div>
+				--}}
 				</div>
 			</div>
-			<div class="col-sm-4 col-p sidebar">
+			<div class="col-sm-4 col-p sidebar" style="padding-top: 0px">
 				<h3 class="title-sidebar">
                 	Tin mới
                 </h3>
@@ -238,7 +323,7 @@
                 					<div class="news-list-item articles-list">
                 						<div class="sidebar-img-wrapper img-wrapper">
                 							<a class="thumb" href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}">
-                								<img src='{{ asset("$server/thumbnails/$post->image") }}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
+                								<img src='{{$post->image}}' alt="{{ $post->title }}" title="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 						<h4 title="{{ $post->title }}">
                 							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="title">{{ $post->title }}</a>
@@ -277,7 +362,7 @@
                 						</div>
                 						<div class="img-wrapper">
                 							<a href="{{ route('client.detail', ['cate' => $post->category->slug, 'sub-cate' => $post->subCategory->slug, 'title' => $post->slug, 'p' => $post->id]) }}" class="thumb">
-                								<img src='{{ asset("$server/thumbnails/$post->image") }}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
+                								<img src='{{$post->image}}' title="{{ $post->title }}" alt="{{ $post->title }}" class="img-responsive"></a>
                 						</div>
                 					</div>
                 				@endforeach

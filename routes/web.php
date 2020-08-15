@@ -52,8 +52,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
 Route::get('ads/json', 'Client\AdsController@ads');
 Route::get('/', 'Client\HomeController@home')->name('client.home');
-
-Route::get('clone', 'Client\CloneController@clone');
+Route::get('diem-tin-trong-ngay', 'Client\CategoryController@newsToday')->name('diem-tin-trong-ngay');
+Route::get('diem-tin-ngay-{date}', 'Client\CategoryController@newsDay')->name('news-day');
+Route::get('diem-tin', 'Client\CategoryController@news')->name('diem-tin');
+Route::get('clone', 'Client\CloneController2@clone');
 Route::get('clone/tiin', 'Client\CloneController@tiin');
 Route::get('check-image', 'Client\CloneController@checkImageInNews');
 Route::post('test', 'Client\CloneController@test')->name('test');

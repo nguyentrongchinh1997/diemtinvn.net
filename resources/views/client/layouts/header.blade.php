@@ -140,9 +140,12 @@
                                     </ul>
                                 </li>
                             @endforeach
-                            <li>
-                                <a href="{{ route('client.video') }}">Video</a>
+                            <li class="@if(strrpos(url()->current(), 'diem-tin') != false){{'active-color'}}@endif">
+                                <a href="{{ route('diem-tin-trong-ngay') }}">Điểm tin</a>
                             </li>
+{{--                             <li>
+                                <a href="{{ route('client.video') }}">Video</a>
+                            </li> --}}
                             <li class="dropdown megamenu-fw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Xem thêm</a>
                                 <ul class="dropdown-menu megamenu-content" role="menu">

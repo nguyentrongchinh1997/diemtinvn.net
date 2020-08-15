@@ -18,7 +18,7 @@ class PostService
 
 	public function detail($request)
 	{
-// 		try {
+ 		try {
 			$postId = $request->p;
 			$post = $this->post->findOrFail($postId);
 			$categoryId = $post->subCategory->category->id;
@@ -47,17 +47,16 @@ class PostService
 		        Cache::put('bestViewPost_'.$categoryId, $bestViewPost, $time_cache);
             }
             
-             
-        	if (Cache::has('postSameCategory_'.$categoryId)) {
-			    $postSameCategory = Cache::get('postSameCategory_'.$categoryId);
-            } else {
+       //  	if (Cache::has('postSameCategory_'.$categoryId)) {
+			    // $postSameCategory = Cache::get('postSameCategory_'.$categoryId);
+       //      } else {
             		if (count($post->subCategory->post) > 9) {
-    			    $postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get()->random(9);
+    			    	$postSameCategory = $this->post->where('id', '!=', $postId)->where('sub_category_id', $post->sub_category_id)->get()->random(9);
         			} else {
-        			    $postSameCategory = $this->post->where('sub_category_id', $post->sub_category_id)->get();
+        			    $postSameCategory = $this->post->where('id', '!=', $postId)->where('sub_category_id', $post->sub_category_id)->get();
         			}
-		        Cache::put('postSameCategory_'.$categoryId, $postSameCategory, $time_cache);
-            }
+		        // Cache::put('postSameCategory_'.$categoryId, $postSameCategory, $time_cache);
+          //   }
 			
 			$otherCategory = $this->category->all()->random(3);
 			$post->increment('view');
@@ -114,9 +113,9 @@ class PostService
 	    	];
 
 	    	return $data;
-// 		} catch (\Exception $e) {
-// 			return NULL;
-// 		}
+		} catch (\Exception $e) {
+			return NULL;
+		}
 	}
 	
 	public function getId($posts)
